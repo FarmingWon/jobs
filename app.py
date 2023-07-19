@@ -37,6 +37,7 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = list()
+    st.session_state_companys = None
 
 def set_csv():
     st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
@@ -384,21 +385,24 @@ def map():
     set_csv()
     st.title('주변 인프라')
     companys = st.session_state_companys
-    row = companys.shape[0]
-    for i in range(row):
-        ad = companys.loc[i]['기업위치'].strip()
-        ad = ad.replace(',', " ")
-        ad = ad.strip()
-        ad = ad.split(" ")
-        addr = ""
-        for s in ad[1:6]:
-            addr = addr + " " + s
-        print(addr)
-        make_score(companys.loc[i]['기업명'], addr, companys.loc[i]['기업규모'])
-    sorted_data = sorted(st.session_state.score, key=lambda x: x[2], reverse=True)
-    address = sorted_data[0][1]
-    m = makeMap(address, sorted_data[0][0])
-    st_folium(m, width=725, returned_objects=[])
+    if companys is None:
+        st.write("직업추천을 먼저 받아야 됩니다.")
+    else:
+        row = companys.shape[0]
+        for i in range(row):
+            ad = companys.loc[i]['기업위치'].strip()
+            ad = ad.replace(',', " ")
+            ad = ad.strip()
+            ad = ad.split(" ")
+            addr = ""
+            for s in ad[1:6]:
+                addr = addr + " " + s
+            print(addr)
+            make_score(companys.loc[i]['기업명'], addr, companys.loc[i]['기업규모'])
+        sorted_data = sorted(st.session_state.score, key=lambda x: x[2], reverse=True)
+        address = sorted_data[0][1]
+        m = makeMap(address, sorted_data[0][0])
+        st_folium(m, width=725, returned_objects=[])
 
 def main():
     with st.sidebar:
