@@ -1,7 +1,10 @@
 import streamlit as st
+import extra_streamlit_components as stx
+
 import pandas as pd 
 import sys,os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 from recommend import jaccard
 from recommend import region as r
 from recommend import company as corp
@@ -28,7 +31,7 @@ def save_upload_file(dir, file):
     # return st.success("save file : {} in {}".format(file.name, dir))
 
 def initRouter():
-  return stx.Router({'/': recom, '/map': map})
+  return stx.Router({'/recom': recom, '/map': map})
     
 def recom():
     st.title("이력서 PDF파일을 통한 직업 추천")
