@@ -30,6 +30,23 @@ from recommend import company as corp
 
 # -- import modules end --
 
+def set_variable():
+    st.session_state.selected_region = None
+    st.session_state.selected_job = None
+    st.session_state.recommend_jobs = None
+    st.session_state.similarity_jobs = None
+    st.session_state.jobs = None
+    st.session_state.score = list()
+
+def set_csv():
+    st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
+    st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
+    st.session_state.df_hospital = pd.read_csv('./csv/hospital.csv')
+    st.session_state.df_museum = pd.read_csv('./csv/museum.csv')
+    st.session_state.df_starbucks = pd.read_csv('./csv/starbucks_busan.csv')
+    st.session_state.df_exercise = pd.read_csv('./csv/exercise.csv')
+    st.session_state.df_oliveyoung = pd.read_csv('./csv/oliveyoung.csv')
+
 def showRegion(regions):
     regionsNm = [reg[1] for reg in regions]
     st.session_state.selected_region = st.radio(label = '', options= regionsNm)
@@ -54,7 +71,7 @@ def save_upload_file(dir, file):
 # func: address to lat, lon
 def addr_to_lat_lon(addr):
   url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
-  headers = {"Authorization": "KakaoAK " + API_KEY}
+  headers = {"Authorization": "KakaoAK " + st.secrets.KEY.KAKAO_KEY}
   result = json.loads(str(requests.get(url, headers=headers).text))
   match_first = result['documents'][0]['address']
   return float(match_first['y']), float(match_first['x'])
@@ -79,31 +96,81 @@ def calculate_distance(df, center_xy):
 
   return df_distance # 만들어진 데이터프레임 리턴
 
+def make_score(company_name,address,busisize): # 점수 계산
+    center_xy = list(addr_to_lat_lon(address))
+
+    df_subway_distance = calculate_distance(st.session_state.df_subway, center_xy)
+    df_bus_distance = calculate_distance(st.session_state.df_bus, center_xy)
+    df_hospital_distance = calculate_distance(st.session_state.df_hospital, center_xy)
+    df_museum_distance = calculate_distance(st.session_state.df_museum, center_xy)
+    df_starbucks_distance = calculate_distance(st.session_state.df_starbucks, center_xy)
+    df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
+    df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
+
+    # df_oliveyoung_distance = df_oliveyoung_distance.astype({'latlon' : 'object'})
+    # df_subway_distance = df_subway_distance.astype({'latlon' : 'object'})
+    # df_bus_distance = df_bus_distance.astype({'latlon' : 'object'})
+    # df_hospital_distance = df_hospital_distance.astype({'latlon' : 'object'})
+    # df_museum_distance = df_museum_distance.astype({'latlon' : 'object'})
+    # df_starbucks_distance = df_starbucks_distance.astype({'latlon' : 'object'})
+    # df_exercise_distance = df_exercise_distance.astype({'latlon' : 'object'})
+
+
+    df_graph = pd.DataFrame({'distance': ['500m', '1km', '3km']})
+
+    df_graph['subway'] = [len(df_subway_distance.loc[df_subway_distance['distance'] <= 0.5]),
+                        len(df_subway_distance.loc[(df_subway_distance['distance'] > 0.5) & (df_subway_distance['distance'] <= 1.0)]),
+                        len(df_subway_distance.loc[(df_subway_distance['distance'] > 1.0) & (df_subway_distance['distance'] <= 3.0)])]
+
+    df_graph['bus'] = [len(df_bus_distance.loc[df_bus_distance['distance'] <= 0.5]),
+                        len(df_bus_distance.loc[(df_bus_distance['distance'] > 0.5) & (df_bus_distance['distance'] <= 1.0)]),
+                        len(df_bus_distance.loc[(df_bus_distance['distance'] > 1.0) & (df_bus_distance['distance'] <= 3.0)])]
+
+    df_graph['hospital'] = [len(df_hospital_distance.loc[df_hospital_distance['distance'] <= 0.5]),
+                        len(df_hospital_distance.loc[(df_hospital_distance['distance'] > 0.5) & (df_hospital_distance['distance'] <= 1.0)]),
+                        len(df_hospital_distance.loc[(df_hospital_distance['distance'] > 1.0) & (df_hospital_distance['distance'] <= 3.0)])]
+
+    df_graph['museum'] = [len(df_museum_distance.loc[df_museum_distance['distance'] <= 0.5]),
+                        len(df_museum_distance.loc[(df_museum_distance['distance'] > 0.5) & (df_museum_distance['distance'] <= 1.0)]),
+                        len(df_museum_distance.loc[(df_museum_distance['distance'] > 1.0) & (df_museum_distance['distance'] <= 3.0)])]
+    
+    df_graph['starbucks'] = [len(df_starbucks_distance.loc[df_starbucks_distance['distance'] <= 0.5]),
+                        len(df_starbucks_distance.loc[(df_starbucks_distance['distance'] > 0.5) & (df_starbucks_distance['distance'] <= 1.0)]),
+                        len(df_starbucks_distance.loc[(df_starbucks_distance['distance'] > 1.0) & (df_starbucks_distance['distance'] <= 3.0)])]
+    
+    df_graph['exercise'] = [len(df_exercise_distance.loc[df_exercise_distance['distance'] <= 0.5]),
+                        len(df_exercise_distance.loc[(df_exercise_distance['distance'] > 0.5) & (df_exercise_distance['distance'] <= 1.0)]),
+                        len(df_exercise_distance.loc[(df_exercise_distance['distance'] > 1.0) & (df_exercise_distance['distance'] <= 3.0)])]
+
+    df_graph['oliveyoung'] = [len(df_oliveyoung_distance.loc[df_oliveyoung_distance['distance'] <= 0.5]),
+                        len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 0.5) & (df_oliveyoung_distance['distance'] <= 1.0)]),
+                        len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 1.0) & (df_oliveyoung_distance['distance'] <= 3.0)])]
+    col_name = ['subway','bus','hospital','museum','starbucks','exercise','oliveyoung']
+    score = 0
+    for i in range(3):
+        for name in col_name:
+            score = score + df_graph.loc[i][name]
+    if busisize == '강소기업':
+        score = int(score*1.2)
+    print(score)
+    st.session_state.score.append([company_name,address,score])
 # func: 지도 생성
-def makeMap(address):
+def makeMap(address,corpNm):
   center_xy = list(addr_to_lat_lon(address))
   m = folium.Map(location=center_xy, zoom_start=16)
   folium.Marker(center_xy, 
-                popup="회사명",
-                tooltip="회사명",
+                popup=corpNm,
+                tooltip=corpNm,
                 icon=(folium.Icon(color='blue', icon='building', prefix='fa'))
                 ).add_to(m)
   
-  df_subway = pd.read_csv('./data/subway.csv')
-  df_bus = pd.read_csv('./data/bus.csv')
-  df_hospital = pd.read_csv('./data/hospital.csv')
-  df_museum = pd.read_csv('./data/museum.csv')
-  df_starbucks = pd.read_csv('./data/starbucks_busan.csv')
-  df_exercise = pd.read_csv('./data/exercise.csv')
-  df_oliveyoung = pd.read_csv('./data/oliveyoung.csv')
-  
-  df_subway_distance = calculate_distance(df_subway, center_xy)
-  df_bus_distance = calculate_distance(df_bus, center_xy)
-  df_hospital_distance = calculate_distance(df_hospital, center_xy)
-  df_museum_distance = calculate_distance(df_museum, center_xy)
-  df_starbucks_distance = calculate_distance(df_starbucks, center_xy)
-  df_exercise_distance = calculate_distance(df_exercise, center_xy)
-  df_oliveyoung_distance = calculate_distance(df_oliveyoung, center_xy)
+  df_subway_distance = calculate_distance(st.session_state.df_subway, center_xy)
+  df_bus_distance = calculate_distance(st.session_state.df_bus, center_xy)
+  df_hospital_distance = calculate_distance(st.session_state.df_hospital, center_xy)
+  df_museum_distance = calculate_distance(st.session_state.df_museum, center_xy)
+  df_starbucks_distance = calculate_distance(st.session_state.df_starbucks, center_xy)
+  df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
+  df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
 
   df_subway_distance = df_subway_distance.astype({'latlon' : 'object'})
   df_bus_distance = df_bus_distance.astype({'latlon' : 'object'})
@@ -234,7 +301,7 @@ def makeMap(address):
   makeMarker(m, df_museum_distance, 'pink', 'institution')
   makeMarker(m, df_starbucks_distance, 'green', 'coffee')
   makeMarker(m, df_exercise_distance, 'black', 'soccer-ball-o')
-  makeMarker(m, df_exercise_distance, 'green', 'meteor')
+  makeMarker(m, df_oliveyoung_distance, 'green', 'meteor')
   return m
 
 # func: make Marker in map
@@ -254,11 +321,7 @@ def recom():
     st.title("이력서 PDF파일을 통한 직업 추천")
     uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
     st.session_state.regions = r.getRegion()
-    st.session_state.selected_region = None
-    st.session_state.selected_job = None
-    st.session_state.recommend_jobs = None
-    st.session_state.similarity_jobs = None
-    st.session_state.jobs = None
+
     if uploaded_file:
         if st.session_state.recommend_jobs is None:
             save_upload_file('_pdf', uploaded_file)
@@ -299,28 +362,43 @@ def recom():
                         st.session_state.clicked_jobNm = job[1]
                         break
             if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
-                st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
-                cols = ['기업명',' 기업규모 ',' 근로계약 ',' 기업위치 ',' 근무시간' ,'URL']
+                st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
+                cols = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
+                st.subheader('기업 기업목록')
                 if len(st.session_state.gangso) != 0:
-                    # with st.expander(label = '강소기업 추천', expanded=True):
                     gangso_df = pd.DataFrame(st.session_state.gangso, columns=cols)
-                    # gangso_df['URL'] = gangso_df['URL'].apply(format_link)
-                    st.subheader('강소기업 기업목록')
-                    st.table(gangso_df.head())
                 if len(st.session_state.recommend_company) != 0:
-                    # with st.expander(label = '일반기업 추천', expanded=True):
                     company_df = pd.DataFrame(st.session_state.recommend_company, columns=cols)
-                    # company_df['URL'] = company_df['URL'].apply(format_link)
-                    st.subheader('기업 기업목록')
-                    # st.dataframe(company_df.to_html(escape=False), unsafe_allow_html=True)
-                    st.table(company_df)
-                st.session_state.clicked_regionCd = None
-                st.session_state.clicked_regionNm = None
-                st.session_state.clicked_jobCd = None
-                st.session_state.clicked_jobNm = None
+                if len(st.session_state.gangso) == 0 and len(st.session_state.recommend_company) == 0:
+                    st.write("회사 없음.")
+                else:
+                    if len(st.session_state.gangso) != 0 and len(st.session_state.recommend_company) != 0:
+                        st.session_state_companys = pd.merge(gangso_df, company_df, how='outer')
+                    elif len(st.session_state.gangso) == 0:
+                        st.session_state_companys = company_df
+                    else:
+                        st.session_state_companys = gangso_df      
+                    st.table(st.session_state_companys)
 
 def map():
+    set_csv()
     st.title('주변 인프라')
+    companys = st.session_state_companys
+    row = companys.shape[0]
+    for i in range(row):
+        ad = companys.loc[i]['기업위치'].strip()
+        ad = ad.replace(',', " ")
+        ad = ad.strip()
+        ad = ad.split(" ")
+        addr = ""
+        for s in ad[1:6]:
+            addr = addr + " " + s
+        print(addr)
+        make_score(companys.loc[i]['기업명'], addr, companys.loc[i]['기업규모'])
+    sorted_data = sorted(st.session_state.score, key=lambda x: x[2], reverse=True)
+    address = sorted_data[0][1]
+    m = makeMap(address, sorted_data[0][0])
+    st_folium(m, width=725, returned_objects=[])
 
 def main():
     with st.sidebar:
