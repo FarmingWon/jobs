@@ -27,7 +27,10 @@ def save_upload_file(dir, file):
         f.write(file.getbuffer())
     # return st.success("save file : {} in {}".format(file.name, dir))
 
-def main():
+def initRouter():
+  return stx.Router({'/': recom, '/map': map})
+    
+def recom():
     st.title("이력서 PDF파일을 통한 직업 추천")
     uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
     st.session_state.regions = r.getRegion()
@@ -95,6 +98,16 @@ def main():
                 st.session_state.clicked_regionNm = None
                 st.session_state.clicked_jobCd = None
                 st.session_state.clicked_jobNm = None
+
+def map():
+    st.title('주변 인프라')
+
+def main():
+    with st.sidebar:
+        if st.button('직장 선택'):
+          router.route('/')
+        elif st.button('인프라 확인'):
+          router.route('/map')
 
 if __name__ == "__main__":
     main()
