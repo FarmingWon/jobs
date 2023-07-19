@@ -408,6 +408,7 @@ def main():
           router.route('/map')
 
 if __name__ == "__main__":
+    set_variable()
     router = initRouter()
     router.show_route_view()
     main()
