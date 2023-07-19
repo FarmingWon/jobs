@@ -31,7 +31,7 @@ def save_upload_file(dir, file):
     # return st.success("save file : {} in {}".format(file.name, dir))
 
 def initRouter():
-  return stx.Router({'/recom': recom, '/map': map})
+  return stx.Router({'/': recom, '/map': map})
     
 def recom():
     st.title("이력서 PDF파일을 통한 직업 추천")
@@ -113,4 +113,6 @@ def main():
           router.route('/map')
 
 if __name__ == "__main__":
+    router = initRouter()
+    router.show_route_view()
     main()
