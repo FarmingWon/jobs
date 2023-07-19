@@ -172,13 +172,13 @@ def makeMap(address,corpNm):
   df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
   df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
 
-  df_subway_distance = df_subway_distance.astype({'latlon' : 'object'})
-  df_bus_distance = df_bus_distance.astype({'latlon' : 'object'})
-  df_hospital_distance = df_hospital_distance.astype({'latlon' : 'object'})
-  df_museum_distance = df_museum_distance.astype({'latlon' : 'object'})
-  df_starbucks_distance = df_starbucks_distance.astype({'latlon' : 'object'})
-  df_exercise_distance = df_exercise_distance.astype({'latlon' : 'object'})
-  df_oliveyoung_distance = df_oliveyoung_distance.astype({'latlon' : 'object'})
+  # df_subway_distance = df_subway_distance.astype({'latlon' : 'object'})
+  # df_bus_distance = df_bus_distance.astype({'latlon' : 'object'})
+  # df_hospital_distance = df_hospital_distance.astype({'latlon' : 'object'})
+  # df_museum_distance = df_museum_distance.astype({'latlon' : 'object'})
+  # df_starbucks_distance = df_starbucks_distance.astype({'latlon' : 'object'})
+  # df_exercise_distance = df_exercise_distance.astype({'latlon' : 'object'})
+  # df_oliveyoung_distance = df_oliveyoung_distance.astype({'latlon' : 'object'})
 
   df_graph = pd.DataFrame({'distance': ['500m', '1km', '3km']})
 
