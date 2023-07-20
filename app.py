@@ -3,6 +3,7 @@ import streamlit as st
 import extra_streamlit_components as stx
 from streamlit_folium import st_folium
 from streamlit_echarts import st_echarts
+from st_pages import Page, add_page_title, show_pages
 
 import folium
 
@@ -458,6 +459,13 @@ def map():
         st_folium(m, width=725, returned_objects=[])
 
 def main():
+    show_pages([
+        Page("./pages/recom.py", "이력서를 통한 직업 추천"),
+        Page("./pages/view.py", "직장 선택"),
+        Page("./pages/map.py", "직장 인프라 확인")
+    ])
+
+    '''
     with st.sidebar:
         if st.button('이력서를 통한 직업 추천'):
           router.route('/')
@@ -471,6 +479,7 @@ def main():
                 st.error('직장 선택을 먼저 해주세요')
             else:
                 router.route('/map')
+                '''
 
 if __name__ == "__main__":
     set_variable()
