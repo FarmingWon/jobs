@@ -38,7 +38,7 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = None
-    st.session_state.address = None
+    st.session_state.company = None
 
 def set_csv():
     st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
@@ -473,7 +473,7 @@ def main():
         elif st.button('직장 선택'):
             router.route('/view')
         elif st.button('인프라 확인'):
-            if st.session_state.company == None:
+            if 'company' not in st.session_state:
                 st.error('직장 선택을 먼저 해주세요')
             else:
                 router.route('/map')
