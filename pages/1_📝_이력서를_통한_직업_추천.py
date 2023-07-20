@@ -95,4 +95,5 @@ if uploaded_file:
                     st.session_state.clicked_jobCd = job[0]
                     st.session_state.clicked_jobNm = job[1]
                     break
+            bar.progress(40, text="진행률")
             st.info('왼쪽 메뉴에서 직장 선택을 눌러주세요')
