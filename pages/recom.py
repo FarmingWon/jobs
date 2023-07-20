@@ -46,6 +46,7 @@ if uploaded_file:
         save_upload_file('_pdf', uploaded_file)
         GPT_KEY = st.secrets.KEY.GPT_KEY
         st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
+        st.write(st.session.state.recommend_jobs)
     if st.session_state.recommend_jobs :
         recommend_jobs = st.session_state.recommend_jobs
         if st.session_state.similarity_jobs is None:
