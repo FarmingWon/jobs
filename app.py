@@ -383,6 +383,7 @@ def recom():
                     for idx, row in st.session_state_companys.iterrows():
                         col1, col2 = st.columns(2)
                         col1.write(str(idx))
+                        col2.write(row)
 
 def map():
     set_csv()
