@@ -25,5 +25,5 @@ def main():
 
 if __name__ == "__main__":
     set_variable()
-    st.set_page_config(page_title="Home", layout="wide")
+    st.set_page_config(page_title="BalanceUp", layout="wide")
     main()
