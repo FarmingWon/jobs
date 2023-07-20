@@ -48,6 +48,7 @@ def showJob(recommend_jobs, similarity_jobs):
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 add_page_title(layout="wide")
+st.set_page_config(page_title="직업추천")
 set_variable()
 bar = st.progress(0, text="진행률")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
