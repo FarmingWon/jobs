@@ -412,7 +412,6 @@ def view():
 
                     # do stuff
                     st.write('기업규모 : ' + row['기업규모'])
-                    st.write("You picked ", temp)
                     st.write("---")
                 else:
                     placeholder.button(
