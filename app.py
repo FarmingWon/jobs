@@ -380,7 +380,7 @@ def recom():
                     else:
                         st.session_state_companys = gangso_df
                     #st.table(st.session_state_companys)
-                    cols = st.columns(2)
+                    cols = st.columns(6)
                     for col, field in zip(cols, fields):
                         col.write("**"+field+"**")
                     for idx, row in st.session_state_companys.iterrows():
