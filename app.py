@@ -403,7 +403,6 @@ def view():
 
             # table rows
             for idx, row in st.session_state.companys.iterrows():
-                st.write(idx)
                 col1, col2 = st.columns(2)
                 col1.write(row['기업명'])
                 placeholder = col2.empty()
@@ -413,8 +412,7 @@ def view():
                     )
 
                     # do stuff
-                    st.write("This is some more stuff with a checkbox")
-                    temp = st.selectbox("Select one", ["A", "B", "C"], key=idx)
+                    st.write('기업규모 : ' + row['기업규모'])
                     st.write("You picked ", temp)
                     st.write("---")
                 else:
