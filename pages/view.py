@@ -134,11 +134,11 @@ if st.session_state.clicked_regionCd != None and st.session_state.clicked_region
                       st.session_state.company = row
                       router.route('/map')
               st.write("---")
-            else:
-              placeholder.button(
+          else:
+                placeholder.button(
                   "more",
                   key=idx,
                   on_click=on_more_click,
                   args=[show_more, idx],
                   type="primary",
-              )
+                )
