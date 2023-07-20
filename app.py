@@ -455,7 +455,7 @@ def map():
     #address = sorted_data[0][1]
     address = company['기업위치']
     company_name = company['기업명']
-    m = makeMap(address, sorted_data[0][0])
+    m = makeMap(address, company_name)
     st_folium(m, width=725, returned_objects=[])
 
 def main():
