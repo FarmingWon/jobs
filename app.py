@@ -433,8 +433,6 @@ def view():
                     with subcol2:
                         if st.button('기업 주변 인프라 확인'):
                             st.session_state.company = row
-                            st.write(st.session_state.company)
-                            time.sleep(3)
                             router.route('/map')
                     st.write("---")
                 else:
