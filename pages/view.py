@@ -80,9 +80,10 @@ def make_score(company_name,address,busisize): # 점수 계산
     if busisize == '강소기업':
         score = int(score*1.2)
     st.session_state.score = score
+add_page_title(layout="wide")
 if 'clicked_regionCd' not in st.session_state:
     st.error('직업 추천을 먼저 진행해주세요')
-if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
+elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
   st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
   fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
   st.subheader('기업목록')
