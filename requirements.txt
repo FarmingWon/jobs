@@ -11,4 +11,4 @@ pandas
 numpy
 matplotlib
 PyPDF2
-st_pages
+st-pages
