@@ -127,6 +127,7 @@ st.title('👜직장 선택')
 if 'clicked_regionCd' not in st.session_state:
     st.error('직업 추천을 먼저 진행해주세요')
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
+  bar = st.progress(50, text="진행률")
   st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
   fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
   st.subheader('기업목록')
@@ -177,7 +178,9 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
               with subcol2:
                   if st.button('기업 주변 인프라 확인'):
                       st.session_state.company = row
-                      router.route('/map')
+                      bar.progress(75, text="진행률")
+                      st.success('왼쪽 메뉴에서 직장 주변 인프라 확인을 눌러주세요!')
+                      #router.route('/map')
               st.write("---")
           else:
                 placeholder.button(
