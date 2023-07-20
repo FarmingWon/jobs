@@ -51,7 +51,7 @@ if uploaded_file:
         if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
             st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
         st.write(f"추천 직업 : {recommend_jobs[0]['occupation3Nm']}")
-    if st.session_state.selected_region is None:
+    if 'selected_region' not in st.session_state or st.session_state.selected_region is None:
         with st.expander(label="지역 선택", expanded=True):
             regions = st.session_state.regions
             showRegion(regions)
