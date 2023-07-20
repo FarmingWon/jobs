@@ -340,9 +340,8 @@ def recom():
     uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
     st.session_state.regions = r.getRegion()
 
-    bar.progress(25, text="진행률")
-
     if uploaded_file:
+        bar.progress(25, text="진행률")
         if st.session_state.recommend_jobs is None:
             save_upload_file('_pdf', uploaded_file)
             GPT_KEY = st.secrets.KEY.GPT_KEY
