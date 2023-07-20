@@ -12,6 +12,8 @@ from matplotlib.transforms import Affine2D
 import matplotlib as mpl
 import math
 
+from recommend import company as corp
+
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
     show_more[idx] = True
