@@ -14,6 +14,15 @@ import math
 
 from recommend import company as corp
 
+def set_csv():
+    st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
+    st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
+    st.session_state.df_hospital = pd.read_csv('./csv/hospital.csv')
+    st.session_state.df_museum = pd.read_csv('./csv/museum.csv')
+    st.session_state.df_starbucks = pd.read_csv('./csv/starbucks_busan.csv')
+    st.session_state.df_exercise = pd.read_csv('./csv/exercise.csv')
+    st.session_state.df_oliveyoung = pd.read_csv('./csv/oliveyoung.csv')
+
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
     show_more[idx] = True
@@ -82,6 +91,7 @@ def make_score(company_name,address,busisize): # 점수 계산
     if busisize == '강소기업':
         score = int(score*1.2)
     st.session_state.score = score
+    
 add_page_title(layout="wide")
 if 'clicked_regionCd' not in st.session_state:
     st.error('직업 추천을 먼저 진행해주세요')
