@@ -445,12 +445,12 @@ def view():
 def map():
     set_csv()
     st.title('주변 인프라')
-    company = st.session_state.company
-    
-    address = company['기업위치']
-    company_name = company['기업명']
-    m = makeMap(address, company_name)
-    st_folium(m, width=725, returned_objects=[])
+    if 'company' in st.session_state:
+        company = st.session_state.company
+        address = company['기업위치']
+        company_name = company['기업명']
+        m = makeMap(address, company_name)
+        st_folium(m, width=725, returned_objects=[])
 
 def main():
     with st.sidebar:
