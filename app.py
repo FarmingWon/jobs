@@ -156,7 +156,6 @@ def make_score(company_name,address,busisize): # 점수 계산
             score = score + df_graph.loc[i][name]
     if busisize == '강소기업':
         score = int(score*1.2)
-    print(score)
     st.session_state.score.append([company_name,address,score])
     
 # func: 지도 생성
@@ -460,8 +459,10 @@ def map():
 
 def main():
     with st.sidebar:
-        if st.button('직장 선택'):
+        if st.button('이력서를 통한 직업 추천'):
           router.route('/')
+        elif st.button('직장 선택'):
+            router.route('/view')
         elif st.button('인프라 확인'):
           router.route('/map')
 
