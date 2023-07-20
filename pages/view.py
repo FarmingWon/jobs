@@ -14,6 +14,14 @@ import math
 
 from recommend import company as corp
 
+# func: address to lat, lon
+def addr_to_lat_lon(addr):
+  url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
+  headers = {"Authorization": "KakaoAK " + st.secrets.KEY.KAKAO_KEY}
+  result = json.loads(str(requests.get(url, headers=headers).text))
+  match_first = result['documents'][0]['address']
+  return float(match_first['y']), float(match_first['x'])
+
 def set_csv():
     st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
     st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
