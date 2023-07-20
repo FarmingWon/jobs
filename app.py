@@ -17,7 +17,7 @@ def set_variable():
 
 def main():
     st.title('Hello World!')
-    st.write('안녕하세요. Balance 직업 추천 서비스에요.')
+    st.write('안녕하세요. BalanceUP 직업 추천 서비스에요.')
 
 if __name__ == "__main__":
     set_variable()
