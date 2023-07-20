@@ -406,7 +406,7 @@ def view():
                 col1, col2 = st.columns(2)
                 col1.write(row['기업명'])
                 placeholder = col2.empty()
-                if show_more[int(idx)]:
+                if show_more[int(idx)+1]:
                     placeholder.button(
                         "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
                     )
