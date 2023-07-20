@@ -364,12 +364,12 @@ def recom():
                         break
             if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
                 st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
-                cols = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
+                fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
                 st.subheader('기업 기업목록')
                 if len(st.session_state.gangso) != 0:
-                    gangso_df = pd.DataFrame(st.session_state.gangso, columns=cols)
+                    gangso_df = pd.DataFrame(st.session_state.gangso, columns=fields)
                 if len(st.session_state.recommend_company) != 0:
-                    company_df = pd.DataFrame(st.session_state.recommend_company, columns=cols)
+                    company_df = pd.DataFrame(st.session_state.recommend_company, columns=fields)
                 if len(st.session_state.gangso) == 0 and len(st.session_state.recommend_company) == 0:
                     st.write("회사 없음.")
                 else:
@@ -380,10 +380,13 @@ def recom():
                     else:
                         st.session_state_companys = gangso_df
                     #st.table(st.session_state_companys)
+                    cols = st.columns(2)
+                    for col, field in zip(cols, fields):
+                        col.write("**"+field+"**")
                     for idx, row in st.session_state_companys.iterrows():
                         col1, col2 = st.columns(2)
                         col1.write(str(idx))
-                        col2.write(row)
+                        #col2.write(row)
 
 def map():
     set_csv()
