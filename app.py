@@ -379,7 +379,10 @@ def recom():
                         st.session_state_companys = company_df
                     else:
                         st.session_state_companys = gangso_df
-                    st.table(st.session_state_companys)
+                    #st.table(st.session_state_companys)
+                    for idx, row in st.session_state_companys.iterrows():
+                        col1, col2 = st.columns(2)
+                        col1.write(str(idx))
 
 def map():
     set_csv()
