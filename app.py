@@ -420,7 +420,7 @@ def view():
                     st.write('근로계약 : ' + row['근로계약'])
                     st.write('근무시간 : ' + row['근무시간'])
                     st.write("공고 URL : [row['URL']](%s)" % str(row['URL']))
-                    st.write("인프라 점수 : " + 
+                    st.write("인프라 점수 : " + st.session_state.score)
                     subcol1, subcol2 = st.columns(2)
                     subcol1.write('기업위치 : ' + row['기업위치'])
                     with subcol2:
