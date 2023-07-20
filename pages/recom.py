@@ -1,3 +1,4 @@
+# -- import modules start --
 import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import add_page_title
@@ -12,6 +13,8 @@ import pandas as pd
 
 import sys,os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
+# -- import modules end --
 
 # func: setting variable & files
 def set_variable():
