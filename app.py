@@ -417,9 +417,9 @@ def view():
                     placeholder.button(
                         "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
                     )
-                    print("make_score")
+                    st.info("make_score")
                     make_score(row['기업명'], row['기업위치'], row['기업규모'])
-                    print("end---")
+                    st.info("end---")
                     st.write('기업규모 : ' + row['기업규모'])
                     st.write('근로계약 : ' + row['근로계약'])
                     st.write('근무시간 : ' + row['근무시간'])
