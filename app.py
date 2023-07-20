@@ -326,9 +326,11 @@ def initRouter():
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
     show_more[idx] = True
+    st.session_state.show_more = show_more
 
 def on_less_click(show_more, idx):
     show_more[idx] = False
+    st.session_state.show_more = show_more
 
 # Router: Recommend - /
 def recom():
