@@ -325,6 +325,9 @@ def initRouter():
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
     show_more[idx] = True
+    for i in show_more:
+        if i != idx:
+            show_more[idx] = False
 
 def on_less_click(show_more, idx):
     show_more[idx] = False
