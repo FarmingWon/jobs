@@ -335,9 +335,12 @@ def on_less_click(show_more, idx):
 
 # Router: Recommend - /
 def recom():
+    bar = st.progress(0, text="진행률")
     st.title("이력서 PDF파일을 통한 직업 추천")
     uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
     st.session_state.regions = r.getRegion()
+
+    bar.progress(25, text="진행률")
 
     if uploaded_file:
         if st.session_state.recommend_jobs is None:
