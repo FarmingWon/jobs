@@ -16,8 +16,11 @@ def set_variable():
     st.session_state.score = None
 
 def main():
-    st.title('Hello World!')
-    st.write('안녕하세요. BalanceUP 직업 추천 서비스에요.')
+    html = """
+    <div><h3>🎈Hello World!</h3></div>
+    <div><p>반가워요. BalanceUP 직업추천 서비스에요.</p><div>
+    """
+    st.markdown(html, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     set_variable()
