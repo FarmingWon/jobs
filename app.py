@@ -391,7 +391,7 @@ def view():
                 st.session_state_companys = gangso_df
             #st.table(st.session_state_companys)
             if "show_more" not in st.session_state:
-                st.session_state["show_more"] = dict.fromkeys([1, 2, 3], False)
+                st.session_state["show_more"] = dict.fromkeys(list(idx for idx, row in st.session_state_companys.iterrow()), False)
             show_more = st.session_state["show_more"]
             st.write(show_more)
             cols = st.columns(2)
