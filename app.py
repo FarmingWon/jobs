@@ -1,23 +1,8 @@
 # -- import modules start --
+#streamlit
 import streamlit as st
 import extra_streamlit_components as stx
-from streamlit_folium import st_folium
-from streamlit_echarts import st_echarts
 from st_pages import Page, add_page_title, show_pages
-
-import folium
-
-# requests data
-import json
-import requests
-
-import sys,os
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-
-# customized modules
-from recommend import jaccard
-from recommend import region as r
-from recommend import company as corp
 
 # -- import modules end --
 
