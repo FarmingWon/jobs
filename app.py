@@ -102,6 +102,7 @@ def calculate_distance(df, center_xy):
 
 # func: calculate score of company
 def make_score(company_name,address,busisize): # 점수 계산
+    set_csv()
     center_xy = list(addr_to_lat_lon(address))
 
     df_subway_distance = calculate_distance(st.session_state.df_subway, center_xy)
