@@ -48,7 +48,7 @@ if uploaded_file:
         st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
     if st.session_state.recommend_jobs :
         recommend_jobs = st.session_state.recommend_jobs
-        if st.session_state.similarity_jobs is None:
+        if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
             st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
         st.write(f"추천 직업 : {recommend_jobs[0]['occupation3Nm']}")
     if st.session_state.selected_region is None:
