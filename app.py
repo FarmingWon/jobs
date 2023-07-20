@@ -37,6 +37,7 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = list()
+    st.session_state.address = None
 
 def set_csv():
     st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
