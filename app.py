@@ -325,9 +325,6 @@ def initRouter():
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
     show_more[idx] = True
-    for i in show_more:
-        if i != idx:
-            show_more[idx] = False
 
 def on_less_click(show_more, idx):
     show_more[idx] = False
@@ -415,10 +412,13 @@ def view():
                 col1.write(row['기업명'])
                 placeholder = col2.empty()
                 if show_more[int(idx)]:
-                    st.write(show_more)
                     placeholder.button(
                         "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
                     )
+                    for i in show_more:
+                        if i != idx:
+                            on_less_click(show_more, i)
+                    
                     make_score(row['기업명'], row['기업위치'], row['기업규모'])
                     st.write('기업규모 : ' + row['기업규모'])
                     st.write('근로계약 : ' + row['근로계약'])
