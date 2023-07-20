@@ -314,10 +314,18 @@ def makeMarker(m, df, color, icon):
                   tooltip=row['name'],
                   icon=(folium.Icon(color=color, icon=icon, prefix='fa'))
                  ).add_to(m)
-# Router
+# Router: Router initialize
 def initRouter():
   return stx.Router({'/': recom, '/map': map})
-    
+
+# EventListener: Button(Show More)
+def on_more_click(show_more, idx):
+    show_more[idx] = True
+
+def on_less_click(show_more, idx):
+    show_more[idx] = False
+
+# Router: Recommend - /
 def recom():
     st.title("이력서 PDF파일을 통한 직업 추천")
     uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
@@ -380,14 +388,25 @@ def recom():
                     else:
                         st.session_state_companys = gangso_df
                     #st.table(st.session_state_companys)
-                    cols = st.columns(6)
-                    for col, field in zip(cols, fields):
+                    if "show_more" not in st.session_state:
+                        st.session_state["show_more"] = dict.fromkeys([1, 2, 3], False)
+                    show_more = st.session_state["show_more"]
+                    cols = st.columns(2)
+                    rows = ['기업명', '더보기']
+
+                    # table header
+                    for col, field in zip(cols, rows):
                         col.write("**"+field+"**")
+
+                    # table rows
                     for idx, row in st.session_state_companys.iterrows():
                         col1, col2 = st.columns(2)
                         col1.write(row['기업명'])
+                        placeholder = col2.empty()
+                        show_more   = placeholder.button("more", key=idx, type="primary")
                         #col2.write(row)
 
+# Router: Map - /map
 def map():
     set_csv()
     st.title('주변 인프라')
