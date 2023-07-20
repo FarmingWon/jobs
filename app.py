@@ -418,7 +418,6 @@ def view():
                     subcol1, subcol2 = st.columns(2)
                     subcol1.write('기업위치 : ' + row['기업위치'])
                     with subcol2:
-                        st.button('기업 주변 인프라 확인')
                         if st.button('기업 주변 인프라 확인'):
                             router.route('/map')
                     st.write("---")
