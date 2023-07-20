@@ -7,6 +7,12 @@ from recommend import jaccard
 from recommend import region as r
 from recommend import company as corp
 
+import numpy as np
+import pandas as pd
+
+import sys,os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 # func: save pdf file
 def save_upload_file(dir, file):
     if not os.path.exists(dir):
