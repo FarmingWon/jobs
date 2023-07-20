@@ -38,7 +38,7 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = None
-    st.session_state.company = None
+    #st.session_state.company = None
     #st.session_state.show_more = None
 
 def set_csv():
