@@ -399,6 +399,9 @@ def view():
             else:
                 st.session_state.companys = gangso_df
 
+            st.write(len(st.session_state.companys))
+            st.wrtie(len(st.session_state.show_more)
+
             if st.session_state.show_more == None or len(st.session_state.show_more) != len(st.session_state.companys) or 'show_more' not in st.session_state:
                 st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
             show_more = st.session_state.show_more
