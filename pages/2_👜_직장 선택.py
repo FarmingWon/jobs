@@ -123,7 +123,7 @@ def make_score(company_name,address,busisize): # 점수 계산
         score = int(score*1.2)
     st.session_state.score = score
     
-add_page_title(layout="wide")
+st.write('👜직장 선택')
 if 'clicked_regionCd' not in st.session_state:
     st.error('직업 추천을 먼저 진행해주세요')
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
