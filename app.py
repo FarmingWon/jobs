@@ -384,14 +384,14 @@ def view():
             st.write("회사 없음.")
         else:
             if len(st.session_state.gangso) != 0 and len(st.session_state.recommend_company) != 0:
-                st.session_state_companys = pd.merge(gangso_df, company_df, how='outer')
+                st.session_state.companys = pd.merge(gangso_df, company_df, how='outer')
             elif len(st.session_state.gangso) == 0:
-                st.session_state_companys = company_df
+                st.session_state.companys = company_df
             else:
-                st.session_state_companys = gangso_df
+                st.session_state.companys = gangso_df
             #st.table(st.session_state_companys)
             if "show_more" not in st.session_state:
-                st.session_state["show_more"] = dict.fromkeys(list(idx for idx, row in st.session_state_companys.iterrow()), False)
+                st.session_state["show_more"] = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
             show_more = st.session_state["show_more"]
             st.write(show_more)
             cols = st.columns(2)
@@ -402,7 +402,7 @@ def view():
                 col.write("**"+field+"**")
 
             # table rows
-            for idx, row in st.session_state_companys.iterrows():
+            for idx, row in st.session_state.companys.iterrows():
                 st.write(idx)
                 col1, col2 = st.columns(2)
                 col1.write(row['기업명'])
@@ -430,7 +430,7 @@ def view():
 def map():
     set_csv()
     st.title('주변 인프라')
-    companys = st.session_state_companys
+    companys = st.session_state.companys
     row = companys.shape[0]
     for i in range(row):
         ad = companys.loc[i]['기업위치'].strip()
