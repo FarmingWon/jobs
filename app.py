@@ -397,7 +397,7 @@ def view():
             else:
                 st.session_state.companys = gangso_df
 
-            if not st.session_state.show_more or len(st.session_state.show_more) != len(st.session_state.companys):
+            if st.session_state.show_more == None or len(st.session_state.show_more) != len(st.session_state.companys) or 'show_more' not in st.session_state:
                 st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
             show_more = st.session_state.show_more
             
@@ -449,19 +449,7 @@ def map():
     set_csv()
     st.title('주변 인프라')
     company = st.session_state.company
-    #row = companys.shape[0]
-    #for i in range(row):
-        #ad = companys.loc[i]['기업위치'].strip()
-        #ad = ad.replace(',', " ")
-        #ad = ad.strip()
-        #ad = ad.split(" ")
-        #addr = ""
-        #for s in ad[1:6]:
-            #addr = addr + " " + s
-        #print(addr)
-        #make_score(companys.loc[i]['기업명'], addr, companys.loc[i]['기업규모'])
-    #sorted_data = sorted(st.session_state.score, key=lambda x: x[2], reverse=True)
-    #address = sorted_data[0][1]
+    
     address = company['기업위치']
     company_name = company['기업명']
     m = makeMap(address, company_name)
