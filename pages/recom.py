@@ -37,7 +37,6 @@ def showJob(recommend_jobs, similarity_jobs):
 
 add_page_title(layout="wide")
 bar = st.progress(0, text="진행률")
-#st.title("이력서 PDF파일을 통한 직업 추천")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 st.session_state.regions = r.getRegion()
 
