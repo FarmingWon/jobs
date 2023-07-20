@@ -37,7 +37,7 @@ def set_variable():
     st.session_state.recommend_jobs = None
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
-    st.session_state.score = list()
+    st.session_state.score = None
     st.session_state.address = None
 
 def set_csv():
@@ -156,7 +156,7 @@ def make_score(company_name,address,busisize): # 점수 계산
             score = score + df_graph.loc[i][name]
     if busisize == '강소기업':
         score = int(score*1.2)
-    st.session_state.score = [company_name,address,score]
+    st.session_state.score = score
     
 # func: 지도 생성
 def makeMap(address,corpNm):
