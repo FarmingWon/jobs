@@ -13,6 +13,15 @@ import pandas as pd
 import sys,os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
+# func: setting variable & files
+def set_variable():
+    st.session_state.selected_region = None
+    st.session_state.selected_job = None
+    st.session_state.recommend_jobs = None
+    st.session_state.similarity_jobs = None
+    st.session_state.jobs = None
+    st.session_state.score = None
+
 # func: save pdf file
 def save_upload_file(dir, file):
     if not os.path.exists(dir):
@@ -36,6 +45,7 @@ def showJob(recommend_jobs, similarity_jobs):
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 add_page_title(layout="wide")
+set_variable()
 bar = st.progress(0, text="진행률")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 st.session_state.regions = r.getRegion()
