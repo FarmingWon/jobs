@@ -16,12 +16,8 @@ def set_variable():
     st.session_state.score = None
 
 def main():
-    pass
-    #show_pages([
-        #Page("./pages/recom.py", "이력서를 통한 직업 추천"),
-        #Page("./pages/view.py", "직장 선택"),
-        #Page("./pages/map.py", "직장 인프라 확인")
-    #])
+    st.title('Hello World!')
+    st.write('안녕하세요. Balance 직업 추천 서비스에요.')
 
 if __name__ == "__main__":
     set_variable()
