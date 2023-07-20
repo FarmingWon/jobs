@@ -216,7 +216,7 @@ def makeMarker(m, df, color, icon):
                   icon=(folium.Icon(color=color, icon=icon, prefix='fa'))
                  ).add_to(m)
 
-add_page_title(layout="wide")
+st.title('직장 주변 인프라 확인')
 set_csv()
 if 'company' in st.session_state:
     company = st.session_state.company
