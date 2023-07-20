@@ -394,8 +394,9 @@ def view():
                 st.session_state.companys = company_df
             else:
                 st.session_state.companys = gangso_df
-            
-            st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
+
+            if not st.session_state.show_more or len(st.session_state.show_more) != len(st.session_state.companys):
+                st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
             show_more = st.session_state.show_more
             
             cols = st.columns(2)
