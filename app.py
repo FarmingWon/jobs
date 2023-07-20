@@ -450,6 +450,7 @@ def map():
     st.title('주변 인프라')
     if 'company' in st.session_state:
         company = st.session_state.company
+        st.write(company)
         address = company['기업위치']
         company_name = company['기업명']
         m = makeMap(address, company_name)
