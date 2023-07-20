@@ -328,6 +328,7 @@ def on_more_click(show_more, idx):
 
 def on_less_click(show_more, idx):
     show_more[idx] = False
+    st.session_state.show_more = show_more
 
 # Router: Recommend - /
 def recom():
@@ -418,8 +419,6 @@ def view():
                     for i in show_more:
                         if i != idx:
                             on_less_click(show_more, i)
-
-                    st.session_state.show_more = show_more
                     
                     make_score(row['기업명'], row['기업위치'], row['기업규모'])
                     st.write('기업규모 : ' + row['기업규모'])
