@@ -473,7 +473,10 @@ def main():
         elif st.button('직장 선택'):
             router.route('/view')
         elif st.button('인프라 확인'):
-          router.route('/map')
+            if st.session_state.company == None:
+                st.error('직장 선택을 먼저 해주세요')
+            else:
+                router.route('/map')
 
 if __name__ == "__main__":
     set_variable()
