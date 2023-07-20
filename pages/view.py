@@ -25,6 +25,26 @@ def addr_to_lat_lon(addr):
   match_first = result['documents'][0]['address']
   return float(match_first['y']), float(match_first['x'])
 
+# func: calculator distance
+def calculate_distance(df, center_xy):
+  df_distance = pd.DataFrame()
+  distance_list = []
+  for i in df['latlon']:
+    if i != None or i != '':
+      if type(i) == str:
+        i = i[1:-1].split(', ')
+        y = abs(float(center_xy[0]) - float(i[0])) * 111
+        x = (math.cos(float(center_xy[0])) * 6400 * 2 * 3.14 / 360) * abs(float(center_xy[1]) - float(i[1]))
+        distance = math.sqrt(x*x + y*y)
+        if distance <= 3.0:
+          df_distance = pd.concat([df_distance, df[df['latlon'] == ('(' + i[0] + ', ' + i[1] + ')')]])
+          distance_list.append(distance)
+
+  df_distance = df_distance.drop_duplicates()
+  df_distance['distance'] = distance_list
+
+  return df_distance # 만들어진 데이터프레임 리턴
+
 def set_csv():
     st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
     st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
