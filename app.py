@@ -419,7 +419,8 @@ def view():
                     st.write('기업규모 : ' + row['기업규모'])
                     st.write('근로계약 : ' + row['근로계약'])
                     st.write('근무시간 : ' + row['근무시간'])
-                    st.write("공고 URL : [row['URL']](%s)" % str(row['URL']))
+                    url = row['URL']
+                    st.write("공고 URL : [row['URL']](%s)" % url)
                     st.write("인프라 점수 : " + str(st.session_state.score))
                     subcol1, subcol2 = st.columns(2)
                     subcol1.write('기업위치 : ' + row['기업위치'])
