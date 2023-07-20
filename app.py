@@ -405,8 +405,24 @@ def view():
                 col1, col2 = st.columns(2)
                 col1.write(row['기업명'])
                 placeholder = col2.empty()
-                show_more   = placeholder.button("more", key=idx, type="primary")
-                #col2.write(row)
+                if show_more[idx]:
+                    placeholder.button(
+                        "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
+                    )
+
+                    # do stuff
+                    st.write("This is some more stuff with a checkbox")
+                    temp = st.selectbox("Select one", ["A", "B", "C"], key=idx)
+                    st.write("You picked ", temp)
+                    st.write("---")
+                else:
+                    placeholder.button(
+                        "more",
+                        key=idx,
+                        on_click=on_more_click,
+                        args=[show_more, idx],
+                        type="primary",
+                    )
 
 # Router: Map - /map
 def map():
