@@ -385,7 +385,7 @@ def recom():
                         col.write("**"+field+"**")
                     for idx, row in st.session_state_companys.iterrows():
                         col1, col2 = st.columns(2)
-                        col1.write(str(idx))
+                        col1.write(row['기업명'])
                         #col2.write(row)
 
 def map():
