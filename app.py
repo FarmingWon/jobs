@@ -398,6 +398,8 @@ def view():
             if "show_more" not in st.session_state:
                 st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
             show_more = st.session_state.show_more
+            st.write(len(st.session_state.companys))
+            st.write(show_more)
             cols = st.columns(2)
             rows = ['기업명', '더보기']
 
