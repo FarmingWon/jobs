@@ -382,7 +382,7 @@ def view():
     if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
         st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
         fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
-        st.subheader('기업 기업목록')
+        st.subheader('기업목록')
         if len(st.session_state.gangso) != 0:
             gangso_df = pd.DataFrame(st.session_state.gangso, columns=fields)
         if len(st.session_state.recommend_company) != 0:
@@ -408,14 +408,14 @@ def view():
             for col, field in zip(cols, rows):
                 col.write("**"+field+"**")
 
+            st.write(show_more)
+
             # table rows
             for idx, row in st.session_state.companys.iterrows():
                 col1, col2 = st.columns(2)
                 col1.write(row['기업명'])
                 placeholder = col2.empty()
                 if show_more[int(idx)]:
-                    st.write("clicked")
-                    time.sleep(2)
                     placeholder.button(
                         "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
                     )
