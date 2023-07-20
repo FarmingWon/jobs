@@ -2,6 +2,33 @@ import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import add_page_title
 
+# customized modules
+from recommend import jaccard
+from recommend import region as r
+from recommend import company as corp
+
+# func: save pdf file
+def save_upload_file(dir, file):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    with open(os.path.join(dir, file.name), 'wb') as f:
+        f.write(file.getbuffer())
+
+# func: UI for Select Region
+def showRegion(regions):
+    regionsNm = [reg[1] for reg in regions]
+    st.session_state.selected_region = st.radio(label = '', options= regionsNm)
+    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
+# func: UI for Select Job
+def showJob(recommend_jobs, similarity_jobs):
+    st.session_state.jobs = [[recommend_jobs[0]['occupation3'], recommend_jobs[0]['occupation3Nm']]]
+    tmp2 = [[job[0]['occupation3'],job[0]['occupation3Nm']] for job in similarity_jobs]
+    st.session_state.jobs.extend(tmp2)
+    jobsNm = [job[1] for job in st.session_state.jobs]
+    st.session_state.selected_job= st.radio(label='',options=jobsNm)
+    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
 add_page_title(layout="wide")
 bar = st.progress(0, text="진행률")
 #st.title("이력서 PDF파일을 통한 직업 추천")
