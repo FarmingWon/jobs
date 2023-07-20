@@ -30,6 +30,7 @@ from recommend import company as corp
 
 # -- import modules end --
 
+# func: setting variable & files
 def set_variable():
     st.session_state.selected_region = None
     st.session_state.selected_job = None
@@ -48,11 +49,13 @@ def set_csv():
     st.session_state.df_exercise = pd.read_csv('./csv/exercise.csv')
     st.session_state.df_oliveyoung = pd.read_csv('./csv/oliveyoung.csv')
 
+# func: UI for Select Region
 def showRegion(regions):
     regionsNm = [reg[1] for reg in regions]
     st.session_state.selected_region = st.radio(label = '', options= regionsNm)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
+# func: UI for Select Job
 def showJob(recommend_jobs, similarity_jobs):
     st.session_state.jobs = [[recommend_jobs[0]['occupation3'], recommend_jobs[0]['occupation3Nm']]]
     tmp2 = [[job[0]['occupation3'],job[0]['occupation3Nm']] for job in similarity_jobs]
@@ -61,13 +64,12 @@ def showJob(recommend_jobs, similarity_jobs):
     st.session_state.selected_job= st.radio(label='',options=jobsNm)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
  
-
+# func: save pdf file
 def save_upload_file(dir, file):
     if not os.path.exists(dir):
         os.makedirs(dir)
     with open(os.path.join(dir, file.name), 'wb') as f:
         f.write(file.getbuffer())
-    # return st.success("save file : {} in {}".format(file.name, dir))
 
 # func: address to lat, lon
 def addr_to_lat_lon(addr):
@@ -97,6 +99,7 @@ def calculate_distance(df, center_xy):
 
   return df_distance # 만들어진 데이터프레임 리턴
 
+# func: calculate score of company
 def make_score(company_name,address,busisize): # 점수 계산
     center_xy = list(addr_to_lat_lon(address))
 
@@ -155,6 +158,7 @@ def make_score(company_name,address,busisize): # 점수 계산
         score = int(score*1.2)
     print(score)
     st.session_state.score.append([company_name,address,score])
+    
 # func: 지도 생성
 def makeMap(address,corpNm):
   center_xy = list(addr_to_lat_lon(address))
@@ -314,6 +318,7 @@ def makeMarker(m, df, color, icon):
                   tooltip=row['name'],
                   icon=(folium.Icon(color=color, icon=icon, prefix='fa'))
                  ).add_to(m)
+      
 # Router: Router initialize
 def initRouter():
   return stx.Router({'/': recom, '/map': map, '/view': view})
@@ -371,6 +376,7 @@ def recom():
                         st.session_state.clicked_jobNm = job[1]
                         break
             router.route('/view')
+# Router: view information of companies            
 def view():
     if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
         st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
@@ -409,8 +415,6 @@ def view():
                     placeholder.button(
                         "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
                     )
-
-                    # do stuff
                     st.write('기업규모 : ' + row['기업규모'])
                     st.write('근로계약 : ' + row['근로계약'])
                     st.write('근무시간 : ' + row['근무시간'])
@@ -419,6 +423,7 @@ def view():
                     subcol1.write('기업위치 : ' + row['기업위치'])
                     with subcol2:
                         if st.button('기업 주변 인프라 확인'):
+                            st.session_state.company = row
                             router.route('/map')
                     st.write("---")
                 else:
@@ -434,20 +439,22 @@ def view():
 def map():
     set_csv()
     st.title('주변 인프라')
-    companys = st.session_state.companys
-    row = companys.shape[0]
-    for i in range(row):
-        ad = companys.loc[i]['기업위치'].strip()
-        ad = ad.replace(',', " ")
-        ad = ad.strip()
-        ad = ad.split(" ")
-        addr = ""
-        for s in ad[1:6]:
-            addr = addr + " " + s
-        print(addr)
-        make_score(companys.loc[i]['기업명'], addr, companys.loc[i]['기업규모'])
-    sorted_data = sorted(st.session_state.score, key=lambda x: x[2], reverse=True)
-    address = sorted_data[0][1]
+    company = st.session_state.company
+    #row = companys.shape[0]
+    #for i in range(row):
+        #ad = companys.loc[i]['기업위치'].strip()
+        #ad = ad.replace(',', " ")
+        #ad = ad.strip()
+        #ad = ad.split(" ")
+        #addr = ""
+        #for s in ad[1:6]:
+            #addr = addr + " " + s
+        #print(addr)
+        #make_score(companys.loc[i]['기업명'], addr, companys.loc[i]['기업규모'])
+    #sorted_data = sorted(st.session_state.score, key=lambda x: x[2], reverse=True)
+    #address = sorted_data[0][1]
+    address = company['기업위치']
+    company_name = company['기업명']
     m = makeMap(address, sorted_data[0][0])
     st_folium(m, width=725, returned_objects=[])
 
