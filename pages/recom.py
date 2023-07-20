@@ -57,7 +57,7 @@ if uploaded_file:
             showRegion(regions)
             if st.session_state.selected_region is not None:
                 print("get region")
-    if st.session_state.selected_job is None:
+    if 'selected_job' not in st.session_state or st.session_state.selected_job is None:
         with st.expander(label = '직업 선택', expanded=True):
              if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
                 recommend_jobs = st.session_state.recommend_jobs
