@@ -416,10 +416,10 @@ def view():
                 col1.write(row['기업명'])
                 placeholder = col2.empty()
                 if show_more[int(idx)]:
-                    st.write(show_more)
                     placeholder.button(
                         "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
                     )
+                    st.write(row)
                     make_score(row['기업명'], row['기업위치'], row['기업규모'])
                     
                     st.write('기업규모 : ' + row['기업규모'])
