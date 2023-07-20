@@ -16,7 +16,7 @@ def set_variable():
     st.session_state.score = None
 
 def main():
-    st.set_page_config(page_title="Home", page_icon=":Home:")
+    pass
     #show_pages([
         #Page("./pages/recom.py", "이력서를 통한 직업 추천"),
         #Page("./pages/view.py", "직장 선택"),
@@ -25,4 +25,5 @@ def main():
 
 if __name__ == "__main__":
     set_variable()
+    st.set_page_config(page_title="Home")
     main()
