@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_echarts import st_echarts
 from streamlit_folium import st_folium
+from st_pages import add_page_title
 
 import folium
 
@@ -215,8 +216,8 @@ def makeMarker(m, df, color, icon):
                   icon=(folium.Icon(color=color, icon=icon, prefix='fa'))
                  ).add_to(m)
 
+add_page_title(layout="wide")
 set_csv()
-st.title('주변 인프라')
 if 'company' in st.session_state:
     company = st.session_state.company
     address = company['기업위치']
