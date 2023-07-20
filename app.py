@@ -316,7 +316,7 @@ def makeMarker(m, df, color, icon):
                  ).add_to(m)
 # Router: Router initialize
 def initRouter():
-  return stx.Router({'/': recom, '/map': map})
+  return stx.Router({'/': recom, '/map': map, '/view': view})
 
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
@@ -370,41 +370,43 @@ def recom():
                         st.session_state.clicked_jobCd = job[0]
                         st.session_state.clicked_jobNm = job[1]
                         break
-            if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
-                st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
-                fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
-                st.subheader('기업 기업목록')
-                if len(st.session_state.gangso) != 0:
-                    gangso_df = pd.DataFrame(st.session_state.gangso, columns=fields)
-                if len(st.session_state.recommend_company) != 0:
-                    company_df = pd.DataFrame(st.session_state.recommend_company, columns=fields)
-                if len(st.session_state.gangso) == 0 and len(st.session_state.recommend_company) == 0:
-                    st.write("회사 없음.")
-                else:
-                    if len(st.session_state.gangso) != 0 and len(st.session_state.recommend_company) != 0:
-                        st.session_state_companys = pd.merge(gangso_df, company_df, how='outer')
-                    elif len(st.session_state.gangso) == 0:
-                        st.session_state_companys = company_df
-                    else:
-                        st.session_state_companys = gangso_df
-                    #st.table(st.session_state_companys)
-                    if "show_more" not in st.session_state:
-                        st.session_state["show_more"] = dict.fromkeys([1, 2, 3], False)
-                    show_more = st.session_state["show_more"]
-                    cols = st.columns(2)
-                    rows = ['기업명', '더보기']
+            router.route('/view')
+def view():
+    if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
+        st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
+        fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
+        st.subheader('기업 기업목록')
+        if len(st.session_state.gangso) != 0:
+            gangso_df = pd.DataFrame(st.session_state.gangso, columns=fields)
+        if len(st.session_state.recommend_company) != 0:
+            company_df = pd.DataFrame(st.session_state.recommend_company, columns=fields)
+        if len(st.session_state.gangso) == 0 and len(st.session_state.recommend_company) == 0:
+            st.write("회사 없음.")
+        else:
+            if len(st.session_state.gangso) != 0 and len(st.session_state.recommend_company) != 0:
+                st.session_state_companys = pd.merge(gangso_df, company_df, how='outer')
+            elif len(st.session_state.gangso) == 0:
+                st.session_state_companys = company_df
+            else:
+                st.session_state_companys = gangso_df
+            #st.table(st.session_state_companys)
+            if "show_more" not in st.session_state:
+                st.session_state["show_more"] = dict.fromkeys([1, 2, 3], False)
+            show_more = st.session_state["show_more"]
+            cols = st.columns(2)
+            rows = ['기업명', '더보기']
 
-                    # table header
-                    for col, field in zip(cols, rows):
-                        col.write("**"+field+"**")
+            # table header
+            for col, field in zip(cols, rows):
+                col.write("**"+field+"**")
 
-                    # table rows
-                    for idx, row in st.session_state_companys.iterrows():
-                        col1, col2 = st.columns(2)
-                        col1.write(row['기업명'])
-                        placeholder = col2.empty()
-                        show_more   = placeholder.button("more", key=idx, type="primary")
-                        #col2.write(row)
+            # table rows
+            for idx, row in st.session_state_companys.iterrows():
+                col1, col2 = st.columns(2)
+                col1.write(row['기업명'])
+                placeholder = col2.empty()
+                show_more   = placeholder.button("more", key=idx, type="primary")
+                #col2.write(row)
 
 # Router: Map - /map
 def map():
