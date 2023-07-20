@@ -39,7 +39,7 @@ def set_variable():
     st.session_state.jobs = None
     st.session_state.score = None
     st.session_state.company = None
-    st.session_state.show_more = None
+    #st.session_state.show_more = None
 
 def set_csv():
     st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
@@ -400,7 +400,7 @@ def view():
                 st.session_state.companys = gangso_df
 
             st.write(len(st.session_state.companys))
-            
+            st.write('show_more' in st.session_state)
 
             if st.session_state.show_more == None or len(st.session_state.show_more) != len(st.session_state.companys) or 'show_more' not in st.session_state:
                 st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
