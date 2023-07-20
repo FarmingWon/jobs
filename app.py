@@ -377,7 +377,8 @@ def recom():
                         st.session_state.clicked_jobNm = job[1]
                         break
             router.route('/view')
-# Router: view information of companies            
+            
+# Router: view information of companies - /view
 def view():
     if st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
         st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
