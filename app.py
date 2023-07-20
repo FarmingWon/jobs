@@ -37,22 +37,6 @@ def main():
         Page("./pages/map.py", "직장 인프라 확인")
     ])
 
-    '''
-    with st.sidebar:
-        if st.button('이력서를 통한 직업 추천'):
-          router.route('/')
-        elif st.button('직장 선택'):
-            if 'clicked_regionCd' not in st.session_state or st.session_state.clicked_regionCd == None:
-                st.error('직업 추천을 먼저 해주세요')
-            else:
-                router.route('/view')
-        elif st.button('인프라 확인'):
-            if 'company' not in st.session_state or st.session_state.company == None:
-                st.error('직장 선택을 먼저 해주세요')
-            else:
-                router.route('/map')
-                '''
-
 if __name__ == "__main__":
     set_variable()
     main()
