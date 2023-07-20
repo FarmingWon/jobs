@@ -47,7 +47,7 @@ def showJob(recommend_jobs, similarity_jobs):
     st.session_state.selected_job= st.radio(label='',options=jobsNm)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
-st.write('📝이력서를 통한 직업 추천')
+st.title('📝이력서를 통한 직업 추천')
 set_variable()
 bar = st.progress(0, text="진행률")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
