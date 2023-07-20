@@ -43,13 +43,9 @@ st.session_state.regions = r.getRegion()
 if uploaded_file:
     bar.progress(25, text="진행률")
     if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
-        st.write("uploadfile")
         save_upload_file('_pdf', uploaded_file)
         GPT_KEY = st.secrets.KEY.GPT_KEY
-        st.write("recommend")
         st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
-        st.write(st.session.state.recommend_jobs)
-    st.write("uploadedfile")
     if st.session_state.recommend_jobs :
         recommend_jobs = st.session_state.recommend_jobs
         if st.session_state.similarity_jobs is None:
