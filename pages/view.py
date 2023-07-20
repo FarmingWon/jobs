@@ -12,6 +12,9 @@ from matplotlib.transforms import Affine2D
 import matplotlib as mpl
 import math
 
+import json
+import requests
+
 from recommend import company as corp
 
 # func: address to lat, lon
