@@ -5,6 +5,9 @@ import extra_streamlit_components as stx
 from st_pages import Page, add_page_title, show_pages
 import streamlit.components.v1 as components
 
+import sys
+import base64
+
 # -- import modules end --
 
 # func: setting variable & files
@@ -15,6 +18,11 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = None
+
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
 
 def main():
     components.html("""
@@ -89,13 +97,13 @@ def main():
     """, height=600,)
 
     with st.sidebar:
-        htmlSide="""
+        htmlSide=f"""
         
         1
         <div id="logo">
             <h6>
                 <span>Powered By</span>
-                <img src="./img/openai_logo.PNG">
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}">
             </h6>
         </div>
         """
