@@ -81,7 +81,9 @@ def main():
     <hr/>
     <div id="howtouse">
         <div id="header">
-            How To Use?
+            <h5>
+                <span style="color:#DC2D1C">How To Use?</span>
+            </h5>
         </div>
     </div>
     """, height=600,)
