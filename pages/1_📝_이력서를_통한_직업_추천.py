@@ -16,6 +16,11 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # -- import modules end --
 
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
+
 # func: setting variable & files
 def set_variable():
     st.session_state.selected_region = None
@@ -61,7 +66,7 @@ with st.sidebar:
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+                <img src="data:image/png;base64,{img_to_bytes("../img/openai_logo.PNG")}" style="width:180px; height:60px;">
             </h5>
         </div>
     """
