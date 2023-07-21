@@ -19,7 +19,7 @@ def main():
     html = """
     <div><h3>🎈Balance UP!</h3></div>
     <div><p>반가워요. BalanceUP 직업추천 서비스에요.</p><div>
-    <div style="color=#DC2D1C"><p class="h6">BalanceUp에 대해...</p></div>
+    <div style="color:#DC2D1C"><p class="h6">BalanceUp에 대해...</p></div>
     """
     st.markdown(html, unsafe_allow_html=True)
 
