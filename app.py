@@ -56,6 +56,12 @@ def main():
     </div>
     """, height=600,)
 
+    with st.sidebar:
+        htmlSide="""
+        1
+        """
+        st.markdown(htmlSide, unsafe_allow_html=True)
+
 if __name__ == "__main__":
     set_variable()
     st.set_page_config(page_title="BalanceUp", layout="wide")
