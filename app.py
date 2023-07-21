@@ -3,6 +3,7 @@
 import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import Page, add_page_title, show_pages
+import streamlit.components.v1 as components
 
 # -- import modules end --
 
@@ -16,7 +17,7 @@ def set_variable():
     st.session_state.score = None
 
 def main():
-    html = """
+    components.html("""
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -69,8 +70,7 @@ def main():
         </div>
         
     </div>
-    """
-    st.markdown(html, unsafe_allow_html=True)
+    """, height=600,)
 
 if __name__ == "__main__":
     set_variable()
