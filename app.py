@@ -45,30 +45,9 @@ def main():
         <div class="About_title">
             <h4><span style="color:#DC2D1C">BalanceUP</span>에 대해...</h4>
         </div>
-        <div id="accordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#collapseOne"
-                            aria-expanded="true"
-                            aria-controls="collapseOne"
-                          >
-                            BalanceUP은 어떤 서비스일까?
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">                                  
-                        <p>내용</p>
-                    </div>
-                </div>
-            </div>
+        <div class="card">
+            <div class="card-header">BalanceUP은 어떤 일을 할까?</div>
         </div>
-        
     </div>
     """, height=600,)
 
