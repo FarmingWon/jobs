@@ -24,8 +24,12 @@ def main():
         <div class="About_title">
             <h4><span style="color:#DC2D1C">BalanceUP</span>에 대해...</h4>
         </div>
-        <div class="subtitle"></div>
-        <div class="context"></div>
+        <div class="subtitle">
+            <h6><span>BalanceUP은 무엇인가요?</span></h6>
+        </div>
+        <div class="context">
+            <p><span>BalanceUP이 하는 일</span></p>
+        </div>
     </div>
     """
     st.markdown(html, unsafe_allow_html=True)
