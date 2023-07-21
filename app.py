@@ -58,6 +58,9 @@ def main():
 
     with st.sidebar:
         htmlSide="""
+        <style>
+        section[data-testid="stSidebar"] .css-ng1t4o {{width: 14rem;}}
+        </style>
         1
         """
         st.markdown(htmlSide, unsafe_allow_html=True)
