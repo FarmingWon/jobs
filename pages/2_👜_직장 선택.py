@@ -124,6 +124,21 @@ def make_score(company_name,address,busisize): # 점수 계산
     st.session_state.score = score
     
 st.title('👜직장 선택')
+with st.sidebar:
+    htmlSide=f"""
+        <br/>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
 if 'clicked_regionCd' not in st.session_state:
     st.error('직업 추천을 먼저 진행해주세요')
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
