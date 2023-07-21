@@ -47,7 +47,7 @@ def main():
         </div>
         <div id="AboutOne">
             <div class="card">
-                <div class="card-header" id="headingOne>
+                <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
                         <button
                             class="accordion-button collapsed"
