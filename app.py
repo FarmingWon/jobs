@@ -104,8 +104,8 @@ def main():
     with st.sidebar:
         htmlSide=f"""
         <br/>
-        <a href="#what-is-balanceup"><p>What is BalanceUP?</p></a>
-        <p>2</p>
+        <a href="#what-is-balanceup-balanceup"><p>What is BalanceUP?</p></a>
+        <a href="#why-balanceup-balanceup"><p>Why BalanceUP?</p></a>
         <p>3</p>
         <a href="#how-to-use" style="text-align:center; text-decoration:center; color:inherit;"><p>How To Use</p></a>
         <div id="logo">
