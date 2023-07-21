@@ -51,6 +51,21 @@ htmlTitle = """
     <div><h3>📝이력서를 통한 직업 추천</h3></div>
     """
 st.markdown(htmlTitle, unsafe_allow_html=True)
+with st.sidebar:
+    htmlSide=f"""
+        <br/>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
 
 set_variable()
 bar = st.progress(0, text="진행률")
