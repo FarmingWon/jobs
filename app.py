@@ -42,11 +42,12 @@ def main():
     <div><p>반가워요. BalanceUP 직업추천 서비스에요.</p><div>
     <hr/>
     <div class="About">
-        <div class="About_title">
-            <h4><span style="color:#DC2D1C">BalanceUP</span>에 대해...</h4>
-        </div>
         <div class="card">
-            <div class="card-header" id="whatis">BalanceUP은 어떤 서비스일까?</div>
+            <div class="card-header" id="whatis">
+                <h5>
+                    <span style="color:#DC2D1C">BalanceUP</span>은 어떤 서비스일까?
+                </h5>
+            </div>
             <div class="card-body">
                 내용
             </div>
