@@ -104,7 +104,7 @@ def main():
         <a href="#balanceup"><p>1</p></a>
         <p>2</p>
         <p>3</p>
-        <p>4</p>
+        <a href="#how-to-use"><p>1</p></a>
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
