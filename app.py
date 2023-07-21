@@ -27,9 +27,9 @@ def main():
         <div class="About_title">
             <h4><span style="color:#DC2D1C">BalanceUP</span>에 대해...</h4>
         </div>
-        <div class="accordition accordition-flush" id="AboutOne">
-            <div class="accordition-item">
-                <h5 class="accordition-header" id="flush-headingOne">
+        <div class="accordion accordion-flush" id="AboutOne">
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingOne">
                     <button
                         class="accordion-button collapsed"
                         type="button"
@@ -42,7 +42,7 @@ def main():
                     </button>
                 </h5>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-mdb-parent="#AboutOne">
-                    <div class="accordition-body">
+                    <div class="accordion-body">
                         <p>내용</p>
                     </div>
                 </div>
