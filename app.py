@@ -46,7 +46,10 @@ def main():
             <h4><span style="color:#DC2D1C">BalanceUP</span>에 대해...</h4>
         </div>
         <div class="card">
-            <div class="card-header">BalanceUP은 어떤 일을 할까?</div>
+            <div class="card-header">BalanceUP은 어떤 서비스일까?</div>
+            <div class="card-body">
+                내용
+            </div>
         </div>
     </div>
     """, height=600,)
