@@ -53,6 +53,17 @@ def main():
                 내용
             </div>
         </div>
+        <div class="card">
+            <div class="card-header" id="whyis">
+                <h5>
+                    <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
+                    <span style="color:#DC2D1C">BalanceUP</span>이 만들어진 이유:
+                </h5>
+            </div>
+            <div class="card-body">
+                내용
+            </div>
+        </div>
     </div>
     """, height=600,)
 
