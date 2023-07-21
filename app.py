@@ -26,7 +26,7 @@ def img_to_bytes(img_path):
     return encoded
 
 def main():
-    components.html("""
+    html = """
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -95,7 +95,8 @@ def main():
             </h5>
         </div>
     </div>
-    """, height=600,)
+    """
+    st.markdown(html, unsafe_allow_html=True)
 
     with st.sidebar:
         htmlSide=f"""
