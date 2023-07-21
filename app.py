@@ -105,10 +105,10 @@ def main():
     with st.sidebar:
         htmlSide=f"""
         <br/>
-        <a href="#what-is-balanceup-balanceup" style="text-align:center; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
-        <a href="#why-balanceup-balanceup" style="text-align:center; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
-        <a href="#why-balanceup-balanceup" style="text-align:center; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
-        <a href="#how-to-use" style="text-align:center; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
+        <a href="#what-is-balanceup-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
+        <a href="#why-balanceup-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
+        <a href="#feature-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
+        <a href="#how-to-use-balancup" style="text-align:left; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
