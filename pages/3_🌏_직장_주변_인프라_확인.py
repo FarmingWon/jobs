@@ -217,6 +217,17 @@ def makeMarker(m, df, color, icon):
                  ).add_to(m)
 
 st.title('🌏 직장 주변 인프라 확인')
+with st.sidebar:
+    htmlSide=f"""
+        <br/>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
 set_csv()
 if 'company' in st.session_state:
     company = st.session_state.company
