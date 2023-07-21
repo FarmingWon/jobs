@@ -56,10 +56,8 @@ def main():
                     <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
                     What is
                     <span style="color:#DC2D1C">BalanceUP</span>:
+                    <span><h6>BalanceUP은 어떤 서비스일까?</h6></span>
                 </h5>
-                <h6>
-                    BalanceUP은 어떤 서비스일까?
-                </h6>
             </div>
             <div class="card-body">
                 내용
