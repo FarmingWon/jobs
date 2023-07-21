@@ -65,6 +65,18 @@ def main():
                 내용
             </div>
         </div>
+        <br/>
+        <div class="card">
+            <div class="card-header" id="feature">
+                <h5>
+                    <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
+                    <span style="color:#DC2D1C">BalanceUP</span>만의 특징!
+                </h5>
+            </div>
+            <div class="card-body">
+                내용
+            </div>
+        </div>
     </div>
     """, height=600,)
 
