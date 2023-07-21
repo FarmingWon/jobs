@@ -33,6 +33,20 @@ GPT_KEY = st.secrets.KEY.GPT_KEY
 openai.api_key = GPT_KEY
 
 st.header("직업 상세 설명")
+with st.sidebar:
+    htmlSide=f"""
+        <br/>
+        <p>ChatGPT를 이용해 직업의 상세 설명을 제공하는 페이지에요.</p>
+        <p>궁금하거나 직업 추천을 통해 나온 결과를 입력해보세요!</p>
+        <p>잠시 기다리면 직업에 대한 설명이 나올거에요!</p>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
 
 query = st.text_area('직업에 대하여 물어보세요.', value="웹 개발자는 무슨 직업인지 설명해줘.", on_change=clear_submit)
 button = st.button("submit")
