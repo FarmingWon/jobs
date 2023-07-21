@@ -99,11 +99,14 @@ def main():
 
     with st.sidebar:
         htmlSide=f"""
-        
-        1
+        <br/>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
         <div id="logo">
             <h5>
-                <span>Powered By   </span>
+                <span>Powered By</span>   
                 <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
             </h5>
         </div>
