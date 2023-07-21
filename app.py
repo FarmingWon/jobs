@@ -95,7 +95,7 @@ def main():
         <div id="logo">
             <h6>
                 <span>Powered By</span>
-                <img src="/img/openai logo.PNG"></img>
+                <img src="/img/openai_logo.PNG"></img>
             </h6>
         </div>
         """
