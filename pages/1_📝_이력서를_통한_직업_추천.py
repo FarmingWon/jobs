@@ -81,7 +81,9 @@ uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 st.session_state.regions = r.getRegion()
 
 if uploaded_file:
-    bar.progress(25, text="진행률")
+    with st.spinner("직업 추천 하는중..."):
+        bar.progress(25, text="진행률")
+    # bar.progress(25, text="진행률")
     if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
         save_upload_file('_pdf', uploaded_file)
         GPT_KEY = st.secrets.KEY.GPT_KEY
