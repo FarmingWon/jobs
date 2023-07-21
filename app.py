@@ -51,7 +51,7 @@ def main():
     <div><p>반가워요. BalanceUP 직업추천 서비스에요.</p><div>
     <hr/>
     <div class="About" id="About">
-        <div class="card">
+        <div class="card" id="whatis">
             <div class="card-header" id="whatis">
                 <h5>
                     <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
@@ -63,7 +63,7 @@ def main():
             </div>
         </div>
         <br/>
-        <div class="card">
+        <div class="card" id="whyis">
             <div class="card-header" id="whyis">
                 <h5>
                     <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
@@ -75,7 +75,7 @@ def main():
             </div>
         </div>
         <br/>
-        <div class="card">
+        <div class="card" id="feature">
             <div class="card-header" id="feature">
                 <h5>
                     <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
