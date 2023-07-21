@@ -58,14 +58,7 @@ def main():
 
     with st.sidebar:
         htmlSide="""
-        <style>
-          section[data-testid="stSidebar"][aria-expanded="true"]{
-            height: 40% !important;
-          }
-          section[data-testid="stSidebar"][aria-expanded="false"]{
-            height: 40% !important;
-          }
-        </style>
+        
         1
         """
         st.markdown(htmlSide, unsafe_allow_html=True)
