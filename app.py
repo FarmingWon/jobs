@@ -102,10 +102,10 @@ def main():
         
         1
         <div id="logo">
-            <h6>
+            <h5>
                 <span>Powered By</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:200px; height:60px;">
-            </h6>
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+            </h5>
         </div>
         """
         st.markdown(htmlSide, unsafe_allow_html=True)
