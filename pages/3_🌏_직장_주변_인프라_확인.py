@@ -19,6 +19,11 @@ from matplotlib.transforms import Affine2D
 import matplotlib as mpl
 import math
 
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
+
 def set_csv():
   st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
   st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
