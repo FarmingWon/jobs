@@ -101,7 +101,7 @@ def main():
     with st.sidebar:
         htmlSide=f"""
         <br/>
-        <p>1</p>
+        <a href="#balanceup"><p>1</p></a>
         <p>2</p>
         <p>3</p>
         <p>4</p>
