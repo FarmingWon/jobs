@@ -113,7 +113,7 @@ def main():
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px; background-color:transparent;">
             </h5>
         </div>
         """
