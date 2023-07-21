@@ -2,6 +2,10 @@ import openai
 import streamlit as st
 from openai.error import OpenAIError
 
+import sys
+import base64
+from pathlib import Path
+
 message = """
 직업에 대하여 소개를 해줘.
 해당 직업이 주로 하는 일, 필요한 skill 및 역량, 전망에 대하여 말해줘.
