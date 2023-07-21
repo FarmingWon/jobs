@@ -50,8 +50,8 @@ def main():
                     <button
                         class="accordion-button collapsed"
                         type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#flush-collapseOne"
+                        data-toggle="collapse"
+                        data-target="#flush-collapseOne"
                         aria-expanded="true"
                         aria-controls="flush-collapseOne"
                       >
