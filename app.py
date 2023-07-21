@@ -7,7 +7,7 @@ import streamlit.components.v1 as components
 
 import sys
 import base64
-from path import Path
+from pathlib import Path
 
 # -- import modules end --
 
