@@ -53,6 +53,7 @@ def main():
                 내용
             </div>
         </div>
+        <br/>
         <div class="card">
             <div class="card-header" id="whyis">
                 <h5>
