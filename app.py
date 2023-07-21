@@ -82,7 +82,8 @@ def main():
             <div class="card-header" id="feature">
                 <h5>
                     <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
-                    <span style="color:#DC2D1C">BalanceUP</span>만의 특징!
+                    Feature: 
+                    <span style="color:#DC2D1C">&nbsp; BalanceUP</span>만의 특징!
                 </h5>
             </div>
             <div class="card-body">
@@ -104,10 +105,10 @@ def main():
     with st.sidebar:
         htmlSide=f"""
         <br/>
-        <a href="#what-is-balanceup-balanceup"><p>What is BalanceUP?</p></a>
-        <a href="#why-balanceup-balanceup"><p>Why BalanceUP?</p></a>
-        <p>3</p>
-        <a href="#how-to-use" style="text-align:center; text-decoration:center; color:inherit;"><p>How To Use</p></a>
+        <a href="#what-is-balanceup-balanceup" style="text-align:center; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
+        <a href="#why-balanceup-balanceup" style="text-align:center; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
+        <a href="#why-balanceup-balanceup" style="text-align:center; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
+        <a href="#how-to-use" style="text-align:center; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
