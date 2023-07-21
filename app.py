@@ -59,7 +59,7 @@ def main():
                     </button>
                 </h5>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-mdb-parent="#AboutOne">
-                    <div class="accordion-body">
+                    <div class="accordion-body">                                  
                         <p>내용</p>
                     </div>
                 </div>
