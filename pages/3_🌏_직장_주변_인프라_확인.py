@@ -226,7 +226,7 @@ def makeMarker(m, df, color, icon):
                  ).add_to(m)
 
 st.title('🌏 직장 주변 인프라 확인')
-if 'score' not in st.session_score:
+if 'score' not in st.session_state:
     st.error('⚠ 아직 직장 선택이 되지 않았어요! 이전 단계를 먼저 진행해주세요!')
 with st.sidebar:
     htmlSide=f"""
