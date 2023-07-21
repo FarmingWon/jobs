@@ -15,6 +15,10 @@ import math
 import json
 import requests
 
+import sys
+import base64
+from pathlib import Path
+
 from recommend import company as corp
 
 def img_to_bytes(img_path):
