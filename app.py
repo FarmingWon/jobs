@@ -50,7 +50,7 @@ def main():
                 <div class="card-header" id="headingOne>
                     <h5 class="mb-0">
                         <button
-                            class="btn collapsed"
+                            class="accordion-button collapsed"
                             type="button"
                             data-toggle="collapse"
                             data-target="#collapseOne"
@@ -61,7 +61,7 @@ def main():
                         </button>
                     </h5>
                 </div>
-                <div id="flush-collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#AboutOne">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#AboutOne">
                     <div class="card-body">                                  
                         <p>내용</p>
                     </div>
