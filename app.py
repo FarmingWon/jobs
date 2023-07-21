@@ -45,7 +45,7 @@ def main():
         <div class="card">
             <div class="card-header" id="whatis">
                 <h5>
-                    <i class="fas fa-question-circle fa-sm me-2 opacity-70"></i>
+                    <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
                     <span style="color:#DC2D1C">BalanceUP</span>은 어떤 서비스일까?
                 </h5>
             </div>
