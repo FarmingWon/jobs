@@ -44,7 +44,7 @@ def main():
         <div class="About_title">
             <h4><span style="color:#DC2D1C">BalanceUP</span>에 대해...</h4>
         </div>
-        <div class="accordion accordion-flush" id="AboutOne">
+        <div class="accordion" id="AboutOne">
             <div class="accordion-item">
                 <h5 class="accordion-header" id="flush-headingOne">
                     <button
@@ -52,13 +52,13 @@ def main():
                         type="button"
                         data-mdb-toggle="collapse"
                         data-mdb-target="#flush-collapseOne"
-                        aria-expanded="false"
+                        aria-expanded="true"
                         aria-controls="flush-collapseOne"
                       >
                         BalanceUP은 어떤 서비스일까?
                     </button>
                 </h5>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-mdb-parent="#AboutOne">
+                <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-mdb-parent="#AboutOne">
                     <div class="accordion-body">                                  
                         <p>내용</p>
                     </div>
