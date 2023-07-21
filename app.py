@@ -100,7 +100,7 @@ def main():
     with st.sidebar:
         htmlSide=f"""
         <br/>
-        <a href="#balanceup"><p>1</p></a>
+        <a href="#whatis"><p>1</p></a>
         <p>2</p>
         <p>3</p>
         <a href="#how-to-use" style="text-align:center; text-decoration:center; color:inherit;"><p>How To Use</p></a>
