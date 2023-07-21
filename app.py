@@ -59,7 +59,12 @@ def main():
     with st.sidebar:
         htmlSide="""
         <style>
-        section[data-testid="stSidebar"] .css-ng1t4o {{width: 14rem;}}
+          section[data-testid="stSidebar"][aria-expanded="true"]{
+            height: 40% !important;
+          }
+          section[data-testid="stSidebar"][aria-expanded="false"]{
+            height: 40% !important;
+          }
         </style>
         1
         """
