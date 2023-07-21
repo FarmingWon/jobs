@@ -56,7 +56,7 @@ def main():
                     <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
                     What is
                     <span style="color:#DC2D1C">BalanceUP</span>:
-                    <span>BalanceUP은 어떤 서비스일까?</span>
+                    <span>&nbsp; BalanceUP은 어떤 서비스일까?</span>
                 </h5>
             </div>
             <div class="card-body">
@@ -92,7 +92,7 @@ def main():
     <div id="howtouse">
         <div id="header">
             <h5>
-                <span style="color:#DC2D1C">How To Use?</span>
+                <span style="color:#DC2D1C">How To Use?</span>:<span>&nbsp; BalanceUP 사용법!</span>
             </h5>
         </div>
     </div>
@@ -102,7 +102,7 @@ def main():
     with st.sidebar:
         htmlSide=f"""
         <br/>
-        <a href="#whatis"><p>1</p></a>
+        <a href="#what-is-balanceup"><p>What is BalanceUP?</p></a>
         <p>2</p>
         <p>3</p>
         <a href="#how-to-use" style="text-align:center; text-decoration:center; color:inherit;"><p>How To Use</p></a>
