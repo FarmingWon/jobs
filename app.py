@@ -92,6 +92,12 @@ def main():
         htmlSide="""
         
         1
+        <div id="logo">
+            <h6>
+                <span>Powered By</span>
+                <img src="/img/openai logo.png"></img>
+            </h6>
+        </div>
         """
         st.markdown(htmlSide, unsafe_allow_html=True)
 
