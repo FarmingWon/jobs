@@ -268,3 +268,5 @@ if 'company' in st.session_state:
     company_name = company['기업명']
     m = makeMap(address, company_name)
     st_folium(m, width=725, returned_objects=[])
+else:
+   st.error('직장 선택을 먼저 진행해주세요')
