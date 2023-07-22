@@ -13,3 +13,4 @@ matplotlib
 PyPDF2
 st-pages
 streamlit_chat
+pathlib
