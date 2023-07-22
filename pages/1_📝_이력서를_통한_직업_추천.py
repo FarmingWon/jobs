@@ -18,13 +18,6 @@ import base64
 from pathlib import Path
 
 # -- import modules end --
-
-def img_to_bytes(img_path):
-    img_bytes = Path(img_path).read_bytes()
-    encoded = base64.b64encode(img_bytes).decode()
-    return encoded
-
-# func: setting variable & files
 def set_variable():
     st.session_state.selected_region = None
     st.session_state.selected_job = None
@@ -32,6 +25,21 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = None
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
+
+def get_progress_score():
+    st.session_state.barScore = 0
+    if st.session_state.selectJob or st.session_state.selectRegion:
+        st.session_state.barScore = 25
+        if st.session_state.selectJob and st.session_state.selectRegion:
+            st.session_state.barScore = 50
+            if st.session_state.selectCompany:
+                st.session_state.barScore = 75
+                if st.session_state.selectWLB:
+                    st.session_state.barScore = 100
 
 # func: save pdf file
 def save_upload_file(dir, file):
@@ -55,6 +63,8 @@ def showJob(recommend_jobs, similarity_jobs):
     st.session_state.selected_job= st.radio(label='',options=jobsNm)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
+set_variable()
+get_progress_score()
 htmlTitle = """
     <div><h3>📝이력서를 통한 직업 추천</h3></div>
     """
@@ -68,6 +78,8 @@ with st.sidebar:
         <p>4</p>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
+    st.sidebar.markdown("---")
+    bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
     st.sidebar.markdown("---")
     htmlSide2=f"""
         <div id="logo">
@@ -91,15 +103,10 @@ with st.sidebar:
         """
     st.markdown(htmlSide2, unsafe_allow_html=True)
 
-set_variable()
-bar = st.progress(0, text="진행률")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 st.session_state.regions = r.getRegion()
 
 if uploaded_file:
-    with st.spinner("직업 추천 하는중..."):
-        bar.progress(25, text="진행률")
-    # bar.progress(25, text="진행률")
     if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
         save_upload_file('_pdf', uploaded_file)
         GPT_KEY = st.secrets.KEY.GPT_KEY
@@ -133,12 +140,16 @@ if uploaded_file:
             if st.session_state.selected_region == region[1]:
                 st.session_state.clicked_regionCd = region[0]
                 st.session_state.clicked_regionNm = region[1]
+                st.session_state.selectRegion = True
+                get_progress_score()
                 break
         if st.session_state.jobs is not None:
             for job in st.session_state.jobs:
                 if st.session_state.selected_job == job[1]:
                     st.session_state.clicked_jobCd = job[0]
                     st.session_state.clicked_jobNm = job[1]
+                    st.session_state.selectJob = True
+                    get_progress_score()
                     break
-            bar.progress(40, text="진행률")
-            st.info('왼쪽 메뉴에서 직장 선택을 눌러주세요')
+        bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+        st.info('왼쪽 메뉴에서 직장 선택을 눌러주세요')
