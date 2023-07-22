@@ -28,14 +28,14 @@ def img_to_bytes(img_path):
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
 
-def set_csv():
-  st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
-  st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
-  st.session_state.df_hospital = pd.read_csv('./csv/hospital.csv')
-  st.session_state.df_museum = pd.read_csv('./csv/museum.csv')
-  st.session_state.df_starbucks = pd.read_csv('./csv/starbucks_busan.csv')
-  st.session_state.df_exercise = pd.read_csv('./csv/exercise.csv')
-  st.session_state.df_oliveyoung = pd.read_csv('./csv/oliveyoung.csv')
+# def set_csv():
+#   st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
+#   st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
+#   st.session_state.df_hospital = pd.read_csv('./csv/hospital.csv')
+#   st.session_state.df_museum = pd.read_csv('./csv/museum.csv')
+#   st.session_state.df_starbucks = pd.read_csv('./csv/starbucks_busan.csv')
+#   st.session_state.df_exercise = pd.read_csv('./csv/exercise.csv')
+#   st.session_state.df_oliveyoung = pd.read_csv('./csv/oliveyoung.csv')
 
 # func: address to lat, lon
 def addr_to_lat_lon(addr):
@@ -82,14 +82,6 @@ def makeMap(address,corpNm):
   df_starbucks_distance = calculate_distance(st.session_state.df_starbucks, center_xy)
   df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
   df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
-
-#   df_subway_distance = df_subway_distance.astype({'latlon' : 'object'})
-#   df_bus_distance = df_bus_distance.astype({'latlon' : 'object'})
-#   df_hospital_distance = df_hospital_distance.astype({'latlon' : 'object'})
-#   df_museum_distance = df_museum_distance.astype({'latlon' : 'object'})
-#   df_starbucks_distance = df_starbucks_distance.astype({'latlon' : 'object'})
-#   df_exercise_distance = df_exercise_distance.astype({'latlon' : 'object'})
-#   df_oliveyoung_distance = df_oliveyoung_distance.astype({'latlon' : 'object'})
 
   df_graph = pd.DataFrame({'distance': ['500m', '1km', '3km']})
 
@@ -225,22 +217,38 @@ def makeMarker(m, df, color, icon):
                   icon=(folium.Icon(color=color, icon=icon, prefix='fa'))
                  ).add_to(m)
 
-st.title('🌏 직장 주변 인프라 확인')
-if 'score' not in st.session_state or st.session_state.score == None:
-    st.error('⚠ 아직 직장 선택이 되지 않았어요! 이전 단계를 먼저 진행해주세요!')
+st.title('🌏 직장 라이프 밸런스 확인')
 with st.sidebar:
     htmlSide=f"""
         <br/>
+        <div>text</div>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
+    st.sidebar.markdown("---")
+    htmlSide2=f"""
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
             </h5>
         </div>
-    """
-    st.markdown(htmlSide, unsafe_allow_html=True)
-set_csv()
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        """
+    st.markdown(htmlSide2, unsafe_allow_html=True)
+# set_csv()
 if 'company' in st.session_state:
+    st.progress(100, text="진행률")
     company = st.session_state.company
     address = company['기업위치']
     company_name = company['기업명']
