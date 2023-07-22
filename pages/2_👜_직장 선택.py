@@ -26,6 +26,17 @@ def img_to_bytes(img_path):
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
 
+def get_progress_score():
+    st.session_state.barScore = 0
+    if st.session_state.selectJob or st.session_state.selectRegion:
+        st.session_state.barScore = 25
+        if st.session_state.selectJob and st.session_state.selectRegion:
+            st.session_state.barScore = 50
+            if st.session_state.selectCompany:
+                st.session_state.barScore = 75
+                if st.session_state.selectWLB:
+                    st.session_state.barScore = 100
+
 # func: address to lat, lon
 def addr_to_lat_lon(addr):
   url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
@@ -143,6 +154,8 @@ with st.sidebar:
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
+    bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+    st.sidebar.markdown("---")
     htmlSide2=f"""
         <div id="logo">
             <h5>
@@ -168,7 +181,6 @@ with st.sidebar:
 if 'clicked_regionCd' not in st.session_state:
     st.error('직업 추천을 먼저 진행해주세요')
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
-  bar = st.progress(50, text="진행률")
   st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
   fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
   st.subheader('기업목록')
@@ -218,8 +230,10 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
               subcol1.write('기업위치 : ' + row['기업위치'])
               with subcol2:
                   if st.button('기업 주변 인프라 확인'):
+                      st.session_state.selectCompany = True
+                      get_progress_score()
+                      bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
                       st.session_state.company = row
-                      bar.progress(75, text="진행률")
                       st.success('왼쪽 메뉴에서 직장 주변 인프라 확인을 눌러주세요!')
                       #router.route('/map')
               st.write("---")
