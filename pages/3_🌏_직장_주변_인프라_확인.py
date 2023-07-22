@@ -28,6 +28,16 @@ def img_to_bytes(img_path):
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
 
+def get_progress_score():
+    st.session_state.barScore = 0
+    if st.session_state.selectJob or st.session_state.selectRegion:
+        st.session_state.barScore = 25
+        if st.session_state.selectJob and st.session_state.selectRegion:
+            st.session_state.barScore = 50
+            if st.session_state.selectCompany:
+                st.session_state.barScore = 75
+                if st.session_state.selectWLB:
+                    st.session_state.barScore = 100
 # def set_csv():
 #   st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
 #   st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
@@ -225,6 +235,8 @@ with st.sidebar:
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
+    bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+    st.sidebar.markdown("---")
     htmlSide2=f"""
         <div id="logo">
             <h5>
@@ -248,7 +260,9 @@ with st.sidebar:
     st.markdown(htmlSide2, unsafe_allow_html=True)
 # set_csv()
 if 'company' in st.session_state:
-    st.progress(100, text="진행률")
+    st.session_state.selectWLB = True
+    get_progress_score()
+    bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
     company = st.session_state.company
     address = company['기업위치']
     company_name = company['기업명']
