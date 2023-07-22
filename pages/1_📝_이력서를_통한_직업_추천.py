@@ -66,14 +66,30 @@ with st.sidebar:
         <p>2</p>
         <p>3</p>
         <p>4</p>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
+    st.sidebar.markdown("---")
+    htmlSide2=f"""
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
             </h5>
         </div>
-    """
-    st.markdown(htmlSide, unsafe_allow_html=True)
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        """
+    st.markdown(htmlSide2, unsafe_allow_html=True)
 
 set_variable()
 bar = st.progress(0, text="진행률")
