@@ -140,19 +140,36 @@ with st.sidebar:
         <p>2</p>
         <p>3</p>
         <p>4</p>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
+    st.sidebar.markdown("---")
+    htmlSide2=f"""
         <div id="logo">
             <h5>
                 <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo.PNG")}" style="width:180px; height:60px;">
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
             </h5>
         </div>
-    """
-    st.markdown(htmlSide, unsafe_allow_html=True)
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        """
+    st.markdown(htmlSide2, unsafe_allow_html=True)
+
 if 'clicked_regionCd' not in st.session_state:
-    st.error('⚠ 직업 추천을 먼저 진행해주세요')
+    st.error('직업 추천을 먼저 진행해주세요')
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
   bar = st.progress(50, text="진행률")
-  st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, "mongodb+srv://wonseok:E3kXD7Tta02OWXYT@cluster0.0nbzrz6.mongodb.net/?retryWrites=true&w=majority")
+  st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
   fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
   st.subheader('기업목록')
   if len(st.session_state.gangso) != 0:
