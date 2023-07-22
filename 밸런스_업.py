@@ -23,6 +23,12 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = None
+    st.session_state.selectJob = False
+    st.session_state.selectRegion = False
+    st.session_state.selectCompany = False
+    st.session_state.selectWLB = False
+    st.session_state.barScore = False
+
 def set_csv():
   st.session_state.df_subway = pd.read_csv('csv/subway.csv')
   st.session_state.df_bus = pd.read_csv('csv/bus.csv')
@@ -209,6 +215,40 @@ def img_to_bytes(img_path):
     return encoded
 
 def main():
+    #side
+    with st.sidebar:
+        htmlSide=f"""
+        <br/>
+        <a href="#what-is-balanceup-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
+        <a href="#how-to-use-balancup" style="text-align:left; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
+        <a href="#why-balanceup-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
+        <a href="#feature-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
+        """
+        st.markdown(htmlSide, unsafe_allow_html=True)
+        st.sidebar.markdown("---")
+        htmlSide2=f"""
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.PNG")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.PNG")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.PNG")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        """
+        st.markdown(htmlSide2, unsafe_allow_html=True)
+
+    #main
     html = f"""
     <!-- Font Awesome -->
     <link
@@ -246,6 +286,7 @@ def main():
         <div id="howtouse">
             <div id="header">
                 <h5>
+                    <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
                     <span style="color:#DC2D1C">How To Use?</span>:<span>&nbsp; BalanceUP 사용법!</span>
                 </h5>
             </div>
@@ -306,39 +347,8 @@ def main():
     </div>
     """
     st.markdown(html2, unsafe_allow_html=True)
-    # st.markdown("---")
     
-    with st.sidebar:
-        htmlSide=f"""
-        <br/>
-        <a href="#what-is-balanceup-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
-        <a href="#how-to-use-balancup" style="text-align:left; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
-        <a href="#why-balanceup-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
-        <a href="#feature-balanceup" style="text-align:left; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
-        """
-        st.markdown(htmlSide, unsafe_allow_html=True)
-        st.sidebar.markdown("---")
-        htmlSide2=f"""
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        """
-        st.markdown(htmlSide2, unsafe_allow_html=True)
+    
 
 if __name__ == "__main__":
     set_variable()
