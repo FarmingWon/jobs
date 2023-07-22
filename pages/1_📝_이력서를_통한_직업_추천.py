@@ -25,6 +25,7 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.score = None
+
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
     encoded = base64.b64encode(img_bytes).decode()
@@ -63,12 +64,19 @@ def showJob(recommend_jobs, similarity_jobs):
     st.session_state.selected_job= st.radio(label='',options=jobsNm)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
+#download resume
+def download_link(data, file_name, file_label):
+    b64 = base64.b64encode(data).decode()
+    href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_name}">{file_label}</a>'
+    return href
+
 set_variable()
 get_progress_score()
 htmlTitle = """
     <div><h3>📝이력서를 통한 직업 추천</h3></div>
     """
 st.markdown(htmlTitle, unsafe_allow_html=True)
+
 with st.sidebar:
     htmlSide=f"""
         <br/>
@@ -103,7 +111,15 @@ with st.sidebar:
         """
     st.markdown(htmlSide2, unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
+file_path = './_pdf/ws.pdf'
+with open(file_path, 'rb') as file:
+    pdf_data= file.read()
+download_btn = download_link(pdf_data, "sample_data.pdf", "여기")
+html= f"""
+샘플 파일을 다운하고싶으면 {download_btn}를 눌러봐요.
+"""
+st.markdown(html, unsafe_allow_html=True)
+uploaded_file = st.file_uploader("이력서를 올려보세요!", type="pdf")
 st.session_state.regions = r.getRegion()
 
 if uploaded_file:
