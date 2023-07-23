@@ -27,7 +27,9 @@ def set_variable():
     st.session_state.selectRegion = False
     st.session_state.selectCompany = False
     st.session_state.selectWLB = False
-    st.session_state.barScore = False
+    if 'barScore' not in st.session_state:
+      st.session_state.barScore = False
+
 
 def set_csv():
   st.session_state.df_subway = pd.read_csv('csv/subway.csv')
