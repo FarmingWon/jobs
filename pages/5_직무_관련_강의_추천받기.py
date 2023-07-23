@@ -16,7 +16,7 @@ st.markdown(html, unsafe_allow_html=True)
 with st.sidebar:
     htmlSide=f"""
         <br/>
-        <p>text.</p>
+        <p></p>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
