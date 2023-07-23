@@ -22,11 +22,16 @@ def set_variable():
     st.session_state.recommend_jobs = None
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
-    st.session_state.score = None
-    st.session_state.selectJob = False
-    st.session_state.selectRegion = False
-    st.session_state.selectCompany = False
-    st.session_state.selectWLB = False
+    if 'score' not in st.session_state:  
+      st.session_state.score = None
+    if 'selectJob' not in st.session_state:  
+      st.session_state.selectJob = False
+    if 'selectRegion' not in st.session_state:  
+      st.session_state.selectRegion = False
+    if 'selectCompany' not in st.session_state:  
+      st.session_state.selectCompany = False
+    if 'selectWLB' not in st.session_state:  
+      st.session_state.selectWLB = False
     if 'barScore' not in st.session_state:
       st.session_state.barScore = False
 
