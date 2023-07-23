@@ -134,7 +134,7 @@ if uploaded_file:
             st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
         jobsHtml = f"""
             <p>가장 적합한 직업은 <strong>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
-            <p>직정과 직업을 선택하면 채용공고를 보여드릴게요.</p>
+            <p>지역과 직업을 선택하면 채용공고를 보여드릴게요.</p>
         """
         st.markdown(jobsHtml, unsafe_allow_html=True)
         st.write(f"")
