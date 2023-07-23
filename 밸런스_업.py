@@ -153,7 +153,7 @@ def makeMap(center_xy,corpNm):
           {"value": int(df_graph.iloc[1]['subway']), "name": "지하철역"},
           {"value": int(df_graph.iloc[1]['bus']), "name": "버스정류장"},
           {"value": int(df_graph.iloc[1]['hospital']), "name": "병원"},
-          {"value": int(df_graph.iloc[1]['museum']), "name": "박물관/미술관"},
+          {"value": int(df_graph.iloc[1]['museum']), "name": "복합문화공간"},
           {"value": int(df_graph.iloc[1]['starbucks']), "name": "스타벅스"},
           {"value": int(df_graph.iloc[1]['exercise']), "name": "체육시설"},
           {"value": int(df_graph.iloc[1]['oliveyoung']), "name": "올리브영"},
@@ -187,7 +187,7 @@ def makeMap(center_xy,corpNm):
     ],
   }
   st_echarts(
-    options=options, height=800
+    options=options, height=725
   )
   
   makeMarker(m, df_subway_distance, 'orange', 'train', "대중교통")
@@ -266,7 +266,7 @@ def main():
     <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-    <div class="title"><h1 style="font-family: 'Arial Black',font-size: 70px;"><img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">밸런스 업!</h1></div>
+    <div class="title"><h1 style="font-size: 70px;"><img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">밸런스 업!</h1></div>
     <!-- <div><p>반가워요. BalanceUP 직업추천 서비스에요.</p><div> -->
     <!--    <div class="card" name="whatis" style='margin-right : 100px'> -->
      <!--       <div class="card-header" id="whatis">-->
@@ -301,6 +301,7 @@ def main():
         <div>
             <span>3. 추천받은 직장 중에서 원하는 회사의 인프라를 확인해봐요.</span>
         </div>
+        <br/>
     """
     st.markdown(html, unsafe_allow_html=True)
 
@@ -308,12 +309,17 @@ def main():
     center_xy = (35.175420857972, 129.12504608504) # 임의 데이터 
     corpNm = "(주)아람커뮤니케이션즈"
     with con1:
-        st.write("라이프 밸런스")
         m = makeMap(center_xy, corpNm)
-        
+        con1_html = """ 
+        <h3 style="text-align:center">생활 편의시설 통계</h3>
+        """
+        st.markdown(con1_html, unsafe_allow_html=True)
     with con2:
-        st.write("con2")
-        st_folium(m, width=725, returned_objects=[])
+        st_folium(m, width=700, returned_objects=[])
+        con2_html = """ 
+        <h3 style="text-align:center">기업 주변 인프라</h3>
+        """
+        st.markdown(con2_html, unsafe_allow_html=True)
     html2 = """
    <hr/>
    <br/>
@@ -327,7 +333,9 @@ def main():
             </h5>
      <!--   </div> -->
         <div class="card-body">
-            내용
+            사x인, 잡xx아, 잡xx닛 등과 같은 기존 사이트들의 공통점은 무엇일까요?<br>
+            현 구직 세대인 MZ세대의 요구조건인 삶과 일의 균형에 대한 요구조건을 만족시켜주지 못한다는 것입니다.<br>
+            우리 사이트는 타사 서비스보다 빠르게 거대언어모델(LLM)의 도입에 성공하였으며, 청년세대의 니즈를 만족시켜주기 위하여 만들어졌습니다.
         </div>
     <!-- </div> -->
     <hr/>
@@ -341,7 +349,11 @@ def main():
             </h5>
     <!--    </div>-->
         <div class="card-body">
-            내용
+          <ul>
+            <li>분기별 모델 업데이트로 빠르게 변화하는 노동시장 대응</li>
+            <li>MZ세대의 요구조건을 만족하는 기업 생활 환경 지수 차트 </li>
+            <li>최근 관심이 증대한 인공지능 거대언어모델을 적용</li>
+          </ul>
         </div>
     <!--</div>-->
     </div>
