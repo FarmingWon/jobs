@@ -42,9 +42,11 @@ openai.api_key = GPT_KEY
 with st.sidebar:
     htmlSide=f"""
         <br/>
-        <p>ChatGPT를 이용해 직업의 상세 설명을 제공하는 페이지에요.</p>
-        <p>궁금하거나 직업 추천을 통해 나온 결과를 입력해보세요!</p>
-        <p>잠시 기다리면 직업에 대한 설명이 나올거에요!</p>
+        <ul>
+            <li>ChatGPT를 이용해 직업의 상세 설명을 제공하는 페이지에요.</li>
+            <li>궁금하거나 직업 추천을 통해 나온 결과를 입력해보세요!</li>
+            <li>잠시 기다리면 직업에 대한 설명이 나올거에요!</li>
+        </ul>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
