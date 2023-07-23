@@ -132,15 +132,16 @@ if uploaded_file:
         recommend_jobs = st.session_state.recommend_jobs
         if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
             st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
-        st.write(f"추천 직업 : {recommend_jobs[0]['occupation3Nm']}")
+        jobsHtml = f"""
+            가장 적합한 직업은 <strong>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.
+        """
+        st.markdown(jobsHtml, unsafe_allow_html=True)
+        st.write(f"")
     if 'selected_region' not in st.session_state or st.session_state.selected_region is None:
         with st.expander(label="지역 선택", expanded=True):
             regions = st.session_state.regions
             showRegion(regions)
-            if st.session_state.selected_region is not None:
-                print("get region")
 
-    st.write(st.session_state.selected_region)
     if 'selected_job' not in st.session_state or st.session_state.selected_job is None:
         with st.expander(label = '직업 선택', expanded=True):
              if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
