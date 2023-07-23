@@ -270,12 +270,23 @@ if 'company' in st.session_state:
     address = company['기업위치']
     company_name = company['기업명']
     html = f"""
-    선택한 채용공고는 {company_name}의 채용공고시네요! 해당 회사에 대한 인프라를 알려드릴게요!
+    선택한 채용공고는 <strong>{company_name}</strong>의 채용공고시네요! 해당 회사에 대한 인프라를 알려드릴게요!
     """
     st.markdown(html, unsafe_allow_html=True)
-    m = makeMap(address, company_name)
-    html = """<br/>"""
-    st.markdown(html, unsafe_allow_html=True)
-    st_folium(m, width=725, returned_objects=[])
+    con1,con2= st.columns([0.5,0.5])
+    with con1:
+      m = makeMap(address, company_name)
+      con1_html = """ 
+        <h3 style="text-align:center">생활 편의시설 통계</h3>
+        """
+      st.markdown(con1_html, unsafe_allow_html=True)
+    # html = """<br/>"""
+    # st.markdown(html, unsafe_allow_html=True)
+    with con2:
+      st_folium(m, width=725, returned_objects=[])
+      con2_html = """ 
+        <h3 style="text-align:center">기업 주변 인프라</h3>
+        """
+      st.markdown(con2_html, unsafe_allow_html=True)
 else:
    st.error('직장 선택을 먼저 진행해주세요')
