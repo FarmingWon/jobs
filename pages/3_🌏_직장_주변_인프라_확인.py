@@ -205,7 +205,7 @@ def makeMap(address,corpNm):
     ],
   }
   st_echarts(
-    options=options, height=500
+    options=options, height=725
   )
   
   makeMarker(m, df_subway_distance, 'orange', 'train')
@@ -283,7 +283,7 @@ if 'company' in st.session_state:
     # html = """<br/>"""
     # st.markdown(html, unsafe_allow_html=True)
     with con2:
-      st_folium(m, width=725, returned_objects=[])
+      st_folium(m, width=700, returned_objects=[])
       con2_html = """ 
         <h3 style="text-align:center">기업 주변 인프라</h3>
         """
