@@ -231,7 +231,10 @@ st.title('🌏 직장 라이프 밸런스 확인')
 with st.sidebar:
     htmlSide=f"""
         <br/>
-        <div>text</div>
+        <ul>
+          <li>인프라에 대하여 확인 할 수 있어요!</li>
+          <li>다른 직장이 궁금하면 직장 선택을 다시 하면 확인할 수 있어요.</li>
+        </ul>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
@@ -266,7 +269,13 @@ if 'company' in st.session_state:
     company = st.session_state.company
     address = company['기업위치']
     company_name = company['기업명']
+    html = f"""
+    선택한 채용공고는 {company_name}의 채용공고시네요! 해당 회사에 대한 인프라를 알려드릴게요!
+    """
+    st.markdown(html, unsafe_allow_html=True)
     m = makeMap(address, company_name)
+    html = """<br/>"""
+    st.markdown(html, unsafe_allow_html=True)
     st_folium(m, width=725, returned_objects=[])
 else:
    st.error('직장 선택을 먼저 진행해주세요')
