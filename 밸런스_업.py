@@ -189,6 +189,16 @@ def main():
             order: -1;
         }
         .c-stepper-item.completed {
+            --size: 3rem;
+            content: '';
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            border: 0.5px solid #0E3E89;
+            margin: 0 auto;
             background-color: #0E3E89
         }
     </style>
