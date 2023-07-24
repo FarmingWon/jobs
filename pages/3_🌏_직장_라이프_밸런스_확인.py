@@ -286,5 +286,10 @@ if 'company' in st.session_state:
       <h3 style="text-align:center">기업 주변 인프라</h3>
       """
       st.markdown(con2_html, unsafe_allow_html=True)
+    html = f"""
+    <h2>AI의 {company_name}회사 인프라 평가</h2>
+    """
+    st.markdown(html, unsafe_allow_html=True)
+    st.write(st.session_state.infra)
 else:
    st.error('직장 선택을 먼저 진행해주세요')
