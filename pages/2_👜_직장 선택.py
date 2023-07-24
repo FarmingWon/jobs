@@ -193,8 +193,7 @@ def make_score(company_name,address,busisize): # 점수 계산
     st.session_state.score = int(score)
 
     st.session_state.query = query
-    jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
-    st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,GPT_KEY)
+    st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
 
 st.title('👜직장 선택')
 with st.sidebar:
