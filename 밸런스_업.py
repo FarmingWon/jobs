@@ -134,19 +134,19 @@ def main():
     <div class="container">
         <ol class="c-stepper">
             <li class="c-stepper-item">
-                <h6 class="c-stepper-title">이력서 파일 입력</h6>
+                <p class="c-stepper-title">이력서 파일 입력</p>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
-                <h6 class="c-stepper-title">개인 맞춤 직무 추천</h6>
+                <p class="c-stepper-title">개인 맞춤 직무 추천</p>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
-                <h6 class="c-stepper-title">기업의 직업/지역 선택</h6>
+                <p class="c-stepper-title">기업의 직업/지역 선택</p>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
-                <h6 class="c-stepper-title">기업 인프라 평가 + ELEI 차트</h6>
+                <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
         </ol>
@@ -157,6 +157,10 @@ def main():
             flex-wrap: wrap;
             margin: 0;
             padding: 0;
+        }
+
+        .c-stepper-title {
+            font-size: small;
         }
         
         .c-stepper-item {
