@@ -3,6 +3,7 @@ import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import add_page_title
 from streamlit.components.v1 import html
+from streamlit_extras.switch_page_button import switch_page
 
 # customized modules
 from recommend import jaccard
@@ -122,7 +123,10 @@ htmlCode= f"""
 st.markdown(htmlCode, unsafe_allow_html=True)
 uploaded_file = st.file_uploader("이력서를 올려보세요!", type="pdf")
 st.session_state.regions = r.getRegion()
-
+next_col1,next_col2,next_col3 = st.columns([0.45,0.45,0.1])
+with next_col3:
+    if st.button("Test Next >"):
+        switch_page("직장_선택")
 if uploaded_file:
     if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
         save_upload_file('_pdf', uploaded_file)
@@ -171,6 +175,9 @@ if uploaded_file:
                     get_progress_score()
                     break
         bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+        with next_col3:
+            if st.button("Next >>"):
+                switch_page("직장_선택")
         st.write('-----completed-----')
         for k in st.session_state:
             st.write(k + ":" + st.session_state[str(k)])
