@@ -117,7 +117,7 @@ def main():
             </div>
             <div class="col-md-2"></div>
         </div>
-    </div>
+    </div>"""+"""
     <div class="container">
         <div class="subtitle" id="subtitle">
             <p class="h5 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
@@ -130,6 +130,64 @@ def main():
             </p>
         </div>
     </div>
+    <br/>
+    <div class="container">
+        <ol class="c-stepper">
+            <li class="c-stepper-item">
+                <h4 class="c-stepper-title">Step 1</h4>
+                <p class="c-stepper-desc">Some desc text</p>
+            </li>
+            <li class="c-stepper-item">
+                <h4 class="c-stepper-title">Step 2</h4>
+                <p class="c-stepper-desc">Some desc text</p>
+            </li>
+            <li class="c-stepper-item">
+                <h4 class="c-stepper-title">Step 3</h4>
+                <p class="c-stepper-desc">Some desc text</p>
+            </li>
+            <li class="c-stepper-item">
+                <h4 class="c-stepper-title">Step 4</h4>
+                <p class="c-stepper-desc">Some desc text</p>
+            </li>
+        </ol>
+    </div>
+    <style type="text/css">
+        .c-stepper {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .c-stepper-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .c-stepper-item:before {
+            --size: 3rem;
+            content: '';
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            margin: 0 auto;
+            background-color: aqua;
+        }
+        .c-stepper-item:not(:last-child):after {
+            content: '';
+            position: relative;
+            top: 1.5rem;
+            left: 50%;
+            height: 2px;
+            background-color: #e0e0e0;
+            order: -1;
+        }
+    </style>
     """
     st.markdown(html, unsafe_allow_html=True)
     
