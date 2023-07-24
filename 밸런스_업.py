@@ -213,7 +213,7 @@ def main():
     div.stButton > button:first-child {
         background-color: #0C377A;
         color: #ffffff;
-        width: 40%;
+        width: 150%;
         height: 65%;
     }
     </style>""", unsafe_allow_html=True)
