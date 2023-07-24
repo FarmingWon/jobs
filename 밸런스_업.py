@@ -223,7 +223,7 @@ def main():
             switch_page("이력서를_통한_직업_추천")
 
     html2 = """
-    <div class="container introduction" style="margin-top: 100%;">
+    <div class="container introduction" style="margin-top: 50%;">
         <div class="row">
             <div class="col">
                 <div class="subtitle">
