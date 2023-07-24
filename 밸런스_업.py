@@ -160,7 +160,7 @@ def main():
         }
         .container.wrap:after {
             left: 25%;
-            bottom: -57%;
+            #bottom: -57%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
@@ -177,8 +177,8 @@ def main():
         .container.wrap::after {
             content: '';
             position: absolute;
-            #width: 600px;
-            #height: 600px;
+            width: 600px;
+            height: 600px;
             border-top-left-radius: 40%;
             border-top-right-radius: 45%;
             border-bottom-left-radius: 35%;
