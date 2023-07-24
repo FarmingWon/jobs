@@ -280,13 +280,11 @@ if 'company' in st.session_state:
         <h3 style="text-align:center">생활 편의시설 통계</h3>
         """
       st.markdown(con1_html, unsafe_allow_html=True)
-    # html = """<br/>"""
-    # st.markdown(html, unsafe_allow_html=True)
     with con2:
       st_folium(m, width=700, returned_objects=[])
       con2_html = """ 
-        <h3 style="text-align:center">기업 주변 인프라</h3>
-        """
-        t.markdown(con2_html, unsafe_allow_html=True)
+      <h3 style="text-align:center">기업 주변 인프라</h3>
+      """
+      t.markdown(con2_html, unsafe_allow_html=True)
 else:
    st.error('직장 선택을 먼저 진행해주세요')
