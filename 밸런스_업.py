@@ -149,8 +149,8 @@ def main():
                 </li>
             </ol>
         </div>
-        <div class="container" style="margin-top: 15%;">
-        </div>
+    </div>
+    <div class="container" style="margin-top: 15%;">
     </div>
     """ + """
     <style type="text/css">
