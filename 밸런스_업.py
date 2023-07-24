@@ -276,7 +276,6 @@ def main():
     <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-    <div class="title"><h1 style="font-size: 70px;"><img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">밸런스 업!</h1></div>
     <div class="title">
         <div class="row">
             <div class="col-4">
