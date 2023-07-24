@@ -153,6 +153,11 @@ def main():
         </div>
     </div>
     <style type="text/css">
+        .container .wrap{
+            overflow: hidden;
+            transform: translate(-50%, -50%);
+            transition: transform 300ms, box-shadow 300ms;
+        }
         .container .wrap:after {
             left: 25%;
             bottom: -57%;
