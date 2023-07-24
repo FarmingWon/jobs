@@ -155,7 +155,7 @@ def main():
     <style type="text/css">
         .container.wrap{
             overflow: hidden;
-            #padding: 40px 30px 30px 30px;
+            padding: 80px 30px 90px 30px;
             top:50%;
             left: 50%;
             transform: translate(-50%, -50%);
