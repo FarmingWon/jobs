@@ -213,6 +213,7 @@ def main():
     div.stButton > button:first-child {
         background-color: #0C377A;
         color: #ffffff;
+        display: flex;
         justify-content: center;
     }
     </style>""", unsafe_allow_html=True)
