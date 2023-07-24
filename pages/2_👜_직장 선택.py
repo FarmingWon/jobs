@@ -135,117 +135,107 @@ def make_score(company_name,address,busisize): # 점수 계산
         score = int(score*1.2)
     st.session_state.score = score
 
-def choose():
-    st.title('👜직장 선택')
-    with st.sidebar:
-        htmlSide=f"""
-            <br/>
-            <ul>
-            <li>현재 채용중인 기업정보에 대하여 확인이 가능해요.</li>
-            <li>버튼을 누른 뒤, 마음에 드는 회사를 선택해봐요.</li>
-            <li>인프라 확인 버튼을 누르면 인프라를 확인할수 있어요!</li>
-            </ul>
+st.title('👜직장 선택')
+with st.sidebar:
+    htmlSide=f"""
+        <br/>
+        <ul>
+        <li>현재 채용중인 기업정보에 대하여 확인이 가능해요.</li>
+        <li>버튼을 누른 뒤, 마음에 드는 회사를 선택해봐요.</li>
+        <li>인프라 확인 버튼을 누르면 인프라를 확인할수 있어요!</li>
+        </ul>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
+    st.sidebar.markdown("---")
+    bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+    st.sidebar.markdown("---")
+    htmlSide2=f"""
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
+        <div id="logo">
+            <h5>
+                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
+            </h5>
+        </div>
         """
-        st.markdown(htmlSide, unsafe_allow_html=True)
-        st.sidebar.markdown("---")
-        bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-        st.sidebar.markdown("---")
-        htmlSide2=f"""
-            <div id="logo">
-                <h5>
-                    <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                    <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
-                </h5>
-            </div>
-            <div id="logo">
-                <h5>
-                    <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                    <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
-                </h5>
-            </div>
-            <div id="logo">
-                <h5>
-                    <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                    <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
-                </h5>
-            </div>
-            """
-        st.markdown(htmlSide2, unsafe_allow_html=True)
+    st.markdown(htmlSide2, unsafe_allow_html=True)
     
-    if 'clicked_regionCd' not in st.session_state:
-        st.error('직업 추천을 먼저 진행해주세요')
-    elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
-      st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
-      fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
-      st.subheader('기업목록')
-      if len(st.session_state.gangso) != 0:
-          gangso_df = pd.DataFrame(st.session_state.gangso, columns=fields)
-      if len(st.session_state.recommend_company) != 0:
-          company_df = pd.DataFrame(st.session_state.recommend_company, columns=fields)
-      if len(st.session_state.gangso) == 0 and len(st.session_state.recommend_company) == 0:
-          st.write("회사 없음.")
-      else:
-          if len(st.session_state.gangso) != 0 and len(st.session_state.recommend_company) != 0:
-              st.session_state.companys = pd.merge(gangso_df, company_df, how='outer')
-          elif len(st.session_state.gangso) == 0:
-              st.session_state.companys = company_df
-          else:
-              st.session_state.companys = gangso_df
+if 'clicked_regionCd' not in st.session_state:
+    st.error('직업 추천을 먼저 진행해주세요')
+elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
+    st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
+    fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
+    st.subheader('기업목록')
+    if len(st.session_state.gangso) != 0:
+        gangso_df = pd.DataFrame(st.session_state.gangso, columns=fields)
+    if len(st.session_state.recommend_company) != 0:
+        company_df = pd.DataFrame(st.session_state.recommend_company, columns=fields)
+    if len(st.session_state.gangso) == 0 and len(st.session_state.recommend_company) == 0:
+        st.write("회사 없음.")
+    else:
+        if len(st.session_state.gangso) != 0 and len(st.session_state.recommend_company) != 0:
+            st.session_state.companys = pd.merge(gangso_df, company_df, how='outer')
+        elif len(st.session_state.gangso) == 0:
+            st.session_state.companys = company_df
+        else:
+            st.session_state.companys = gangso_df
     
-          if 'show_more' not in st.session_state or st.session_state.show_more == None or len(st.session_state.show_more) != len(st.session_state.companys):
-              st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
-          show_more = st.session_state.show_more
+        if 'show_more' not in st.session_state or st.session_state.show_more == None or len(st.session_state.show_more) != len(st.session_state.companys):
+            st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
+        show_more = st.session_state.show_more
                 
-          cols = st.columns(2)
-          rows = ['기업명', '더보기']
+        cols = st.columns(2)
+        rows = ['기업명', '더보기']
     
-          # table header
-          for col, field in zip(cols, rows):
-              col.write("**"+field+"**")
+        # table header
+        for col, field in zip(cols, rows):
+            col.write("**"+field+"**")
     
-          # table rows
-          for idx, row in st.session_state.companys.iterrows():
-              col1, col2 = st.columns(2)
-              col1.write(row['기업명'])
-              placeholder = col2.empty()
-              if show_more[int(idx)]:
-                  placeholder.button(
-                      "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
-                  )
-                  make_score(row['기업명'], row['기업위치'], row['기업규모'])
-                        
-                  st.write('기업규모 : ' + row['기업규모'])
-                  st.write('근로계약 : ' + row['근로계약'])
-                  st.write('근무시간 : ' + row['근무시간'])
-                  url = row['URL']
-                  st.write("공고 URL : [%s](%s)" % (url, url))
-                  st.write("인프라 점수 : " + str(st.session_state.score))
-                  subcol1, subcol2 = st.columns(2)
-                  subcol1.write('기업위치 : ' + row['기업위치'])
-                  with subcol2:
-                      if st.button('기업 주변 인프라 확인'):
-                          st.session_state.selectCompany = True
-                          get_progress_score()
-                          bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-                          st.session_state.company = row
-                          pageName = "infrastructure"
-                          st.session_state.pageName = pageName
-                          page_names_to_funcs[pageName]()
-                  st.write("---")
-              else:
-                    placeholder.button(
-                      "more",
-                      key=idx,
-                      on_click=on_more_click,
-                      args=[show_more, idx],
-                      type="primary",
-                    )
-
-if 'pageName' not in st.session_state:
-    st.session_state.pageName = "choose"
-pageName = st.session_state.pageName
-page_names_to_funcs = {
-    "choose": choose,
-    "infrastructure": infra,
-}
-page_names_to_funcs[pageName]()
+        # table rows
+        for idx, row in st.session_state.companys.iterrows():
+          col1, col2 = st.columns(2)
+          col1.write(row['기업명'])
+          placeholder = col2.empty()
+          if show_more[int(idx)]:
+              placeholder.button(
+                  "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
+              )
+              make_score(row['기업명'], row['기업위치'], row['기업규모'])
+                    
+              st.write('기업규모 : ' + row['기업규모'])
+              st.write('근로계약 : ' + row['근로계약'])
+              st.write('근무시간 : ' + row['근무시간'])
+              url = row['URL']
+              st.write("공고 URL : [%s](%s)" % (url, url))
+              st.write("인프라 점수 : " + str(st.session_state.score))
+              subcol1, subcol2 = st.columns(2)
+              subcol1.write('기업위치 : ' + row['기업위치'])
+              with subcol2:
+                  if st.button('기업 주변 인프라 확인'):
+                      st.session_state.selectCompany = True
+                      get_progress_score()
+                      bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+                      st.session_state.company = row
+                      pageName = "infrastructure"
+                      st.session_state.pageName = pageName
+                      page_names_to_funcs[pageName]()
+              st.write("---")
+          else:
+                placeholder.button(
+                  "more",
+                  key=idx,
+                  on_click=on_more_click,
+                  args=[show_more, idx],
+                  type="primary",
+                )
