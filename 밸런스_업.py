@@ -86,7 +86,7 @@ def main():
         st.markdown(htmlSide2, unsafe_allow_html=True)
 
     #main
-    html = f"""
+    html1 = f"""
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -255,7 +255,7 @@ def main():
         }
     </style>
     """
-    st.markdown(html, unsafe_allow_html=True)
+    st.markdown(html1, unsafe_allow_html=True)
 
     m = st.markdown("""
     <style>
