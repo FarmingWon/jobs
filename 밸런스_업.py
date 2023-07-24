@@ -221,6 +221,20 @@ def main():
     with col2:
         if st.button("서비스 이용하러 가기"):
             switch_page("이력서를_통한_직업_추천")
+
+    html2 = """
+    <div class="container introduction" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col">
+                <div class="subtitle">
+                    <p class="h5">개인 맞춤 직무 추천과 관련 기업의 인프라 평가까지</p>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    """
+    st.markdown(html2, unsafe_allow_html=True)
     
 
 if __name__ == "__main__":
