@@ -289,7 +289,20 @@ def main():
     </style>
     """
     st.markdown(html2, unsafe_allow_html=True)
-    
+    html3 = f"""
+        <div style="background-color: lightgray; height: 300px;">
+            <div style="float: left; width:500px">
+                <h1>개인 맞춤 직무 추천과<br>관련 기업의 인프라 평가까지</h1> 
+                거대언어모델을 활용한 <strong>개인 커스텀<br>AI 직무 추천</strong>과 밸런스업의 내부 평가
+                모델을 통한 ELEI 차트를 제공합니다.
+                <p>ELEI(Enterprise Living Environment Index) :<br>기업 생활 환경 지수 </p>
+            </div>
+            <div style="float: right;">
+                <img src="data:image/png;base64,{img_to_bytes("img/tmpImg.png")}"  style="height: 300px; width: 300px;">
+            </div>
+        </div>
+    """
+    st.markdown(html3,unsafe_allow_html=True)     
 
 if __name__ == "__main__":
     set_variable()
