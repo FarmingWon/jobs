@@ -1,131 +1,131 @@
-import streamlit as st
-import extra_streamlit_components as stx
-from st_pages import Page, add_page_title, show_pages
-
-# data analysis
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.path import Path
-from matplotlib.spines import Spine
-from matplotlib.transforms import Affine2D
-import matplotlib as mpl
-import math
-
-import json
-import requests
-
-import sys
-import base64
-from pathlib import Path
-
-from recommend import company as corp
-
-def img_to_bytes(img_path):
-    img_bytes = Path(img_path).read_bytes()
-    encoded = base64.b64encode(img_bytes).decode()
-    return encoded
-
-def get_progress_score():
-    st.session_state.barScore = 0
-    if st.session_state.selectJob or st.session_state.selectRegion:
-        st.session_state.barScore = 25
-        if st.session_state.selectJob and st.session_state.selectRegion:
-            st.session_state.barScore = 50
-            if st.session_state.selectCompany:
-                st.session_state.barScore = 75
-                if st.session_state.selectWLB:
-                    st.session_state.barScore = 100
-
-# func: address to lat, lon
-def addr_to_lat_lon(addr):
-  url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
-  headers = {"Authorization": "KakaoAK " + st.secrets.KEY.KAKAO_KEY}
-  result = json.loads(str(requests.get(url, headers=headers).text))
-  match_first = result['documents'][0]['address']
-  return float(match_first['y']), float(match_first['x'])
-
-# func: calculator distance
-def calculate_distance(df, center_xy):
-  df_distance = pd.DataFrame()
-  distance_list = []
-  for i in df['latlon']:
-    if i != None or i != '':
-      if type(i) == str:
-        i = i[1:-1].split(', ')
-        y = abs(float(center_xy[0]) - float(i[0])) * 111
-        x = (math.cos(float(center_xy[0])) * 6400 * 2 * 3.14 / 360) * abs(float(center_xy[1]) - float(i[1]))
-        distance = math.sqrt(x*x + y*y)
-        if distance <= 3.0:
-          df_distance = pd.concat([df_distance, df[df['latlon'] == ('(' + i[0] + ', ' + i[1] + ')')]])
-          distance_list.append(distance)
-
-  df_distance = df_distance.drop_duplicates()
-  df_distance['distance'] = distance_list
-
-  return df_distance # 만들어진 데이터프레임 리턴
-
-# EventListener: Button(Show More)
-def on_more_click(show_more, idx):
-    show_more[idx] = True
-    st.session_state.show_more = show_more
-
-def on_less_click(show_more, idx):
-    show_more[idx] = False
-    st.session_state.show_more = show_more
-
-# func: calculate score of company
-def make_score(company_name,address,busisize): # 점수 계산
-    set_csv()
-    center_xy = list(addr_to_lat_lon(address))
-
-    df_subway_distance = calculate_distance(st.session_state.df_subway, center_xy)
-    df_bus_distance = calculate_distance(st.session_state.df_bus, center_xy)
-    df_hospital_distance = calculate_distance(st.session_state.df_hospital, center_xy)
-    df_museum_distance = calculate_distance(st.session_state.df_museum, center_xy)
-    df_starbucks_distance = calculate_distance(st.session_state.df_starbucks, center_xy)
-    df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
-    df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
-
-    df_graph = pd.DataFrame({'distance': ['500m', '1km', '3km']})
-
-    df_graph['subway'] = [len(df_subway_distance.loc[df_subway_distance['distance'] <= 0.5]),
-                        len(df_subway_distance.loc[(df_subway_distance['distance'] > 0.5) & (df_subway_distance['distance'] <= 1.0)]),
-                        len(df_subway_distance.loc[(df_subway_distance['distance'] > 1.0) & (df_subway_distance['distance'] <= 3.0)])]
-
-    df_graph['bus'] = [len(df_bus_distance.loc[df_bus_distance['distance'] <= 0.5]),
-                        len(df_bus_distance.loc[(df_bus_distance['distance'] > 0.5) & (df_bus_distance['distance'] <= 1.0)]),
-                        len(df_bus_distance.loc[(df_bus_distance['distance'] > 1.0) & (df_bus_distance['distance'] <= 3.0)])]
-
-    df_graph['hospital'] = [len(df_hospital_distance.loc[df_hospital_distance['distance'] <= 0.5]),
-                        len(df_hospital_distance.loc[(df_hospital_distance['distance'] > 0.5) & (df_hospital_distance['distance'] <= 1.0)]),
-                        len(df_hospital_distance.loc[(df_hospital_distance['distance'] > 1.0) & (df_hospital_distance['distance'] <= 3.0)])]
-
-    df_graph['museum'] = [len(df_museum_distance.loc[df_museum_distance['distance'] <= 0.5]),
-                        len(df_museum_distance.loc[(df_museum_distance['distance'] > 0.5) & (df_museum_distance['distance'] <= 1.0)]),
-                        len(df_museum_distance.loc[(df_museum_distance['distance'] > 1.0) & (df_museum_distance['distance'] <= 3.0)])]
-    
-    df_graph['starbucks'] = [len(df_starbucks_distance.loc[df_starbucks_distance['distance'] <= 0.5]),
-                        len(df_starbucks_distance.loc[(df_starbucks_distance['distance'] > 0.5) & (df_starbucks_distance['distance'] <= 1.0)]),
-                        len(df_starbucks_distance.loc[(df_starbucks_distance['distance'] > 1.0) & (df_starbucks_distance['distance'] <= 3.0)])]
-    
-    df_graph['exercise'] = [len(df_exercise_distance.loc[df_exercise_distance['distance'] <= 0.5]),
-                        len(df_exercise_distance.loc[(df_exercise_distance['distance'] > 0.5) & (df_exercise_distance['distance'] <= 1.0)]),
-                        len(df_exercise_distance.loc[(df_exercise_distance['distance'] > 1.0) & (df_exercise_distance['distance'] <= 3.0)])]
-
-    df_graph['oliveyoung'] = [len(df_oliveyoung_distance.loc[df_oliveyoung_distance['distance'] <= 0.5]),
-                        len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 0.5) & (df_oliveyoung_distance['distance'] <= 1.0)]),
-                        len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 1.0) & (df_oliveyoung_distance['distance'] <= 3.0)])]
-    col_name = ['subway','bus','hospital','museum','starbucks','exercise','oliveyoung']
-    score = 0
-    for i in range(3):
-        for name in col_name:
-            score = score + df_graph.loc[i][name]
-    if busisize == '강소기업':
-        score = int(score*1.2)
-    st.session_state.score = score
-
 def choose():
+    import streamlit as st
+    import extra_streamlit_components as stx
+    from st_pages import Page, add_page_title, show_pages
+    
+    # data analysis
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from matplotlib.path import Path
+    from matplotlib.spines import Spine
+    from matplotlib.transforms import Affine2D
+    import matplotlib as mpl
+    import math
+    
+    import json
+    import requests
+    
+    import sys
+    import base64
+    from pathlib import Path
+    
+    from recommend import company as corp
+    
+    def img_to_bytes(img_path):
+        img_bytes = Path(img_path).read_bytes()
+        encoded = base64.b64encode(img_bytes).decode()
+        return encoded
+    
+    def get_progress_score():
+        st.session_state.barScore = 0
+        if st.session_state.selectJob or st.session_state.selectRegion:
+            st.session_state.barScore = 25
+            if st.session_state.selectJob and st.session_state.selectRegion:
+                st.session_state.barScore = 50
+                if st.session_state.selectCompany:
+                    st.session_state.barScore = 75
+                    if st.session_state.selectWLB:
+                        st.session_state.barScore = 100
+    
+    # func: address to lat, lon
+    def addr_to_lat_lon(addr):
+      url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
+      headers = {"Authorization": "KakaoAK " + st.secrets.KEY.KAKAO_KEY}
+      result = json.loads(str(requests.get(url, headers=headers).text))
+      match_first = result['documents'][0]['address']
+      return float(match_first['y']), float(match_first['x'])
+    
+    # func: calculator distance
+    def calculate_distance(df, center_xy):
+      df_distance = pd.DataFrame()
+      distance_list = []
+      for i in df['latlon']:
+        if i != None or i != '':
+          if type(i) == str:
+            i = i[1:-1].split(', ')
+            y = abs(float(center_xy[0]) - float(i[0])) * 111
+            x = (math.cos(float(center_xy[0])) * 6400 * 2 * 3.14 / 360) * abs(float(center_xy[1]) - float(i[1]))
+            distance = math.sqrt(x*x + y*y)
+            if distance <= 3.0:
+              df_distance = pd.concat([df_distance, df[df['latlon'] == ('(' + i[0] + ', ' + i[1] + ')')]])
+              distance_list.append(distance)
+    
+      df_distance = df_distance.drop_duplicates()
+      df_distance['distance'] = distance_list
+    
+      return df_distance # 만들어진 데이터프레임 리턴
+    
+    # EventListener: Button(Show More)
+    def on_more_click(show_more, idx):
+        show_more[idx] = True
+        st.session_state.show_more = show_more
+    
+    def on_less_click(show_more, idx):
+        show_more[idx] = False
+        st.session_state.show_more = show_more
+    
+    # func: calculate score of company
+    def make_score(company_name,address,busisize): # 점수 계산
+        set_csv()
+        center_xy = list(addr_to_lat_lon(address))
+    
+        df_subway_distance = calculate_distance(st.session_state.df_subway, center_xy)
+        df_bus_distance = calculate_distance(st.session_state.df_bus, center_xy)
+        df_hospital_distance = calculate_distance(st.session_state.df_hospital, center_xy)
+        df_museum_distance = calculate_distance(st.session_state.df_museum, center_xy)
+        df_starbucks_distance = calculate_distance(st.session_state.df_starbucks, center_xy)
+        df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
+        df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
+    
+        df_graph = pd.DataFrame({'distance': ['500m', '1km', '3km']})
+    
+        df_graph['subway'] = [len(df_subway_distance.loc[df_subway_distance['distance'] <= 0.5]),
+                            len(df_subway_distance.loc[(df_subway_distance['distance'] > 0.5) & (df_subway_distance['distance'] <= 1.0)]),
+                            len(df_subway_distance.loc[(df_subway_distance['distance'] > 1.0) & (df_subway_distance['distance'] <= 3.0)])]
+    
+        df_graph['bus'] = [len(df_bus_distance.loc[df_bus_distance['distance'] <= 0.5]),
+                            len(df_bus_distance.loc[(df_bus_distance['distance'] > 0.5) & (df_bus_distance['distance'] <= 1.0)]),
+                            len(df_bus_distance.loc[(df_bus_distance['distance'] > 1.0) & (df_bus_distance['distance'] <= 3.0)])]
+    
+        df_graph['hospital'] = [len(df_hospital_distance.loc[df_hospital_distance['distance'] <= 0.5]),
+                            len(df_hospital_distance.loc[(df_hospital_distance['distance'] > 0.5) & (df_hospital_distance['distance'] <= 1.0)]),
+                            len(df_hospital_distance.loc[(df_hospital_distance['distance'] > 1.0) & (df_hospital_distance['distance'] <= 3.0)])]
+    
+        df_graph['museum'] = [len(df_museum_distance.loc[df_museum_distance['distance'] <= 0.5]),
+                            len(df_museum_distance.loc[(df_museum_distance['distance'] > 0.5) & (df_museum_distance['distance'] <= 1.0)]),
+                            len(df_museum_distance.loc[(df_museum_distance['distance'] > 1.0) & (df_museum_distance['distance'] <= 3.0)])]
+        
+        df_graph['starbucks'] = [len(df_starbucks_distance.loc[df_starbucks_distance['distance'] <= 0.5]),
+                            len(df_starbucks_distance.loc[(df_starbucks_distance['distance'] > 0.5) & (df_starbucks_distance['distance'] <= 1.0)]),
+                            len(df_starbucks_distance.loc[(df_starbucks_distance['distance'] > 1.0) & (df_starbucks_distance['distance'] <= 3.0)])]
+        
+        df_graph['exercise'] = [len(df_exercise_distance.loc[df_exercise_distance['distance'] <= 0.5]),
+                            len(df_exercise_distance.loc[(df_exercise_distance['distance'] > 0.5) & (df_exercise_distance['distance'] <= 1.0)]),
+                            len(df_exercise_distance.loc[(df_exercise_distance['distance'] > 1.0) & (df_exercise_distance['distance'] <= 3.0)])]
+    
+        df_graph['oliveyoung'] = [len(df_oliveyoung_distance.loc[df_oliveyoung_distance['distance'] <= 0.5]),
+                            len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 0.5) & (df_oliveyoung_distance['distance'] <= 1.0)]),
+                            len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 1.0) & (df_oliveyoung_distance['distance'] <= 3.0)])]
+        col_name = ['subway','bus','hospital','museum','starbucks','exercise','oliveyoung']
+        score = 0
+        for i in range(3):
+            for name in col_name:
+                score = score + df_graph.loc[i][name]
+        if busisize == '강소기업':
+            score = int(score*1.2)
+        st.session_state.score = score
+
     st.title('👜직장 선택')
     with st.sidebar:
         htmlSide=f"""
