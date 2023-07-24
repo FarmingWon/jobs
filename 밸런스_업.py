@@ -223,8 +223,8 @@ def main():
             switch_page("이력서를_통한_직업_추천")
 
     html2 = """
-    <div class="container introduction" style="margin-top: 50%;">
-        <div class="row">
+    <div class="container introduction" style="margin-top: 30%;">
+        <div class="row" style="margin-top: 10%;">
             <div class="col">
                 <div class="subtitle">
                     <p class="h5">개인 맞춤 직무 추천과 관련 기업의 인프라 평가까지</p>
@@ -233,6 +233,12 @@ def main():
             <div class="col"></div>
         </div>
     </div>
+
+    <style type="text/css">
+        .container.introduction {
+            background-color: #999999;
+        }
+    </style>
     """
     st.markdown(html2, unsafe_allow_html=True)
     
