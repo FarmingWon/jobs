@@ -162,7 +162,7 @@ def main():
             transition: transform 300ms, box-shadow 300ms;
         }
         .container.wrap:after {
-            left: 25%;
+            #left: 25%;
             bottom: -57%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
@@ -179,7 +179,7 @@ def main():
         .container.wrap::before,
         .container.wrap::after {
             content: '';
-            #position: absolute;
+            position: absolute;
             width: 600px;
             height: 600px;
             border-top-left-radius: 40%;
