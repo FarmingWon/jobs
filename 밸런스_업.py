@@ -154,13 +154,14 @@ def main():
     <style type="text/css">
         .container.wrap{
             overflow: hidden;
-            height: 700px;
+            #height: 700px;
             padding: 500px 0px 0px 0px;
             top:100%;
             left: 50%;
             position: relative;
             transform: translate(-50%, -50%);
             transition: transform 300ms, box-shadow 300ms;
+            display: contents;
         }
         .container.wrap:after {
             left: 80%;
@@ -187,7 +188,7 @@ def main():
             border-top-right-radius: 45%;
             border-bottom-left-radius: 35%;
             border-bottom-right-radius: 40%;
-            z-index: -1;
+            z-index: 0;
         }
 
         @keyframes wawes {
