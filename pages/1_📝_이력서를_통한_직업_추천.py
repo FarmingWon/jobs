@@ -18,7 +18,7 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import base64
 from pathlib import Path
 
-from pages.2_👜_직장 선택 import choose
+from src.choose import choose
 
 # -- import modules end --
 def set_variable():
