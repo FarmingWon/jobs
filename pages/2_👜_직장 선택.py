@@ -20,7 +20,6 @@ import base64
 from pathlib import Path
 
 from recommend import company as corp
-from src.infrastructure import infra
 
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
