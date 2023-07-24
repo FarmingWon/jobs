@@ -172,11 +172,7 @@ if uploaded_file:
                     get_progress_score()
                     break
         bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-        
-        # st.write('-----completed-----')
-        # for k in st.session_state:
-        #     st.write(k + ":" + st.session_state[str(k)])
-        # st.markdown("<script type='text/javascript'>location.href='/직장_선택'</script>", unsafe_allow_html=True
+        switch_page("직장_선택")
                    
 if st.session_state.selectJob:
     next_col1,next_col2,next_col3 = st.columns([0.45,0.45,0.1])
