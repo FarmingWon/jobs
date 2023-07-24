@@ -36,9 +36,9 @@ def img_to_bytes(img_path):
 
 def get_progress_score():
     st.session_state.barScore = 0
-    if st.session_state.selectJob or st.session_state.selectRegion:
+    if st.session_state.selectJob:
         st.session_state.barScore = 25
-        if st.session_state.selectJob and st.session_state.selectRegion:
+        if st.session_state.selectRegion:
             st.session_state.barScore = 50
             if st.session_state.selectCompany:
                 st.session_state.barScore = 75
@@ -176,6 +176,8 @@ def recommendMain():
                         break
             bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
             st.session_state.pageName = "choose"
+    if not uploaded_file:
+        st.session_state.barScore = 0
 if 'pageName' not in st.session_state:
     st.session_state.pageName = "1_📝_이력서를_통한_직업_추천"
 pageName = st.session_state.pageName
