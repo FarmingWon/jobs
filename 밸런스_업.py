@@ -213,8 +213,8 @@ def main():
     div.stButton > button:first-child {
         background-color: #0C377A;
         color: #ffffff;
-        width: 20px;
-        height: 15px;
+        width: 40%;
+        height: 65%;
     }
     </style>""", unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
