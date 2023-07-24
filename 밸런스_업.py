@@ -278,8 +278,8 @@ def main():
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <div class="container title">
         <div class="row">
-            <div class="col"></div>
-            <div class="col">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-sm-3">
                         <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
@@ -289,7 +289,7 @@ def main():
                     </div>
                 </div>
             </div>
-            <div class="col"></div>
+            <div class="col-md-2"></div>
         </div>
     </div>
     <div class="container">
