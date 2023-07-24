@@ -281,10 +281,10 @@ def main():
             <div class="col"></div>
             <div class="col">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <h4>밸런스 업</h4>
                     </div>
                 </div>
