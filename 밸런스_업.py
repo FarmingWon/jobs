@@ -176,7 +176,7 @@ def main():
             height: var(--size);
             border-radius: 50%;
             margin: 0 auto;
-            background-color: aqua;
+            background-color: #013AD2;
         }
         .c-stepper-item:not(:last-child):after {
             content: '';
