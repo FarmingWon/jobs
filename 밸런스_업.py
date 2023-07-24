@@ -103,62 +103,60 @@ def main():
     <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-    <div class="container">
-        <div class="container wrap">
-            <div class="container title">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-5">
-                        <div class="row d-flex justify-content-center align-items-center">
-                            <div class="col-sm-4">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
-                            </div>
-                            <div class="col-sm-6">
-                                <h4>밸런스 업</h4>
-                            </div>
+    <div class="container wrap">
+        <div class="container title">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-sm-4">
+                            <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>밸런스 업</h4>
                         </div>
                     </div>
-                    <div class="col-md-4"></div>
                 </div>
-            </div>"""+"""
-            <div class="container">
-                <div class="subtitle" id="subtitle">
-                    <p class="h5 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
-                    <br/>
-                    <p class="text-center" style="margin-bottom:0px;">
-                        <small>내 이력서를 분석하여 연관성이 높은 포지션들을 알려드려요.</small>
-                    </p>
-                    <p class="text-center">
-                        <small>기업 평가는 기업 주변 인프라의 접근성과 다양성을 기준으로 제공됩니다.</small>
-                    </p>
-                </div>
+                <div class="col-md-4"></div>
             </div>
-            <br/>
-            <div class="container">
-                <ol class="c-stepper">
-                    <li class="c-stepper-item">
-                        <p class="c-stepper-title">이력서 파일 입력</p>
-                    </li>
-                    <li class="c-stepper-item">
-                        <p class="c-stepper-title">개인 맞춤 직무 추천</p>
-                    </li>
-                    <li class="c-stepper-item">
-                        <p class="c-stepper-title">기업의 직업/지역 선택</p>
-                    </li>
-                    <li class="c-stepper-item">
-                        <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
-                    </li>
-                </ol>
+        </div>"""+"""
+        <div class="container">
+            <div class="subtitle" id="subtitle">
+                <p class="h5 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
+                <br/>
+                <p class="text-center" style="margin-bottom:0px;">
+                    <small>내 이력서를 분석하여 연관성이 높은 포지션들을 알려드려요.</small>
+                </p>
+                <p class="text-center">
+                    <small>기업 평가는 기업 주변 인프라의 접근성과 다양성을 기준으로 제공됩니다.</small>
+                </p>
             </div>
-            <div class="container" style="margin-top: 10%;">
-            </div>
+        </div>
+        <br/>
+        <div class="container">
+            <ol class="c-stepper">
+                <li class="c-stepper-item">
+                    <p class="c-stepper-title">이력서 파일 입력</p>
+                </li>
+                <li class="c-stepper-item">
+                    <p class="c-stepper-title">개인 맞춤 직무 추천</p>
+                </li>
+                <li class="c-stepper-item">
+                    <p class="c-stepper-title">기업의 직업/지역 선택</p>
+                </li>
+                <li class="c-stepper-item">
+                    <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
+                </li>
+            </ol>
+        </div>
+        <div class="container" style="margin-top: 10%;">
         </div>
     </div>
     <style type="text/css">
         .container.wrap{
             overflow: hidden;
-            padding: 80px 30px 90px 30px;
-            top:50%;
+            padding: 500px 0px 0px 0px;
+            top:100%;
             left: 50%;
             position: absolute;
             transform: translate(-50%, -50%);
