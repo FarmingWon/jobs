@@ -286,6 +286,11 @@ def main():
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="subtitle" id="subtitle">
+            <p class="h5">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
+        </div>
+    </div>
     """
     st.markdown(html, unsafe_allow_html=True)
 
