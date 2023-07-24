@@ -139,12 +139,12 @@ def choose():
         st.session_state.pageName = "choose"
     pageName = st.session_state.pageName
     page_names_to_funcs = {
-        "choose": choose,
+        "choose": choose2,
         "infrastructure": infra,
     }
     page_names_to_funcs[pageName]()
 
-    def choose():
+    def choose2():
         st.title('👜직장 선택')
         with st.sidebar:
             htmlSide=f"""
