@@ -212,6 +212,8 @@ def main():
     <style>
     div.stButton > button:first-child {
         background-color: #0C377A;
+        text-color: #ffffff;
+        justify-content: center;
     }
     </style>""", unsafe_allow_html=True)
     if st.button("서비스 이용하러 가기"):
