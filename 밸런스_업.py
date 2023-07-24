@@ -153,13 +153,13 @@ def main():
         </div>
     </div>
     <style type="text/css">
-        .wrap:after {
+        .container .wrap:after {
             left: 25%;
             bottom: -57%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
-        .wrap::before {
+        .container .wrap::before {
             left: 17%;
             bottom: -73%;
             background-color: rgb(255 0 0 / 21%);
@@ -168,8 +168,8 @@ def main():
         }
 
         
-        .wrap::before,
-        .wrap::after {
+        .container .wrap::before,
+        .container .wrap::after {
             content: '';
             position: absolute;
             width: 600px;
