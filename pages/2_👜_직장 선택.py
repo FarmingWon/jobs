@@ -227,8 +227,9 @@ def choose():
                           get_progress_score()
                           bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
                           st.session_state.company = row
-                          st.success('왼쪽 메뉴에서 직장 주변 인프라 확인을 눌러주세요!')
-                          #router.route('/map')
+                          pageName = "infrastructure"
+                          st.session_state.pageName = pageName
+                          page_names_to_funcs[pageName]()
                   st.write("---")
               else:
                     placeholder.button(
@@ -238,3 +239,12 @@ def choose():
                       args=[show_more, idx],
                       type="primary",
                     )
+
+if 'pageName' not in st.session_state:
+    st.session_state.pageName = "choose"
+pageName = st.session_state.pageName
+page_names_to_funcs = {
+    "choose": choose,
+    "infrastructure": infra,
+}
+page_names_to_funcs[pageName]()
