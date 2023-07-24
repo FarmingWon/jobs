@@ -175,7 +175,7 @@ def recommendMain():
                         get_progress_score()
                         break
             bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-            page_names_to_funcs[choose]()
+            page_names_to_funcs["choose"]()
         
 page_names_to_funcs = {
     "1_📝_이력서를_통한_직업_추천": recommendMain,
