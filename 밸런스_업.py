@@ -135,19 +135,15 @@ def main():
         <ol class="c-stepper">
             <li class="c-stepper-item">
                 <p class="c-stepper-title">이력서 파일 입력</p>
-                <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
                 <p class="c-stepper-title">개인 맞춤 직무 추천</p>
-                <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
                 <p class="c-stepper-title">기업의 직업/지역 선택</p>
-                <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
                 <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
-                <p class="c-stepper-desc">Some desc text</p>
             </li>
         </ol>
     </div>
