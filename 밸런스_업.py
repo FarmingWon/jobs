@@ -105,7 +105,7 @@ def main():
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <div class="container title">
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-4"></div>
             <div class="col-md-5">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-sm-4">
@@ -116,7 +116,7 @@ def main():
                     </div>
                 </div>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-4"></div>
         </div>
     </div>"""+"""
     <div class="container">
