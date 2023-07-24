@@ -155,12 +155,15 @@ def main():
     <style type="text/css">
         .container.wrap{
             overflow: hidden;
+            padding: 40px 30px 30px 30px;
+            top:50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             transition: transform 300ms, box-shadow 300ms;
         }
         .container.wrap:after {
             left: 25%;
-            #bottom: -57%;
+            bottom: -57%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
