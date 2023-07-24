@@ -183,8 +183,8 @@ def main():
         .container.wrap::after {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 500px;
+            height: 500px;
             border-top-left-radius: 40%;
             border-top-right-radius: 45%;
             border-bottom-left-radius: 35%;
