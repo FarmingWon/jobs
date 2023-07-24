@@ -174,7 +174,8 @@ def recommendMain():
                         get_progress_score()
                         break
             bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-            st.session_state.pageName = "choose"
+            pageName = "choose"
+            st.session_state.pageName = pageName
     if not uploaded_file:
         st.session_state.barScore = 0
 
