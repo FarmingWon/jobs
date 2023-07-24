@@ -188,7 +188,7 @@ def main():
             background-color: #D1D1D1;
             order: -1;
         }
-        .c-stepper-item.completed {
+        .c-stepper-item.completed:after {
             --size: 3rem;
             content: '';
             position: relative;
