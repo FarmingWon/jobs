@@ -18,6 +18,8 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import base64
 from pathlib import Path
 
+from 2_👜_직장 선택 import choose
+
 # -- import modules end --
 def set_variable():
     st.session_state.selected_region = None
@@ -71,109 +73,112 @@ def download_link(data, file_name, file_label):
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_name}">{file_label}</a>'
     return href
 
-set_variable()
-get_progress_score()
-htmlTitle = """
-    <div><h3>📝이력서를 통한 직업 추천</h3></div>
-    """
-st.markdown(htmlTitle, unsafe_allow_html=True)
-
-with st.sidebar:
-    htmlSide=f"""
-        <br/>
-        <ul>
-            <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
-            <li style="text-align:left; text-decoration:center; color:inherit;"> 가장 적합한 직업과 유사한 직업을 추천해드릴게요!</li>
-            <li style="text-align:left; text-decoration:center; color:inherit;"> 지역과 직업을 고르면 채용정보도 추천해드릴게요!</li>
-        </ul>
-    """
-    st.markdown(htmlSide, unsafe_allow_html=True)
-    st.sidebar.markdown("---")
-    bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-    st.sidebar.markdown("---")
-    htmlSide2=f"""
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
+def 1_recommend():
+    set_variable()
+    get_progress_score()
+    htmlTitle = """
+        <div><h3>📝이력서를 통한 직업 추천</h3></div>
         """
-    st.markdown(htmlSide2, unsafe_allow_html=True)
-
-file_path = './_pdf/ws.pdf'
-with open(file_path, 'rb') as file:
-    pdf_data= file.read()
-download_btn = download_link(pdf_data, "sample_data.pdf", "여기")
-htmlCode= f"""
-샘플 파일을 다운하고싶으면 {download_btn}를 눌러봐요.
-"""
-st.markdown(htmlCode, unsafe_allow_html=True)
-uploaded_file = st.file_uploader("이력서를 올려보세요!", type="pdf")
-st.session_state.regions = r.getRegion()
-
-if uploaded_file:
-    if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
-        save_upload_file('_pdf', uploaded_file)
-        GPT_KEY = st.secrets.KEY.GPT_KEY
-        st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
-    if st.session_state.recommend_jobs :
-        recommend_jobs = st.session_state.recommend_jobs
-        if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
-            st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
-        jobsHtml = f"""
-            <p>가장 적합한 직업은 <strong>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
-            <p>지역과 직업을 선택하면 채용공고를 보여드릴게요.</p>
+    st.markdown(htmlTitle, unsafe_allow_html=True)
+    
+    with st.sidebar:
+        htmlSide=f"""
+            <br/>
+            <ul>
+                <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
+                <li style="text-align:left; text-decoration:center; color:inherit;"> 가장 적합한 직업과 유사한 직업을 추천해드릴게요!</li>
+                <li style="text-align:left; text-decoration:center; color:inherit;"> 지역과 직업을 고르면 채용정보도 추천해드릴게요!</li>
+            </ul>
         """
-        st.markdown(jobsHtml, unsafe_allow_html=True)
-        st.write(f"")
-    if 'selected_region' not in st.session_state or st.session_state.selected_region is None:
-        with st.expander(label="지역 선택", expanded=True):
-            regions = st.session_state.regions
-            showRegion(regions)
-
-    if 'selected_job' not in st.session_state or st.session_state.selected_job is None:
-        with st.expander(label = '직업 선택', expanded=True):
-             if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
-                recommend_jobs = st.session_state.recommend_jobs
-                similarity_jobs = st.session_state.similarity_jobs
-                showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
-    regionBtn_clicked = st.button("선택")
-    if regionBtn_clicked:
-        st.session_state.clicked_regionCd = None
-        st.session_state.clicked_regionNm = None
-        st.session_state.clicked_jobCd = None
-        st.session_state.clicked_jobNm = None
-        for region in st.session_state.regions:
-            if st.session_state.selected_region == region[1]:
-                st.session_state.clicked_regionCd = region[0]
-                st.session_state.clicked_regionNm = region[1]
-                st.session_state.selectRegion = True
-                get_progress_score()
-                break
-        if st.session_state.jobs is not None:
-            for job in st.session_state.jobs:
-                if st.session_state.selected_job == job[1]:
-                    st.session_state.clicked_jobCd = job[0]
-                    st.session_state.clicked_jobNm = job[1]
-                    st.session_state.selectJob = True
+        st.markdown(htmlSide, unsafe_allow_html=True)
+        st.sidebar.markdown("---")
+        bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+        st.sidebar.markdown("---")
+        htmlSide2=f"""
+            <div id="logo">
+                <h5>
+                    <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                    <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
+                </h5>
+            </div>
+            <div id="logo">
+                <h5>
+                    <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                    <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
+                </h5>
+            </div>
+            <div id="logo">
+                <h5>
+                    <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
+                    <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
+                </h5>
+            </div>
+            """
+        st.markdown(htmlSide2, unsafe_allow_html=True)
+    
+    file_path = './_pdf/ws.pdf'
+    with open(file_path, 'rb') as file:
+        pdf_data= file.read()
+    download_btn = download_link(pdf_data, "sample_data.pdf", "여기")
+    htmlCode= f"""
+    샘플 파일을 다운하고싶으면 {download_btn}를 눌러봐요.
+    """
+    st.markdown(htmlCode, unsafe_allow_html=True)
+    uploaded_file = st.file_uploader("이력서를 올려보세요!", type="pdf")
+    st.session_state.regions = r.getRegion()
+    
+    if uploaded_file:
+        if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
+            save_upload_file('_pdf', uploaded_file)
+            GPT_KEY = st.secrets.KEY.GPT_KEY
+            st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
+        if st.session_state.recommend_jobs :
+            recommend_jobs = st.session_state.recommend_jobs
+            if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
+                st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
+            jobsHtml = f"""
+                <p>가장 적합한 직업은 <strong>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
+                <p>지역과 직업을 선택하면 채용공고를 보여드릴게요.</p>
+            """
+            st.markdown(jobsHtml, unsafe_allow_html=True)
+            st.write(f"")
+        if 'selected_region' not in st.session_state or st.session_state.selected_region is None:
+            with st.expander(label="지역 선택", expanded=True):
+                regions = st.session_state.regions
+                showRegion(regions)
+    
+        if 'selected_job' not in st.session_state or st.session_state.selected_job is None:
+            with st.expander(label = '직업 선택', expanded=True):
+                 if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
+                    recommend_jobs = st.session_state.recommend_jobs
+                    similarity_jobs = st.session_state.similarity_jobs
+                    showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
+        regionBtn_clicked = st.button("선택")
+        if regionBtn_clicked:
+            st.session_state.clicked_regionCd = None
+            st.session_state.clicked_regionNm = None
+            st.session_state.clicked_jobCd = None
+            st.session_state.clicked_jobNm = None
+            for region in st.session_state.regions:
+                if st.session_state.selected_region == region[1]:
+                    st.session_state.clicked_regionCd = region[0]
+                    st.session_state.clicked_regionNm = region[1]
+                    st.session_state.selectRegion = True
                     get_progress_score()
                     break
-        bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-        htmlCode = '''
-        <script>location.href='/직장_선택'</script>
-        '''
-        html(htmlCode)
-        #st.info('왼쪽 메뉴에서 직장 선택을 눌러주세요')
+            if st.session_state.jobs is not None:
+                for job in st.session_state.jobs:
+                    if st.session_state.selected_job == job[1]:
+                        st.session_state.clicked_jobCd = job[0]
+                        st.session_state.clicked_jobNm = job[1]
+                        st.session_state.selectJob = True
+                        get_progress_score()
+                        break
+            bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+            page_names_to_funcs[choose]()
+        
+page_names_to_funcs = {
+    "1_📝_이력서를_통한_직업_추천": 1_recommend,
+    "choose": choose,
+}
+1_recommend()
