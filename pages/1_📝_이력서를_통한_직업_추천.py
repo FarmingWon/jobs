@@ -74,7 +74,6 @@ def download_link(data, file_name, file_label):
     return href
 
 def recommendMain():
-    set_variable()
     get_progress_score()
     htmlTitle = """
         <div><h3>📝이력서를 통한 직업 추천</h3></div>
@@ -178,6 +177,9 @@ def recommendMain():
             st.session_state.pageName = "choose"
     if not uploaded_file:
         st.session_state.barScore = 0
+
+if 'selected_region' not in st.session_state:
+    set_variable()
 if 'pageName' not in st.session_state:
     st.session_state.pageName = "1_📝_이력서를_통한_직업_추천"
 pageName = st.session_state.pageName
