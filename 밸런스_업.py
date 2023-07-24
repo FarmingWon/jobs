@@ -207,6 +207,13 @@ def main():
     </style>
     """
     st.markdown(html, unsafe_allow_html=True)
+
+    m = st.markdown("""
+    <style>
+    div.stButton > button:first-child {
+        background-color: #0C377A;
+    }
+    </style>""", unsafe_allow_html=True)
     if st.button("서비스 이용하러 가기"):
         switch_page("이력서를_통한_직업_추천")
     
