@@ -286,6 +286,6 @@ def infra():
         con2_html = """ 
         <h3 style="text-align:center">기업 주변 인프라</h3>
         """
-        t.markdown(con2_html, unsafe_allow_html=True)
+        st.markdown(con2_html, unsafe_allow_html=True)
   else:
      st.error('직장 선택을 먼저 진행해주세요')
