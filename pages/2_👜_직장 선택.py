@@ -37,6 +37,15 @@ def get_progress_score():
                 if st.session_state.selectWLB:
                     st.session_state.barScore = 100
 
+def set_csv():
+  st.session_state.df_subway = pd.read_csv('csv/subway.csv')
+  st.session_state.df_bus = pd.read_csv('csv/bus.csv')
+  st.session_state.df_hospital = pd.read_csv('csv/hospital.csv')
+  st.session_state.df_museum = pd.read_csv('csv/museum.csv')
+  st.session_state.df_starbucks = pd.read_csv('csv/starbucks_busan.csv')
+  st.session_state.df_exercise = pd.read_csv('csv/exercise.csv')
+  st.session_state.df_oliveyoung = pd.read_csv('csv/oliveyoung.csv')
+
 # func: address to lat, lon
 def addr_to_lat_lon(addr):
   url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
