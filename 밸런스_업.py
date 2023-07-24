@@ -149,7 +149,7 @@ def main():
                 </li>
             </ol>
         </div>
-        <div class="container" style="margin-bottom: 10%;">
+        <div class="container" style="margin-top: 15%;">
         </div>
     </div>
     """ + """
@@ -159,7 +159,7 @@ def main():
             padding: 500px 0px 0px 0px;
             top:100%;
             left: 50%;
-            position: absolute;
+            position: relative;
             transform: translate(-50%, -50%);
             transition: transform 300ms, box-shadow 300ms;
         }
