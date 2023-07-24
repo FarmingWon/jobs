@@ -73,7 +73,7 @@ def download_link(data, file_name, file_label):
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_name}">{file_label}</a>'
     return href
 
-def 1_recommend():
+def recommendMain():
     set_variable()
     get_progress_score()
     htmlTitle = """
@@ -178,7 +178,7 @@ def 1_recommend():
             page_names_to_funcs[choose]()
         
 page_names_to_funcs = {
-    "1_📝_이력서를_통한_직업_추천": 1_recommend,
+    "1_📝_이력서를_통한_직업_추천": recommendMain,
     "choose": choose,
 }
-1_recommend()
+recommendMain()
