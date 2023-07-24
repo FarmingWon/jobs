@@ -135,14 +135,6 @@ def choose():
         if busisize == '강소기업':
             score = int(score*1.2)
         st.session_state.score = score
-    if 'pageName' not in st.session_state:
-        st.session_state.pageName = "choose"
-    pageName = st.session_state.pageName
-    page_names_to_funcs = {
-        "choose": choose2,
-        "infrastructure": infra,
-    }
-    page_names_to_funcs[pageName]()
 
     def choose2():
         st.title('👜직장 선택')
@@ -249,5 +241,12 @@ def choose():
                             args=[show_more, idx],
                             type="primary",
                         )
-    
+    if 'pageName' not in st.session_state:
+        st.session_state.pageName = "choose"
+    pageName = st.session_state.pageName
+    page_names_to_funcs = {
+        "choose": choose2,
+        "infrastructure": infra,
+    }
+    page_names_to_funcs[pageName]()
     
