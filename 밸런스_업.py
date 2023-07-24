@@ -176,7 +176,7 @@ def main():
             height: var(--size);
             border-radius: 50%;
             margin: 0 auto;
-            background-color: #0E3E89;
+            background-color: #ffffff;
         }
         .c-stepper-item:not(:last-child):after {
             content: '';
@@ -186,6 +186,9 @@ def main():
             height: 1.5px;
             background-color: #D1D1D1;
             order: -1;
+        }
+        .c-stepper-item.completed {
+            background-color: #0E3E89
         }
     </style>
     """
