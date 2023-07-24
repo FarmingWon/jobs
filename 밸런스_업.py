@@ -179,7 +179,7 @@ def main():
         .container.wrap::before,
         .container.wrap::after {
             content: '';
-            position: absolute;
+            #position: absolute;
             width: 600px;
             height: 600px;
             border-top-left-radius: 40%;
