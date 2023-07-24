@@ -288,10 +288,10 @@ def main():
         }
     </style>
     """
-    st.markdown(html2, unsafe_allow_html=True)
+    #st.markdown(html2, unsafe_allow_html=True)
     html3 = f"""
         <div style="background-color: lightgray; height: 300px;">
-            <div style="float: left; margin-left: 30%;">
+            <div style="float: left; margin-left: 25%;">
                 <h1>개인 맞춤 직무 추천과<br>관련 기업의 인프라 평가까지</h1> 
                 거대언어모델을 활용한 <strong>개인 커스텀<br>AI 직무 추천</strong>과 밸런스업의 내부 평가<br>
                 모델을 통한 ELEI 차트를 제공합니다.
