@@ -215,6 +215,7 @@ def main():
         color: #ffffff;
         width: 150%;
         height: 120%;
+        margin: 0 0 0 0;
     }
     </style>""", unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
