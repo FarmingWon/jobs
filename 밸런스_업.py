@@ -281,7 +281,7 @@ def main():
             <div class="col-4">
                 <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
             </div>
-            <div class="col-6">
+            <div class="col-6 align-items-center">
                 <h4>밸런스 업</h4>
             </div>
         </div>
