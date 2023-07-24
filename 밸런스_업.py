@@ -150,8 +150,6 @@ def main():
             </ol>
         </div>
     </div>
-    <div class="container" style="margin-top: 15%;">
-    </div>
     """ + """
     <style type="text/css">
         .container.wrap{
