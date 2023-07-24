@@ -162,13 +162,13 @@ def main():
             transition: transform 300ms, box-shadow 300ms;
         }
         .container.wrap:after {
-            left: 50%;
+            left: 80%;
             bottom: -34%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
         .container.wrap::before {
-            left: 49%;
+            left: 79%;
             bottom: -40%;
             background-color: rgb(255 0 0 / 21%);
         
@@ -255,11 +255,6 @@ def main():
     </style>
     """
     st.markdown(html1, unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns([1,3,1])
-    with col2:
-        if st.button("서비스 이용하러 가기"):
-            switch_page("이력서를_통한_직업_추천")
 
     m = st.markdown("""
     <style>
