@@ -65,15 +65,6 @@ def calculate_distance(df, center_xy):
 
   return df_distance # 만들어진 데이터프레임 리턴
 
-def set_csv():
-    st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
-    st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
-    st.session_state.df_hospital = pd.read_csv('./csv/hospital.csv')
-    st.session_state.df_museum = pd.read_csv('./csv/museum.csv')
-    st.session_state.df_starbucks = pd.read_csv('./csv/starbucks_busan.csv')
-    st.session_state.df_exercise = pd.read_csv('./csv/exercise.csv')
-    st.session_state.df_oliveyoung = pd.read_csv('./csv/oliveyoung.csv')
-
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
     show_more[idx] = True
@@ -95,15 +86,6 @@ def make_score(company_name,address,busisize): # 점수 계산
     df_starbucks_distance = calculate_distance(st.session_state.df_starbucks, center_xy)
     df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
     df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
-
-    # df_oliveyoung_distance = df_oliveyoung_distance.astype({'latlon' : 'object'})
-    # df_subway_distance = df_subway_distance.astype({'latlon' : 'object'})
-    # df_bus_distance = df_bus_distance.astype({'latlon' : 'object'})
-    # df_hospital_distance = df_hospital_distance.astype({'latlon' : 'object'})
-    # df_museum_distance = df_museum_distance.astype({'latlon' : 'object'})
-    # df_starbucks_distance = df_starbucks_distance.astype({'latlon' : 'object'})
-    # df_exercise_distance = df_exercise_distance.astype({'latlon' : 'object'})
-
 
     df_graph = pd.DataFrame({'distance': ['500m', '1km', '3km']})
 
