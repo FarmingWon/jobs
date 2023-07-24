@@ -166,13 +166,13 @@ def main():
         }
         .container.wrap:after {
             left: 80%;
-            bottom: -34%;
+            bottom: -24%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
         .container.wrap::before {
             left: 79%;
-            bottom: -40%;
+            bottom: -20%;
             background-color: rgb(255 0 0 / 21%);
         
             animation: wawes 6s infinite linear;
