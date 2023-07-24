@@ -3,6 +3,7 @@
 import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import Page, add_page_title, show_pages
+from streamlit_extras.switch_page_button import switch_page
 
 import sys
 import base64
@@ -147,6 +148,8 @@ def main():
             </li>
         </ol>
     </div>
+    <div class="container" style="margin-top: 10%;">
+    </div>
     <style type="text/css">
         .c-stepper {
             display: flex;
@@ -204,7 +207,8 @@ def main():
     </style>
     """
     st.markdown(html, unsafe_allow_html=True)
-    
+    if st.button("서비스 이용하러 가기"):
+        switch_page("이력서를_통한_직업_추천")
     
 
 if __name__ == "__main__":
