@@ -270,25 +270,6 @@ def main():
         if st.button("서비스 이용하러 가기"):
             switch_page("이력서를_통한_직업_추천")
 
-    html2 = """
-    <div class="container introduction" style="margin-top: 35%;">
-        <div class="row" style="margin-top: 10%;">
-            <div class="col">
-                <div class="subtitle">
-                    <p class="h5">개인 맞춤 직무 추천과 관련 기업의 인프라 평가까지</p>
-                </div>
-            </div>
-            <div class="col"></div>
-        </div>
-    </div>
-
-    <style type="text/css">
-        .container.introduction {
-            background-color: #999999;
-        }
-    </style>
-    """
-    #st.markdown(html2, unsafe_allow_html=True)
     html3 = f"""
         <div style="margin-top:25%; background-color: #EDEDED; height: 300px;">
             <div style="float: left; margin-left: 25%;">
