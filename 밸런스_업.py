@@ -133,7 +133,7 @@ def main():
     <br/>
     <div class="container">
         <ol class="c-stepper">
-            <li class="c-stepper-item">
+            <li class="c-stepper-item completed">
                 <p class="c-stepper-title">이력서 파일 입력</p>
             </li>
             <li class="c-stepper-item">
