@@ -282,7 +282,11 @@ def main():
                 <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
             </div>
             <div class="col-6">
-                <h4>밸런스 업</h4>
+                <div class="grid" style="--bs-rows: 3; --bs-columns: 3;>
+                    <div class="g-start-2" style="grid-row: 1">
+                        <h4>밸런스 업</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
