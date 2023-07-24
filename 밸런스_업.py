@@ -183,8 +183,8 @@ def main():
             position: relative;
             top: 1.5rem;
             left: 50%;
-            height: 2px;
-            background-color: #013AD2;
+            height: 1.5px;
+            background-color: #D1D1D1;
             order: -1;
         }
     </style>
