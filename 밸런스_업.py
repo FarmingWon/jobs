@@ -213,12 +213,12 @@ def main():
     div.stButton > button:first-child {
         background-color: #0C377A;
         color: #ffffff;
-        display: flex;
-        justify-content: center;
     }
     </style>""", unsafe_allow_html=True)
-    if st.button("서비스 이용하러 가기"):
-        switch_page("이력서를_통한_직업_추천")
+    col1, col2, col3 = st.columns(3)
+    with col2:
+        if st.button("서비스 이용하러 가기"):
+            switch_page("이력서를_통한_직업_추천")
     
 
 if __name__ == "__main__":
