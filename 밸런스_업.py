@@ -277,11 +277,11 @@ def main():
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <div class="title">
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center align-items-center">
             <div class="col-4">
                 <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
             </div>
-            <div class="col-6 align-items-center text-left">
+            <div class="col-6 align-items-center">
                 <h4>밸런스 업</h4>
             </div>
         </div>
