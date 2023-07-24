@@ -135,7 +135,7 @@ def main():
         <br/>
         <div class="container">
             <ol class="c-stepper">
-                <li class="c-stepper-item completed">
+                <li class="c-stepper-item">
                     <p class="c-stepper-title">이력서 파일 입력</p>
                 </li>
                 <li class="c-stepper-item">
@@ -155,11 +155,32 @@ def main():
     <style type="text/css">
         #wrap:after {
             left: 25%;
-            /* bottom: -50%; */
             bottom: -57%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
+        #wrap::before {
+            left: 17%;
+            bottom: -73%;
+            background-color: rgb(255 0 0 / 21%);
+        
+            animation: wawes 6s infinite linear;
+        }
+
+        
+        #wrap::before,
+        #wrap::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-top-left-radius: 40%;
+            border-top-right-radius: 45%;
+            border-bottom-left-radius: 35%;
+            border-bottom-right-radius: 40%;
+            z-index: -1;
+        }
+
         .c-stepper {
             display: flex;
             flex-wrap: wrap;
