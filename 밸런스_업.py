@@ -153,18 +153,18 @@ def main():
         </div>
     </div>
     <style type="text/css">
-        .container .wrap{
+        .container.wrap{
             overflow: hidden;
             transform: translate(-50%, -50%);
             transition: transform 300ms, box-shadow 300ms;
         }
-        .container .wrap:after {
+        .container.wrap:after {
             left: 25%;
             bottom: -57%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
-        .container .wrap::before {
+        .container.wrap::before {
             left: 17%;
             bottom: -73%;
             background-color: rgb(255 0 0 / 21%);
@@ -173,8 +173,8 @@ def main():
         }
 
         
-        .container .wrap::before,
-        .container .wrap::after {
+        .container.wrap::before,
+        .container.wrap::after {
             content: '';
             position: absolute;
             width: 600px;
