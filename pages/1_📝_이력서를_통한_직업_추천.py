@@ -171,5 +171,6 @@ if uploaded_file:
                     get_progress_score()
                     break
         bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+        st.write('-----completed-----')
         st.markdown("<script type='text/javascript'>location.href='/직장_선택'</script>", unsafe_allow_html=True)
 
