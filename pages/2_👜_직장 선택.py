@@ -165,6 +165,7 @@ def make_score(company_name,address,busisize): # 점수 계산
                         len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 1.0) & (df_oliveyoung_distance['distance'] <= 3.0)])]
     col_name = ['subway','bus','hospital','museum','starbucks','exercise','oliveyoung']
     score_list = list()
+    score = 0
     for name in col_name:
         tp_score = 0
         for i in range(3):
