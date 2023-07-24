@@ -71,6 +71,11 @@ def download_link(data, file_name, file_label):
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_name}">{file_label}</a>'
     return href
 
+if not uploaded_file:
+    st.session_state.barScore = 0
+
+if 'selected_region' not in st.session_state:
+    set_variable()
 get_progress_score()
 htmlTitle = """
     <div><h3>📝이력서를 통한 직업 추천</h3></div>
@@ -172,8 +177,4 @@ if uploaded_file:
                     break
         bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
         st.markdown("<script>location.href='/2_👜_직장 선택'</script>", unsafe_allow_html=True)
-if not uploaded_file:
-    st.session_state.barScore = 0
 
-if 'selected_region' not in st.session_state:
-    set_variable()
