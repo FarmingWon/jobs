@@ -75,6 +75,43 @@ def calculate_distance(df, center_xy):
 
   return df_distance # 만들어진 데이터프레임 리턴
 
+def eval_infra(score_list):
+    eval_list = list()
+    if (score_list[0] + score_list[1]) == 0 : 
+        eval_list.append("없음")
+    elif (score_list[0] + score_list[1]) > 200:
+        eval_list.append("혼잡")
+    else :
+        eval_list.append("보통")
+
+    if score_list[2] == 0:
+        eval_list.append("없음")
+    else :
+        eval_list.append("있음")
+    
+    if score_list[3] == 0:
+        eval_list.append("없음")
+    else :
+        eval_list.append("있음")
+    
+    if score_list[4] == 0:
+        eval_list.append("없음")
+    else :
+        eval_list.append("있음")
+    
+    if score_list[5] == 0:
+        eval_list.append("없음")
+    elif score_list[5] >= 200 :
+        eval_list.append("많음")
+    else :
+        eval_list.append("있음")
+    
+    if score_list[6] == 0:
+        eval_list.append("없음")
+    else :
+        eval_list.append("있음")
+    return eval_list
+
 # EventListener: Button(Show More)
 def on_more_click(show_more, idx):
     show_more[idx] = True
@@ -127,13 +164,36 @@ def make_score(company_name,address,busisize): # 점수 계산
                         len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 0.5) & (df_oliveyoung_distance['distance'] <= 1.0)]),
                         len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 1.0) & (df_oliveyoung_distance['distance'] <= 3.0)])]
     col_name = ['subway','bus','hospital','museum','starbucks','exercise','oliveyoung']
-    score = 0
-    for i in range(3):
-        for name in col_name:
-            score = score + df_graph.loc[i][name]
+    score_list = list()
+    for name in col_name:
+        tp_score = 0
+        for i in range(3):
+            tp_score = tp_score + df_graph.loc[i][name]
+        score_list.append(tp_score)
+        if tp_score >= 100:
+            if tp_score >= 1000:
+                tp_score = tp_score * 0.02
+            else :
+                tp_score = tp_score * 0.2
+        
+        score = score + tp_score
+        
     if busisize == '강소기업':
         score = int(score*1.2)
-    st.session_state.score = score
+    st.session_state.score = int(score)
+    
+    eval_list = eval_infra(score_list)
+    query = f"""
+    현재 회사 근처에 대중교통 {eval_list[0]}, 병원 {eval_list[1]}, 박물관 {eval_list[2]}, 커피숍 {eval_list[3]}, 운동시설 {eval_list[4]}, 화장품샵 {eval_list[5]} 인데 회사 주변의 인프라를 평가해줘.
+    """
+    
+    if busisize == '강소기업':
+        score = int(score*1.2)
+    st.session_state.score = int(score)
+
+    st.session_state.query = query
+    jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
+    st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,GPT_KEY)
 
 st.title('👜직장 선택')
 with st.sidebar:
