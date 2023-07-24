@@ -21,6 +21,7 @@ import base64
 from pathlib import Path
 
 from recommend import company as corp
+from recommend import jaccard
 
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
