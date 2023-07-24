@@ -177,7 +177,7 @@ def main():
             border-radius: 50%;
             margin: 0 auto;
             background-color: #ffffff;
-            border-color: #0E3E89;
+            border: #0E3E89;
         }
         .c-stepper-item:not(:last-child):after {
             content: '';
