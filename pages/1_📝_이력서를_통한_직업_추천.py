@@ -182,7 +182,7 @@ def recommendMain():
 
 if 'selected_region' not in st.session_state:
     set_variable()
-if 'pageName' not in st.session_state:
+if 'pageName' not in st.session_state or st.session_state.pageName == None:
     st.session_state.pageName = "1_📝_이력서를_통한_직업_추천"
 pageName = st.session_state.pageName
 page_names_to_funcs = {
