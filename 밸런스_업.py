@@ -103,7 +103,7 @@ def main():
     <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-    <div class="container" id="wrap">
+    <div class="container wrap" id="wrap">
         <div class="container title">
             <div class="row">
                 <div class="col-md-4"></div>
@@ -153,13 +153,13 @@ def main():
         </div>
     </div>
     <style type="text/css">
-        #wrap:after {
+        .wrap:after {
             left: 25%;
             bottom: -57%;
             background-color: rgb(255 67 67 / 20%);
             animation: wawes 7s infinite;
         }
-        #wrap::before {
+        .wrap::before {
             left: 17%;
             bottom: -73%;
             background-color: rgb(255 0 0 / 21%);
@@ -168,8 +168,8 @@ def main():
         }
 
         
-        #wrap::before,
-        #wrap::after {
+        .wrap::before,
+        .wrap::after {
             content: '';
             position: absolute;
             width: 600px;
