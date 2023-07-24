@@ -103,7 +103,7 @@ def main():
     <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-    <div class="container wrap" id="wrap">
+    <div class="container wrap">
         <div class="container title">
             <div class="row">
                 <div class="col-md-4"></div>
