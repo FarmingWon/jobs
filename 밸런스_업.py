@@ -277,41 +277,16 @@ def main():
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <div class="title"><h1 style="font-size: 70px;"><img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">밸런스 업!</h1></div>
-    <!-- <div><p>반가워요. BalanceUP 직업추천 서비스에요.</p><div> -->
-    <!--    <div class="card" name="whatis" style='margin-right : 100px'> -->
-     <!--       <div class="card-header" id="whatis">-->
-                <h5>
-                    <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
-                    What is
-                    <span style="color:#DC2D1C">BalanceUP</span>:
-                    <span>&nbsp; BalanceUP은 어떤 서비스일까?</span>
-                </h5>
-        <!--    </div>-->
-            <div class="card-body" style='font-size : 18px'>
-                반가워요. BalanceUP 직업추천 서비스에요.<br>워라밸을 중시하는 MZ 세대의 고용 촉진을 위해 기업 생활 환경 지수를 시각적으로 제공하고,<br>거대언어모델(LLM) 기반으로 새로운 직무분류체계를 도입하여 딥러닝 학습이 가능한 지식 그래프 모델입니다.
+    <div class="title">
+        <div class="row">
+            <div class="col-4">
+                <img src="data:image/png;base64,{img_to_bytes("./img/balanceup logo.png")}" style="width:100px; height:100px;">
             </div>
-      <!--  </div>>-->
-    <hr/>
-    <div class="About" id="About">
-        <div id="howtouse">
-            <div id="header">
-                <h5>
-                    <i class="fas fa-question-circle fa-sm me-2 opacity-70" style="color:skyblue"></i>
-                    <span style="color:#DC2D1C">How To Use?</span>:<span>&nbsp; BalanceUP 사용법!</span>
-                </h5>
+            <div class="col-6">
+                <h4>밸런스 업</h4>
             </div>
         </div>
-        <div>
-            <span>1. 우선 좌측의 이력서를 통한 직업 추천을 통하여 직업을 추천받아봐요.</span>
-            <!--<span>1. 이력서 넣기 해당<a href="pages/1_📝_이력서를_통한_직업_추천.py" target =_blank>사이트</a>에서 이용가능해요</span>-->
-        </div>
-        <div>
-            <span>2. 추천받은 직업에 대하여 직장을 추천받아봐요. </span>
-        </div>
-        <div>
-            <span>3. 추천받은 직장 중에서 원하는 회사의 인프라를 확인해봐요.</span>
-        </div>
-        <br/>
+    </div>
     """
     st.markdown(html, unsafe_allow_html=True)
 
