@@ -18,8 +18,6 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import base64
 from pathlib import Path
 
-from src.choose import choose
-
 # -- import modules end --
 def set_variable():
     st.session_state.selected_region = None
