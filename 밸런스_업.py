@@ -134,19 +134,19 @@ def main():
     <div class="container">
         <ol class="c-stepper">
             <li class="c-stepper-item">
-                <h4 class="c-stepper-title">Step 1</h4>
+                <h4 class="c-stepper-title">이력서 파일 입력</h4>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
-                <h4 class="c-stepper-title">Step 2</h4>
+                <h4 class="c-stepper-title">개인 맞춤 직무 추천</h4>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
-                <h4 class="c-stepper-title">Step 3</h4>
+                <h4 class="c-stepper-title">기업의 직업/지역 선택</h4>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
             <li class="c-stepper-item">
-                <h4 class="c-stepper-title">Step 4</h4>
+                <h4 class="c-stepper-title">기업 인프라 평가 + ELEI 차트</h4>
                 <p class="c-stepper-desc">Some desc text</p>
             </li>
         </ol>
@@ -184,7 +184,7 @@ def main():
             top: 1.5rem;
             left: 50%;
             height: 2px;
-            background-color: #e0e0e0;
+            background-color: #013AD2;
             order: -1;
         }
     </style>
