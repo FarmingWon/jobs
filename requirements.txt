@@ -14,3 +14,4 @@ PyPDF2
 st-pages
 streamlit_chat
 pathlib
+streamlit_extras
