@@ -2,6 +2,7 @@
 import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import add_page_title
+from streamlit.components.v1 import html
 
 # customized modules
 from recommend import jaccard
@@ -171,4 +172,5 @@ if uploaded_file:
                     get_progress_score()
                     break
         bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-        st.info('왼쪽 메뉴에서 직장 선택을 눌러주세요')
+        html('''location.href="/직장_선택"''')
+        #st.info('왼쪽 메뉴에서 직장 선택을 눌러주세요')
