@@ -23,6 +23,8 @@ def set_variable():
     st.session_state.similarity_jobs = None
     st.session_state.jobs = None
     st.session_state.pageName = None
+    st.session_state.query = None
+    st.session_state.infra = None
     if 'score' not in st.session_state:  
       st.session_state.score = None
     if 'selectJob' not in st.session_state:  
