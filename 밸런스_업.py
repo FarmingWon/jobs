@@ -181,6 +181,16 @@ def main():
             z-index: -1;
         }
 
+        @keyframes wawes {
+            from {
+                transform: rotate(0);
+            }
+        
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         .c-stepper {
             display: flex;
             flex-wrap: wrap;
