@@ -119,7 +119,7 @@ def main():
                 </div>
                 <div class="col-md-4"></div>
             </div>
-        </div>"""+"""
+        </div>
         <div class="container">
             <div class="subtitle" id="subtitle">
                 <p class="h5 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
@@ -152,6 +152,7 @@ def main():
         <div class="container" style="margin-top: 10%;">
         </div>
     </div>
+    """ + """
     <style type="text/css">
         .container.wrap{
             overflow: hidden;
