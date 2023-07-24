@@ -175,10 +175,12 @@ def recommendMain():
                         get_progress_score()
                         break
             bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-            page_names_to_funcs["choose"]()
-        
+            st.session_state.pageName = "choose"
+if 'pageName' not in st.session_state:
+    st.session_state.pageName = "1_📝_이력서를_통한_직업_추천"
+pageName = st.session_state.pageName
 page_names_to_funcs = {
     "1_📝_이력서를_통한_직업_추천": recommendMain,
     "choose": choose,
 }
-recommendMain()
+page_names_to_funcs[pageName]()
