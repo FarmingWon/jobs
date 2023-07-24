@@ -57,7 +57,7 @@ def jaccard_distance(user_skills, job_skills): #자카드 유사도
 
 def getUserSkill_to_GPT_Chat(resume, API_KEY): # 이력서의 skill을 GPT를 활용하여 추출
     openai.api_key= API_KEY
-    MODEL = "gpt-3.5-turbo-16k"
+    MODEL = "gpt-3.5-turbo"
 
     question = "\n Please extract skill, graduation department, and certificate from the corresponding sentence. I don't need another sentence, but please answer in Korean. For example, do it like 'java/C++/OOP'." #prompt
     response = openai.ChatCompletion.create(
