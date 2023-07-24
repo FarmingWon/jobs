@@ -150,11 +150,11 @@ def main():
             </ol>
         </div>
     </div>
-    <div>1</div>
     """ + """
     <style type="text/css">
         .container.wrap{
             overflow: hidden;
+            height: 700px;
             padding: 500px 0px 0px 0px;
             top:100%;
             left: 50%;
