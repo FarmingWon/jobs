@@ -1,6 +1,7 @@
 import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import Page, add_page_title, show_pages
+from streamlit_extras.switch_page_button import switch_page
 
 # data analysis
 import numpy as np
@@ -225,10 +226,15 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
                       st.session_state.selectCompany = True
                       get_progress_score()
                       bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-                      st.session_state.company = row
-                      pageName = "infrastructure"
-                      st.session_state.pageName = pageName
-                      page_names_to_funcs[pageName]()
+                  if st.session_state.selectCompany:
+                      next_col1,next_col2,next_col3 = st.columns([0.2,0.45,0.45])
+                      with next_col1:
+                        if st.button("Next >"):
+                            switch_page("직장_라이프_밸런스_확인")
+                      # st.session_state.company = row
+                      # pageName = "infrastructure"
+                      # st.session_state.pageName = pageName
+                      # page_names_to_funcs[pageName]()
               st.write("---")
           else:
                 placeholder.button(
