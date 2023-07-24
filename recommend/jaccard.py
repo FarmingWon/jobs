@@ -69,7 +69,23 @@ def getUserSkill_to_GPT_Chat(resume, API_KEY): # 이력서의 skill을 GPT를 �
         temperature=0
     )
     return response.choices[0].message.content
-
+    
+def getInfra_to_GPT(query, API_KEY):
+    openai.api_key= API_KEY
+    MODEL = "gpt-3.5-turbo-16k"
+    response = openai.ChatCompletion.create(
+        model = MODEL,
+        messages = [
+            {"role" : "user", "content" : query + " 응답은 문장형식으로 부탁할게."}, #request
+            {"role" : "assistant", "content" : """
+             대중교통이 혼잡할만한 개수가 있으면 교통이 혼잡할 수 있다고 해줘. 각각 근처에 인프라의 시설이 없는 경우 주변 인프라가 별로 안좋다고 평가해줘.
+             회사 주변 인프라에 대한 질문이라서, 좋고 나쁨을 평가해줘. 응답은 문장형식으로 해주고, 구체적인 인프라의 개수는 적지말고 좋고 나쁨만 평가해줘.
+             최종 평가로는 3개 이상이 없으면 안좋다고 평가하고, 2개만 없으면 보통, 1개 이하로 없으면 좋다고 평가해줘."""}
+        ],
+        temperature=0
+    )
+    return response.choices[0].message.content
+    
 def recommend_job(pdf,API_KEY): # 직업 추천
     try:
         resume = pdf_to_text(pdf) # 이력서 pdf -> text(string)
