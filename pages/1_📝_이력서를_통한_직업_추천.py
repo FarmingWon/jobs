@@ -117,10 +117,10 @@ file_path = './_pdf/ws.pdf'
 with open(file_path, 'rb') as file:
     pdf_data= file.read()
 download_btn = download_link(pdf_data, "sample_data.pdf", "여기")
-html= f"""
+htmlCode= f"""
 샘플 파일을 다운하고싶으면 {download_btn}를 눌러봐요.
 """
-st.markdown(html, unsafe_allow_html=True)
+st.markdown(htmlCode, unsafe_allow_html=True)
 uploaded_file = st.file_uploader("이력서를 올려보세요!", type="pdf")
 st.session_state.regions = r.getRegion()
 
