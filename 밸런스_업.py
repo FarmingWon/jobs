@@ -158,8 +158,8 @@ def main():
         .container.wrap{
             overflow: hidden;
             padding: 80px 30px 90px 30px;
-            top:100%;
-            left: 100%;
+            top:50%;
+            left: 50%;
             position: absolute;
             transform: translate(-50%, -50%);
             transition: transform 300ms, box-shadow 300ms;
