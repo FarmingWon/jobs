@@ -233,14 +233,14 @@ def get_color_list():
   eval_list = st.session_state.eval_list
   for eval in eval_list:
     color = None
-    if eval == "없음": # 주황
-      color = '#FF7F00'
-    elif eval == '보통': # 노랑
-      color = '#FFFF00'
+    if eval == "없음": # 빨강
+      color = '#F05934'
+    elif eval == '보통': # 보통
+      color = '#FDA932 '
     elif eval == '여유': # 초록
-      color = '#00FF80'
+      color = '#11FF3F'
     else: #혼잡, 빨강
-      color = '##FF0000'
+      color = '#F05934'
     color_list.append(color)
   return color_list
 
