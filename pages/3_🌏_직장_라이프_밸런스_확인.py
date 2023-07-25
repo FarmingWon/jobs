@@ -333,7 +333,6 @@ htmlTitle = """
 st.markdown(htmlTitle, unsafe_allow_html=True)
 with st.sidebar:
     htmlSide=f"""
-        <br/>
         <ul>
           <li>인프라에 대하여 확인 할 수 있어요!</li>
           <li>다른 직장이 궁금하면 직장 선택을 다시 하면 확인할 수 있어요.</li>
