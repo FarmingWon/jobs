@@ -55,10 +55,12 @@ def main():
     #side
     with st.sidebar:
         htmlSide=f"""
-        <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
-        <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
-        <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
-        <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
+        <div class="container">
+            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
+            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
+            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
+            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
+        </div>
         """
         st.markdown(htmlSide, unsafe_allow_html=True)
 
