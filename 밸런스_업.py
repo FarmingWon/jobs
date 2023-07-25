@@ -338,7 +338,7 @@ MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대�
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-center align-items-center" id="logo">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/vworld_logo.png")}" style="width:180px; height:60px;">
+                                <img src="data:image/png;base64,{img_to_bytes("./img/vworld_logo.png")}" style="width:180px; height:100px;">
                             </div>
                         </div>
                     </div>
