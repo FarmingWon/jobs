@@ -4,6 +4,7 @@ import streamlit as st
 import extra_streamlit_components as stx
 from st_pages import Page, add_page_title, show_pages
 from streamlit_extras.switch_page_button import switch_page
+from streamlit_javascript import st_javascript
 
 import sys
 import base64
@@ -95,7 +96,7 @@ def main():
         st.markdown(htmlSide, unsafe_allow_html=True)
 
     #main
-    html1 = f"""
+    htmlHeader = f"""
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -114,7 +115,12 @@ def main():
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./script/jquery-fadethis-master/dist/jquery.fadethis.min.js"></script>
+    """
+    st.markdown(htmlHeader, unsafe_allow_html=True)
+    st.javascript("""
     <script>$(window).fadeThis();</script>
+    """)
+    html1=f"""
     <div class="container wrap">
         <div class="container title">
             <div class="row" style="margin-top: 0%;">
