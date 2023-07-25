@@ -260,6 +260,12 @@ if uploaded_file:
 
 clickedJob = None
 if uploaded_file and  'selected_job' not in st.session_state or st.session_state.selected_job is None:
+    htmlcode='''
+        <script type="text/javascript">
+        document.getElementById('c-item-2').className += ' completed';
+        </script>
+        '''
+    st.markdown(htmlcode, unsafe_allow_html=True)
     with st.expander(label = '직업 선택', expanded=True):
         if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
             showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
@@ -290,12 +296,6 @@ if 'selectJob' in st.session_state and st.session_state.selectJob:
         showRegion(st.session_state.regions)
         regionBtn_clicked = st.button("지역 선택")
     if regionBtn_clicked:
-        htmlcode='''
-        <script type="text/javascript">
-        document.getElementById('c-item-2').className += ' completed';
-        </script>
-        '''
-        st.markdown(htmlcode, unsafe_allow_html=True)
         st.session_state.clicked_regionCd = None
         st.session_state.clicked_regionNm = None
         
