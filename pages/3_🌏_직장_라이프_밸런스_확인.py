@@ -349,10 +349,31 @@ htmlTitle = """
 st.markdown(htmlTitle, unsafe_allow_html=True)
 with st.sidebar:
     htmlSide=f"""
-        <ul>
-          <li>인프라에 대하여 확인 할 수 있어요!</li>
-          <li>다른 직장이 궁금하면 직장 선택을 다시 하면 확인할 수 있어요.</li>
-        </ul>
+    <div class="container sidebar">
+        <section class="mb-5">
+            <div class="d-flex align-items-start">
+                <div class="flex-shrink-0">
+                    <div class="p-3 badge-primary rounded-4">
+                        <i class="fas fa-city fa-lg text-primary fa-fw"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-4">
+                    <p class="mb-1">직장 주변 인프라를 확인할 수 있어요.</p>
+                </div>
+            </div>
+            <br/>
+            <div class="d-flex align-items-start">
+                <div class="flex-shrink-0">
+                    <div class="p-3 badge-primary rounded-4">
+                        <i class="fas fa-arrow-left-long fa-lg text-primary fa-fw"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-4">
+                    <p class="mb-1">다른 직장이 궁금하다면 돌아가서 직장 선택을 다시 할 수 있어요.</p>
+                </div>
+            </div>
+        </section>
+    </div>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
