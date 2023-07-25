@@ -293,17 +293,44 @@ def main():
         if st.button("무료로 이용하기"):
             switch_page("이력서를_통한_직업_추천")
 
-
-    htmlt = """
-        <div style = "height : 150px"></div>    
-    """
-    st.markdown(htmlt, unsafe_allow_html=True)
-
+	# JobsGPT
     empty,con3,empty2= st.columns([0.1,0.8,0.1])
     with con3:
         GPT_KEY = st.secrets.KEY.GPT_KEY
         openai.api_key = GPT_KEY
-        st.title("JobsGPT의 직업 상담")
+        htmlTitle = """
+	    <!-- Font Awesome -->
+	    <link
+	    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	    rel="stylesheet"/>
+	    <!-- Google Fonts -->
+	    <link
+	    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	    rel="stylesheet"/>
+	    <!-- MDB -->
+	    <link
+	    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+	    rel="stylesheet"/>
+	    <!-- MDB -->
+	    <script
+	    type="text/javascript"
+	    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+	    
+	    <div class="container header" style="font-weight:600; margin-top:10%"><p class="h3">JobsGPT의 직업소개</p></div>
+	
+	    <style type="text/css">
+	        @font-face {
+	            font-family: 'Pretendard-Regular';
+	            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	            font-weight: 400;
+	            font-style: normal;
+	        }
+	        .container {
+	            font-family: 'Pretendard-Regular';
+	        }
+	    </style>
+	    """
+	st.markdown(htmlTitle, unsafe_allow_html=True)
 
         if 'generated' not in st.session_state: # 초기화
             st.session_state['generated'] = [
