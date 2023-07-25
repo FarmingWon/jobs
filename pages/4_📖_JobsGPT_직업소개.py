@@ -39,16 +39,6 @@ def ask(q):
 GPT_KEY = st.secrets.KEY.GPT_KEY
 openai.api_key = GPT_KEY
 
-with st.sidebar:
-    htmlSide=f"""
-        <ul>
-            <li>ChatGPT를 이용해 직업의 상세 설명을 제공하는 페이지에요.</li>
-            <li>궁금하거나 직업 추천을 통해 나온 결과를 입력해보세요!</li>
-            <li>잠시 기다리면 직업에 대한 설명이 나올거에요!</li>
-        </ul>
-    """
-    st.markdown(htmlSide, unsafe_allow_html=True)
-
 htmlTitle = """
     <!-- Font Awesome -->
     <link
@@ -138,4 +128,13 @@ if button or st.session_state.get("submit"):
 if st.session_state['generated']:
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-        message(st.session_state["generated"][i], key=str(i)) 
+        message(st.session_state["generated"][i], key=str(i))
+with st.sidebar:
+    htmlSide=f"""
+        <ul>
+            <li>ChatGPT를 이용해 직업의 상세 설명을 제공하는 페이지에요.</li>
+            <li>궁금하거나 직업 추천을 통해 나온 결과를 입력해보세요!</li>
+            <li>잠시 기다리면 직업에 대한 설명이 나올거에요!</li>
+        </ul>
+    """
+    st.markdown(htmlSide, unsafe_allow_html=True)
