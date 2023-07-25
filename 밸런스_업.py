@@ -348,28 +348,28 @@ def main():
 
 마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
 
-        if 'past' not in st.session_state: # 초기화
-            st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
+    if 'past' not in st.session_state: # 초기화
+      st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
 
 
-        query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
-        button = st.button("submit")
-        if button or st.session_state.get("submit"):
-            st.session_state["submit"] = True
-            try:
-                with st.spinner("Calling Job Description API..."):
+      query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
+      button = st.button("submit")
+      if button or st.session_state.get("submit"):
+          st.session_state["submit"] = True
+          try:
+              with st.spinner("Calling Job Description API..."):
                     
-                    output = ask(query)
-                    st.session_state.past.append(query)
-                    st.session_state.generated.append(output)
+                  output = ask(query)
+                  st.session_state.past.append(query)
+                  st.session_state.generated.append(output)
 
-            except OpenAIError as e:
-                st.error(e._message)
+          except OpenAIError as e:
+              st.error(e._message)
 
-        if st.session_state['generated']:
-            for i in range(len(st.session_state['generated'])-1, -1, -1):
-                message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-                message(st.session_state["generated"][i], key=str(i)) 
+      if st.session_state['generated']:
+          for i in range(len(st.session_state['generated'])-1, -1, -1):
+              message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+              message(st.session_state["generated"][i], key=str(i)) 
 
     html3 = f"""
         <div class="slide-bottom">
