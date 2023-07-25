@@ -342,6 +342,7 @@ def main():
                 message(st.session_state["generated"][i], key=str(i)) 
 
     html3 = f"""
+        <script>$(container).fadeThis();</script>
         <div class="container slide-bottom" style="margin-top: 30%; height: auto;">
             <div class="row">
                 <div class="col">
