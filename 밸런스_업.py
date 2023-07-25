@@ -55,7 +55,7 @@ def main():
     #side
     with st.sidebar:
         htmlSide=f"""
-        <div class="container">
+        <div class="container sidebar">
             <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
             <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
             <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
