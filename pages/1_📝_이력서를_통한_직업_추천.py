@@ -180,11 +180,13 @@ st.markdown(htmlTitle, unsafe_allow_html=True)
 with st.sidebar:
     htmlSide=f"""
         <br/>
-        <ul>
-            <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
-            <li style="text-align:left; text-decoration:center; color:inherit;"> 가장 적합한 직업과 유사한 직업을 추천해드릴게요!</li>
-            <li style="text-align:left; text-decoration:center; color:inherit;"> 지역과 직업을 고르면 채용정보도 추천해드릴게요!</li>
-        </ul>
+        <div class="container">
+            <ul>
+                <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
+                <li style="text-align:left; text-decoration:center; color:inherit;"> 가장 적합한 직업과 유사한 직업을 추천해드릴게요!</li>
+                <li style="text-align:left; text-decoration:center; color:inherit;"> 지역과 직업을 고르면 채용정보도 추천해드릴게요!</li>
+            </ul>
+        </div>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
