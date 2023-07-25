@@ -30,14 +30,10 @@ def img_to_bytes(img_path):
 
 def get_progress_score():
     st.session_state.barScore = 0
-    if st.session_state.selectJob or st.session_state.selectRegion:
-        st.session_state.barScore = 25
-        if st.session_state.selectJob and st.session_state.selectRegion:
-            st.session_state.barScore = 50
-            if st.session_state.selectCompany:
-                st.session_state.barScore = 75
-                if st.session_state.selectWLB:
-                    st.session_state.barScore = 100
+    if 'clicked_regionCd' not in st.session_state:
+        st.session_state.barScore = 0
+    else:
+        st.session_state.barScore = 75
 
 def set_csv():
   st.session_state.df_subway = pd.read_csv('csv/subway.csv')
