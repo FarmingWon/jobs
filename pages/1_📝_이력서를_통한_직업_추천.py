@@ -228,6 +228,8 @@ with st.sidebar:
         </ul>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
+    st.sidebar.markdown("---")
+    bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
 
 file_path = './_pdf/ws.pdf'
 with open(file_path, 'rb') as file:
