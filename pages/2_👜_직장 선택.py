@@ -235,7 +235,7 @@ with st.sidebar:
 if 'clicked_regionCd' not in st.session_state:
     st.error('직업 추천을 먼저 진행해주세요')
     if st.button("< Prev"):
-        switch_page("이력서를 통한 직업 추천")
+        switch_page("이력서를_통한_직업_추천")
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
     st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
     fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
