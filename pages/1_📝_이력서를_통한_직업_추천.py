@@ -262,7 +262,7 @@ clickedJob = None
 if uploaded_file and  'selected_job' not in st.session_state or st.session_state.selected_job is None:
     htmlcode='''
         <script type="text/javascript">
-        document.getElementById('c-item-2').className += ' completed';
+        document.getElementById('c-item2').className += ' completed';
         </script>
         '''
     st.markdown(htmlcode, unsafe_allow_html=True)
