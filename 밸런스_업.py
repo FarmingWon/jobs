@@ -426,13 +426,11 @@ def main():
     """
     st.markdown(html3,unsafe_allow_html=True)
     st_javascript("""
-    <script>
         $(document).ready(function() {
 				$(window).fadeThis({
 					speed: 1000,
 				});
 			});
-    </script>
     """)
 
 if __name__ == "__main__":
