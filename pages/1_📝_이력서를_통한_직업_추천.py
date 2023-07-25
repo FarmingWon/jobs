@@ -231,7 +231,7 @@ with st.sidebar:
                             </div>
                         </div>
                         <div class="flex-grow-1 ms-4">
-                            <p>이력서를 올려서 추천직업을 확인해보세요.</p>
+                            <p class="mb-1">이력서를 올려서 추천직업을 확인해보세요.</p>
                         </div>
                     </div>
                 </div>
