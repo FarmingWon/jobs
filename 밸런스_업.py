@@ -115,7 +115,7 @@ def main():
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./script/jquery-fadethis-master/dist/jquery.fadethis.min.js"></script>
+    <script src="./script/jquery-fadethis-master/dist/jquery.fadethis.js"></script>
     """
     st.markdown(htmlHeader, unsafe_allow_html=True)
     html1=f"""
