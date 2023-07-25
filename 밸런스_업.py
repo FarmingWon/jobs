@@ -298,7 +298,7 @@ def main():
     with con3:
         GPT_KEY = st.secrets.KEY.GPT_KEY
         openai.api_key = GPT_KEY
-        htmlTitle = """
+        htmlJobs = """
 		    <!-- Font Awesome -->
 		    <link
 		    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -330,7 +330,7 @@ def main():
 		        }
 		    </style>
 	    """
-	st.markdown(htmlTitle, unsafe_allow_html=True)
+	st.markdown(htmlJobs, unsafe_allow_html=True)
 
     	if 'generated' not in st.session_state: # 초기화
             st.session_state['generated'] = [
