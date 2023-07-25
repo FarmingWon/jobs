@@ -349,7 +349,7 @@ def main():
             <div class="container" style="margin-top: 30%; height: auto;">
                 <div class="row">
                     <div class="col">
-                        <h2>개인 맞춤 직무 추천과<br/>관련 기업의 인프라 평가까지</h2> 
+                        <h2 class="slide-bottom">개인 맞춤 직무 추천과<br/>관련 기업의 인프라 평가까지</h2> 
                         <p>거대언어모델을 활용한 <strong>개인 커스텀 AI 직무 추천</strong>과<br/>밸런스업의 내부 평가 모델을 통한 ELEI 차트를 제공합니다.</p>
                         <br/>
                         <p style="align-items-bottom"><small>*ELEI(Enterprise Living Environment Index): 기업 생활 환경 지수로
