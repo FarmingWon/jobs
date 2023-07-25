@@ -324,6 +324,35 @@ MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대�
                     </div>
                 </div>
             </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center align-items-center" id="logo">
+                                <img src="data:image/png;base64,{img_to_bytes("./img/kakaomap_logo.jpg")}" style="width:180px; height:60px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center align-items-center" id="logo">
+                                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:200px; height:60px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center align-items-center" id="logo">
+                                <img src="data:image/png;base64,{img_to_bytes("./img/worknet_logo.png")}" style="width:180px; height:60px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     """
     st.markdown(html3,unsafe_allow_html=True)     
