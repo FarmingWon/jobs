@@ -246,7 +246,7 @@ st.session_state.regions = r.getRegion()
 if uploaded_file:
     htmlcode='''
         <script type="text/javascript">
-        document.getElementById('c-item2').className += ' completed';
+        $('#c-item2').className += ' completed';
         </script>
         '''
     st.markdown(htmlcode, unsafe_allow_html=True)
