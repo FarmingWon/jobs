@@ -299,38 +299,10 @@ def main():
         GPT_KEY = st.secrets.KEY.GPT_KEY
         openai.api_key = GPT_KEY
         htmlJobs = """
-		    <!-- Font Awesome -->
-		    <link
-		    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-		    rel="stylesheet"/>
-		    <!-- Google Fonts -->
-		    <link
-		    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-		    rel="stylesheet"/>
-		    <!-- MDB -->
-		    <link
-		    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
-		    rel="stylesheet"/>
-		    <!-- MDB -->
-		    <script
-		    type="text/javascript"
-		    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-		    	<div class="slide-bottom">
-		    	<div class="container header" style="font-weight:600; margin-top:10%"><p class="h3">JobsGPT의 직업소개</p></div>
-       			</div>
-		
-		    <style type="text/css">
-		        @font-face {
-		            font-family: 'Pretendard-Regular';
-		            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-		            font-weight: 400;
-		            font-style: normal;
-		        }
-		        .container {
-		            font-family: 'Pretendard-Regular';
-		        }
-		    </style>
-	    """
+	<div class="slide-bottom">
+		<div class="container header" style="font-weight:600; margin-top:10%"><p class="h3">JobsGPT의 직업소개</p></div>
+       	</div>
+	"""
     st.markdown(htmlJobs, unsafe_allow_html=True)
            
     if 'generated' not in st.session_state: # 초기화
