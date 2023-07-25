@@ -212,6 +212,7 @@ def main():
         }
 
         .c-stepper-title {
+            margin-top:5px;
             font-size: small;
         }
         
