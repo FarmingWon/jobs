@@ -49,9 +49,6 @@ with st.sidebar:
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
 
-empty,con3,empty2= st.columns([0.1,0.5,0.1])
-
-with con3:
     htmlTitle = """
     <!-- Font Awesome -->
     <link
@@ -85,10 +82,9 @@ with con3:
     </style>
     """
     st.markdown(htmlTitle, unsafe_allow_html=True)
-    #st.title("JobsGPT의 직업소개")
 
-    if 'generated' not in st.session_state: # 초기화
-        st.session_state['generated'] = [
+if 'generated' not in st.session_state: # 초기화
+    st.session_state['generated'] = [
                                         """ 웹 개발자는 인터넷 상에서 동작하는 웹사이트 및 애플리케이션을 개발하는 사람을 말합니다. 웹 개발자는 클라이언트 요구사항에 맞게 웹사이트를 구축하고, 기능을 개선하며, 유지보수를 담당합니다.
 
 
@@ -121,25 +117,25 @@ with con3:
 웹 개발자의 전망은 매우 밝습니다. 인터넷 사용량이 증가하면서 온라인 비즈니스 및 웹앱 개발의 수요도 함께 증가하고 있습니다. 또한 모바일 기기의 보급도 웹 애플리케이션 개발을 더욱 중요하게 만들었습니다. 따라서 웹 개발자의 역할과 수요는 계속해서 증가할 것으로 예상됩니다. 또한, 새로운 기술과 프레임워크의 등장으로 개발자들은 항상 새로운 것을 배우고 발전해야만 합니다.
     """]
 
-    if 'past' not in st.session_state: # 초기화
-        st.session_state['past'] = ["웹 개발자는 무슨 직업인지 설명해줘."]
+if 'past' not in st.session_state: # 초기화
+    st.session_state['past'] = ["웹 개발자는 무슨 직업인지 설명해줘."]
 
 
-    query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자는 무슨 직업인지 설명해줘.")
-    button = st.button("submit")
-    if button or st.session_state.get("submit"):
-        st.session_state["submit"] = True
-        try:
-            with st.spinner("Calling Job Description API..."):
+query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자는 무슨 직업인지 설명해줘.")
+button = st.button("submit")
+if button or st.session_state.get("submit"):
+    st.session_state["submit"] = True
+    try:
+        with st.spinner("Calling Job Description API..."):
                 
-                output = ask(query)
-                st.session_state.past.append(query)
-                st.session_state.generated.append(output)
+            output = ask(query)
+            st.session_state.past.append(query)
+            st.session_state.generated.append(output)
 
-        except OpenAIError as e:
-            st.error(e._message)
+    except OpenAIError as e:
+        st.error(e._message)
 
-    if st.session_state['generated']:
-        for i in range(len(st.session_state['generated'])-1, -1, -1):
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-            message(st.session_state["generated"][i], key=str(i)) 
+if st.session_state['generated']:
+    for i in range(len(st.session_state['generated'])-1, -1, -1):
+        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+        message(st.session_state["generated"][i], key=str(i)) 
