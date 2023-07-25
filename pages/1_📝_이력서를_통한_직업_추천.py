@@ -55,7 +55,26 @@ def save_upload_file(dir, file):
 def showRegion(regions):
     regionsNm = [reg[1] for reg in regions]
     st.session_state.selected_region = st.radio(label = '', options= regionsNm)
-    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+    st.write("""<style>
+            div.row-widget.stRadio {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 1em;
+                background-color: #f5f5f5;
+                border-radius: 8px;
+                box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+            }
+
+            div.row-widget.stRadio > div {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 0.5em;
+            }
+        </style>
+        """, unsafe_allow_html=True)
 
 # func: UI for Select Job
 def showJob(recommend_jobs, similarity_jobs):
@@ -64,7 +83,26 @@ def showJob(recommend_jobs, similarity_jobs):
     st.session_state.jobs.extend(tmp2)
     jobsNm = [job[1] for job in st.session_state.jobs]
     st.session_state.selected_job= st.radio(label='',options=jobsNm)
-    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+    st.write("""<style>
+            div.row-widget.stRadio {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 1em;
+                background-color: #f5f5f5;
+                border-radius: 8px;
+                box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+            }
+
+            div.row-widget.stRadio > div {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 0.5em;
+            }
+        </style>
+        """, unsafe_allow_html=True)
 
 #download resume
 def download_link(data, file_name, file_label):
@@ -228,7 +266,8 @@ st.session_state.regions = r.getRegion()
 if uploaded_file:
     if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
         save_upload_file('_pdf', uploaded_file)
-        GPT_KEY = st.secrets.KEY.GPT_KEY
+        # GPT_KEY = st.secrets.KEY.GPT_KEY
+        GPT_KEY = "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"
         st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
     if st.session_state.recommend_jobs :
         recommend_jobs = st.session_state.recommend_jobs
@@ -236,34 +275,20 @@ if uploaded_file:
             st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
         jobsHtml = f"""
             <p>가장 적합한 직업은 <strong>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
-            <p>지역과 직업을 선택하면 채용공고를 보여드릴게요.</p>
         """
         st.markdown(jobsHtml, unsafe_allow_html=True)
         st.write(f"")
-    if 'selected_region' not in st.session_state or st.session_state.selected_region is None:
-        with st.expander(label="지역 선택", expanded=True):
-            regions = st.session_state.regions
-            showRegion(regions)
 
-    if 'selected_job' not in st.session_state or st.session_state.selected_job is None:
-        with st.expander(label = '직업 선택', expanded=True):
-             if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
-                recommend_jobs = st.session_state.recommend_jobs
-                similarity_jobs = st.session_state.similarity_jobs
-                showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
-    regionBtn_clicked = st.button("선택")
-    if regionBtn_clicked:
-        st.session_state.clicked_regionCd = None
-        st.session_state.clicked_regionNm = None
+selectJob = None
+if uploaded_file and  'selected_job' not in st.session_state or st.session_state.selected_job is None:
+    with st.expander(label = '직업 선택', expanded=True):
+        if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
+            showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
+            selectJob = st.button("직업 선택")
+    if selectJob:
+        st.session_state.selectJob = True
         st.session_state.clicked_jobCd = None
         st.session_state.clicked_jobNm = None
-        for region in st.session_state.regions:
-            if st.session_state.selected_region == region[1]:
-                st.session_state.clicked_regionCd = region[0]
-                st.session_state.clicked_regionNm = region[1]
-                st.session_state.selectRegion = True
-                get_progress_score()
-                break
         if st.session_state.jobs is not None:
             for job in st.session_state.jobs:
                 if st.session_state.selected_job == job[1]:
@@ -271,11 +296,34 @@ if uploaded_file:
                     st.session_state.clicked_jobNm = job[1]
                     st.session_state.selectJob = True
                     get_progress_score()
+                    bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
                     break
+if 'clicked_jobNm' in st.session_state and st.session_state.clicked_jobNm != None:
+    selectJobHtml = f"""
+        <strong style='color:#2A9DF4;>{st.session_state.clicked_jobNm}</strong>직업을 선택하셨네요.<br>
+        해당 직업을 가지고 보고싶은 채용공고의 지역을 선택해주세요. 
+    """
+    st.markdown(selectJobHtml, unsafe_allow_html=True)
+
+
+if 'selectJob' in st.session_state and st.session_state.selectJob:
+    with st.expander(label="지역 선택", expanded=True):
+        showRegion(st.session_state.regions)
+        regionBtn_clicked = st.button("지역 선택")
+    if regionBtn_clicked:
+        st.session_state.clicked_regionCd = None
+        st.session_state.clicked_regionNm = None
+        
+        for region in st.session_state.regions:
+            if st.session_state.selected_region == region[1]:
+                st.session_state.clicked_regionCd = region[0]
+                st.session_state.clicked_regionNm = region[1]
+                st.session_state.selectRegion = True
+                get_progress_score()
+                break
         bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-        switch_page("직장_선택")
-                   
-if st.session_state.selectJob:
+
+if st.session_state.selectRegion:
     next_col1,next_col2,next_col3 = st.columns([0.45,0.45,0.1])
     with next_col3:
         jobs_btn = st.button("Next >")
