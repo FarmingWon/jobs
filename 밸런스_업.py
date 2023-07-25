@@ -325,7 +325,6 @@ MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대�
                         <div class="card-body">
                             <div id="logo">
                                 <h5>
-                                    <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
                                     <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
                                 </h5>
                             </div>
