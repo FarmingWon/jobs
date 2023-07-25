@@ -292,4 +292,11 @@ if 'company' in st.session_state:
     st.markdown(html, unsafe_allow_html=True)
     st.write(st.session_state.infra)
 else:
-   st.error('직장 선택을 먼저 진행해주세요')
+   if 'clicked_regionCd' not in st.session_state:
+      st.error('직업 추천을 먼저 진행해주세요')
+      if st.button("< Prev"):
+        switch_page("이력서를 통한 직업 추천")
+    else:
+       st.error('직장 선택을 먼저 진행해주세요')
+       if st.button("< Prev"):
+          switch_page("직장 선택")
