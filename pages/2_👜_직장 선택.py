@@ -324,7 +324,42 @@ htmlTitle = """
 st.markdown(htmlTitle, unsafe_allow_html=True)
 with st.sidebar:
     htmlSide=f"""
-        <br/>
+    <div class="container sidebar">
+        <section class="mb-5">
+            <div class="d-flex align-items-start">
+                <div class="flex-shrink-0">
+                    <div class="p-3 badge-primary rounded-4">
+                        <i class="fas fa-cloud-upload-alt fa-lg text-primary fa-fw"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-4">
+                    <p class="mb-1">이력서를 올려서 추천직업을 확인해보세요.</p>
+                </div>
+            </div>
+            <br/>
+            <div class="d-flex align-items-start">
+                <div class="flex-shrink-0">
+                    <div class="p-3 badge-primary rounded-4">
+                        <i class="fas fa-briefcase fa-lg text-primary fa-fw"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-4">
+                    <p class="mb-1">가장 적합한 직업과 유사한 직업을 추천해드릴게요!</p>
+                </div>
+            </div>
+            <br/>
+            <div class="d-flex align-items-start">
+                <div class="flex-shrink-0">
+                    <div class="p-3 badge-primary rounded-4">
+                        <i class="fas fa-earth-asia fa-lg text-primary fa-fw"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-4">
+                    <p class="mb-1">지역과 직업을 고르면 채용정보도 추천해드릴게요!</p>
+                </div>
+            </div>
+        </section>
+    </div>
         <ul>
         <li>현재 채용중인 기업정보에 대하여 확인이 가능해요.</li>
         <li>버튼을 누른 뒤, 마음에 드는 회사를 선택해봐요.</li>
