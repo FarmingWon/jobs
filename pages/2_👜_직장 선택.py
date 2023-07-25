@@ -329,11 +329,11 @@ with st.sidebar:
             <div class="d-flex align-items-start">
                 <div class="flex-shrink-0">
                     <div class="p-3 badge-primary rounded-4">
-                        <i class="fas fa-cloud-upload-alt fa-lg text-primary fa-fw"></i>
+                        <i class="fas fa-building fa-lg text-primary fa-fw"></i>
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-4">
-                    <p class="mb-1">이력서를 올려서 추천직업을 확인해보세요.</p>
+                    <p class="mb-1">현재 채용중인 기업정보에 대하여 확인이 가능해요.</p>
                 </div>
             </div>
             <br/>
