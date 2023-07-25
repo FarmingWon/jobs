@@ -206,7 +206,7 @@ def makeMap(address,corpNm):
     ],
   }
   st_echarts(
-    options=options, height=725
+    options=options, height=550
   )
 
   makeMarker(m, df_subway_distance, 'orange', 'train')
@@ -351,22 +351,96 @@ if 'company' in st.session_state:
     address = company['기업위치']
     company_name = company['기업명']
     html = f"""
-    선택한 채용공고는 <strong>{company_name}</strong>의 채용공고시네요! 해당 회사에 대한 인프라를 알려드릴게요!
+    <div style="font-size:20px">
+        선택한 채용공고는 <span style="color: #2A9DF4;">{company_name}</span>의 채용공고네요.<br>
+        해당 회사에 대한 <strong>인프라</strong>를 알려드릴게요 ! 
+    </div><br>
     """
     st.markdown(html, unsafe_allow_html=True)
-    con1,con2= st.columns([0.5,0.5])
-    with con1:
+
+    col0,col1, col2 = st.columns([0.05,0.4,0.4])
+    con3,con4,con5= st.columns([0.2,0.5,0.2])
+    color_list = get_color_list()
+    with col1:
       m = makeMap(address, company_name)
-      con1_html = """ 
+      con3_html = """ 
         <h3 style="text-align:center">생활 편의시설 통계</h3>
         """
-      st.markdown(con1_html, unsafe_allow_html=True)
-    with con2:
+      st.markdown(con3_html, unsafe_allow_html=True)
+
+    with col2:
+       htmlStyle="""
+      <style>
+        .box {
+            border: 3px solid black;
+            padding: 1em;
+            border-radius: 10px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 18px;
+            width: 110px;
+            height: 60px;
+            font-weight :bolder;
+            display: inline-block;
+          
+        }
+        .cololrBox {
+            padding: 1em;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 14px;
+            width: 80px;
+            height: 40px;
+            font-weight: bolder;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            margin-left: 40px; 
+        }
+    </style>
+        """
+       eval_list = st.session_state.eval_list
+       col1Html = f"""
+       <div>
+          <span class="box">대중교통</span> 
+          <span class="cololrBox" style="background-color: {color_list[0]};"></span>
+          <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[0]}</span>
+          <br><br>
+          <span class="box"> 병원 </span>
+          <span class="cololrBox" style="background-color: {color_list[1]};"></span>
+          <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[1]}</span>
+          <br><br>
+          <span class="box">문화시설</span> 
+          <span class="cololrBox" style="background-color: {color_list[2]}; "></span>
+          <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[2]}</span>
+          <br><br>
+          <span class="box">커피숍</span> 
+          <span class="cololrBox" style="background-color: {color_list[3]}; "></span>
+          <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[3]}</span>
+          <br><br>
+          <span class="box">운동시설</span> 
+          <span class="cololrBox" style="background-color:{color_list[4]}; "></span>
+          <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[4]}</span>
+          <br><br>
+          <span class="box">올리브영</span> 
+          <span class="cololrBox" style="background-color :{color_list[5]};"></span>
+          <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[5]}</span>
+          <br><br>
+      </div>
+      <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>인프라 점수</span>는? </div>
+      <h1>라이프 밸런스 점수는 {st.session_state.score}점 이네요.</h1>
+    """
+       st.markdown(htmlStyle, unsafe_allow_html=True)
+       st.markdown(col1Html, unsafe_allow_html=True)
+
+
+    with con4:
       st_folium(m, width=700, returned_objects=[])
-      con2_html = """ 
-      <h3 style="text-align:center">기업 주변 인프라</h3>
-      """
-      st.markdown(con2_html, unsafe_allow_html=True)
+      con4_html = """ 
+        <h3 style="text-align:center">기업 주변 인프라</h3>
+        """
+      st.markdown(con4_html, unsafe_allow_html=True)
     html = f"""
     <h2>AI의 {company_name}회사 인프라 평가</h2>
     """
@@ -374,10 +448,10 @@ if 'company' in st.session_state:
     st.write(st.session_state.infra)
 else:
     if 'clicked_regionCd' not in st.session_state:
-        st.error('직업 추천을 먼저 진행해주세요')
-        if st.button("< Prev"):
-            switch_page("이력서를_통한_직업_추천")
+      st.error('직업 추천을 먼저 진행해주세요')
+      if st.button("< Prev"):
+        switch_page("이력서를 통한 직업 추천")
     else:
-        st.error('직장 선택을 먼저 진행해주세요')
-        if st.button("< Prev"):
-            switch_page("직장_선택")
+       st.error('직장 선택을 먼저 진행해주세요')
+       if st.button("< Prev"):
+          switch_page("직장 선택")
