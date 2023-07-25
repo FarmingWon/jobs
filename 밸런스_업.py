@@ -445,7 +445,7 @@ def main():
               </div>
           </div>
 	"""
-	htmlScript = """
+	+"""
 	<script>
 		$(document).ready(function() {
 			$(window).fadeThis();
@@ -453,7 +453,6 @@ def main():
 	</script>
     """
     st.markdown(html3,unsafe_allow_html=True)
-	st.markdown(htmlScript,unsafe_allow_html=True)
 
 if __name__ == "__main__":
     set_variable()
