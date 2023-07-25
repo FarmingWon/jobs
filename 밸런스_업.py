@@ -299,7 +299,7 @@ def main():
         GPT_KEY = st.secrets.KEY.GPT_KEY
         openai.api_key = GPT_KEY
         htmlJobs = """
-	<!-- Font Awesome -->
+		<!-- Font Awesome -->
 	    <link
 	    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	    rel="stylesheet"/>
