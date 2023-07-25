@@ -445,7 +445,7 @@ if 'company' in st.session_state:
           <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[5]}</span>
           <br><br>
       </div>
-      <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>인프라 점수</span>는? </div>
+      <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>라이프 밸런스 점수</span>는? </div>
       <h2>라이프 밸런스 점수는 {st.session_state.score}점 이네요.</h2>
     """
        st.markdown(htmlStyle, unsafe_allow_html=True)
