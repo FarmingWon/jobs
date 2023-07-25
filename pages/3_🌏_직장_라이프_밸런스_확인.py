@@ -367,6 +367,7 @@ if 'company' in st.session_state:
     address = company['기업위치']
     company_name = company['기업명']
     html = f"""
+    <br>
     <div style="font-size:20px">
         선택한 채용공고는 <span style="color: #2A9DF4;">{company_name}</span>의 채용공고네요.<br>
         해당 회사에 대한 <strong>인프라</strong>를 알려드릴게요 ! 
