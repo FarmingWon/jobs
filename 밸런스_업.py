@@ -341,6 +341,11 @@ def main():
                 message(st.session_state["generated"][i], key=str(i)) 
 
     html3 = f"""
+        <script type="text/javascript">
+        $( document ).ready( function() {
+            $( '.container.slide-bottom' ).fadeIn( 2000 );
+          } );
+        </script>
         <div class="container slide-bottom" style="margin-top: 30%; height: auto;">
             <div class="row">
                 <div class="col">
