@@ -232,6 +232,16 @@ with st.sidebar:
                     <p class="mb-1">이력서를 올려서 추천직업을 확인해보세요.</p>
                 </div>
             </div>
+            <div class="d-flex align-items-start">
+                <div class="flex-shrink-0">
+                    <div class="p-3 badge-primary rounded-4">
+                        <i class="fas fa-breifcase-alt fa-lg text-primary fa-fw"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-4">
+                    <p class="mb-1">이력서를 올려서 추천직업을 확인해보세요.</p>
+                </div>
+            </div>
         </section>
     </div>
         <ul>
