@@ -134,16 +134,16 @@ htmlTitle = """
     <div class="container header" style="font-weight:600;"><p class="h3">📝이력서를 통한 직업 추천</p></div>
     <div class="container">
         <ol class="c-stepper">
-            <li class="c-stepper-item completed">
+            <li class="c-stepper-item completed" id="c-item1">
                 <p class="c-stepper-title">이력서 파일 입력</p>
             </li>
-            <li class="c-stepper-item">
+            <li class="c-stepper-item" id="c-item2">
                 <p class="c-stepper-title">개인 맞춤 직무 추천</p>
             </li>
-            <li class="c-stepper-item">
+            <li class="c-stepper-item" id="c-item3">
                 <p class="c-stepper-title">기업의 직업/지역 선택</p>
             </li>
-            <li class="c-stepper-item">
+            <li class="c-stepper-item" id="c-item4">
                 <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
             </li>
         </ol>
@@ -290,6 +290,12 @@ if 'selectJob' in st.session_state and st.session_state.selectJob:
         showRegion(st.session_state.regions)
         regionBtn_clicked = st.button("지역 선택")
     if regionBtn_clicked:
+        htmlcode='''
+        <script type="text/javascript">
+        document.getElementById('c-item-2').className += ' completed';
+        </script>
+        '''
+        st.markdown(htmlcode, unsafe_allow_html=True)
         st.session_state.clicked_regionCd = None
         st.session_state.clicked_regionNm = None
         
