@@ -49,7 +49,7 @@ with st.sidebar:
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
 
-    htmlTitle = """
+htmlTitle = """
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -81,7 +81,7 @@ with st.sidebar:
         }
     </style>
     """
-    st.markdown(htmlTitle, unsafe_allow_html=True)
+st.markdown(htmlTitle, unsafe_allow_html=True)
 
 if 'generated' not in st.session_state: # 초기화
     st.session_state['generated'] = [
