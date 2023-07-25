@@ -294,47 +294,45 @@ def main():
             switch_page("이력서를_통한_직업_추천")
 
 	# JobsGPT
-    empty,con3,empty2= st.columns([0.1,0.8,0.1])
-    with con3:
-        GPT_KEY = st.secrets.KEY.GPT_KEY
-        openai.api_key = GPT_KEY
-        htmlJobs = """
-		<!-- Font Awesome -->
-	    <link
-	    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-	    rel="stylesheet"/>
-	    <!-- Google Fonts -->
-	    <link
-	    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-	    rel="stylesheet"/>
-	    <!-- MDB -->
-	    <link
-	    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
-	    rel="stylesheet"/>
-	    <!-- MDB -->
-	    <script
-	    type="text/javascript"
-	    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-	    
-	    <div class="container header" style="font-weight:600;"><p class="h3">JobsGPT의 직업소개</p></div>
+	GPT_KEY = st.secrets.KEY.GPT_KEY
+	openai.api_key = GPT_KEY
+	htmlJobs = """
+	<!-- Font Awesome -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet"/>
+	<!-- Google Fonts -->
+	<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet"/>
+	<!-- MDB -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+	rel="stylesheet"/>
+	<!-- MDB -->
+	<script
+	type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 	
-	    <style type="text/css">
-	        @font-face {
-	            font-family: 'Pretendard-Regular';
-	            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-	            font-weight: 400;
-	            font-style: normal;
-	        }
-	        .container {
-	            font-family: 'Pretendard-Regular';
-	        }
-	    </style>
-		"""
-    	st.markdown(htmlJobs, unsafe_allow_html=True)
-           
-    if 'generated' not in st.session_state: # 초기화
-            st.session_state['generated'] = [
-                                            """웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
+	<div class="container header" style="font-weight:600;"><p class="h3">JobsGPT의 직업소개</p></div>
+
+	<style type="text/css">
+		@font-face {
+			font-family: 'Pretendard-Regular';
+			src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
+		}
+		.container {
+			font-family: 'Pretendard-Regular';
+		}
+	</style>
+	"""
+	st.markdown(htmlJobs, unsafe_allow_html=True)
+	   
+	if 'generated' not in st.session_state: # 초기화
+		st.session_state['generated'] = [
+										"""웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
 
 
 또한, 웹 개발에 필요한 프레임워크나 라이브러리를 습득하는 것이 중요합니다. 예를 들어, React, Angular 또는 Vue.js와 같은 프레임워크를 사용하여 웹 애플리케이션을 개발할 수 있습니다. 이러한 도구들은 개발 시간을 단축하고 효율적인 코드 작성을 도와줍니다.
@@ -348,28 +346,28 @@ def main():
 
 마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
 
-    if 'past' not in st.session_state: # 초기화
-      st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
+if 'past' not in st.session_state: # 초기화
+  st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
 
 
-      query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
-      button = st.button("submit")
-      if button or st.session_state.get("submit"):
-          st.session_state["submit"] = True
-          try:
-              with st.spinner("Calling Job Description API..."):
-                    
-                  output = ask(query)
-                  st.session_state.past.append(query)
-                  st.session_state.generated.append(output)
+  query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
+  button = st.button("submit")
+  if button or st.session_state.get("submit"):
+	  st.session_state["submit"] = True
+	  try:
+		  with st.spinner("Calling Job Description API..."):
+				
+			  output = ask(query)
+			  st.session_state.past.append(query)
+			  st.session_state.generated.append(output)
 
-          except OpenAIError as e:
-              st.error(e._message)
+	  except OpenAIError as e:
+		  st.error(e._message)
 
-      if st.session_state['generated']:
-          for i in range(len(st.session_state['generated'])-1, -1, -1):
-              message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-              message(st.session_state["generated"][i], key=str(i)) 
+  if st.session_state['generated']:
+	  for i in range(len(st.session_state['generated'])-1, -1, -1):
+		  message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+		  message(st.session_state["generated"][i], key=str(i)) 
 
     html3 = f"""
         <div class="slide-bottom">
