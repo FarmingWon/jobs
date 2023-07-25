@@ -112,6 +112,9 @@ def main():
     <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="jquery.fadethis.min.js"></script>
+    <script>$(window).fadeThis();</script>
     <div class="container wrap">
         <div class="container title">
             <div class="row" style="margin-top: 0%;">
@@ -338,7 +341,7 @@ def main():
                 message(st.session_state["generated"][i], key=str(i)) 
 
     html3 = f"""
-        <div class="container" style="margin-top: 30%; height: auto;">
+        <div class="container slide-bottom" style="margin-top: 30%; height: auto;">
             <div class="row">
                 <div class="col">
                     <h2>개인 맞춤 직무 추천과<br/>관련 기업의 인프라 평가까지</h2> 
