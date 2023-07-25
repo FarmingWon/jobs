@@ -287,6 +287,10 @@ def main():
             switch_page("이력서를_통한_직업_추천")
 
 
+    htmlt = """
+        <div style = "height : 150px"></div>    
+    """
+    st.markdown(htmlt, unsafe_allow_html=True)
 
     empty,con3,empty2= st.columns([0.1,0.8,0.1])
     with con3:
