@@ -344,7 +344,7 @@ with st.sidebar:
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-4">
-                    <p class="mb-1">가장 적합한 직업과 유사한 직업을 추천해드릴게요!</p>
+                    <p class="mb-1">버튼을 누른 뒤, 마음에 드는 회사를 선택해봐요.</p>
                 </div>
             </div>
             <br/>
@@ -355,16 +355,11 @@ with st.sidebar:
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-4">
-                    <p class="mb-1">지역과 직업을 고르면 채용정보도 추천해드릴게요!</p>
+                    <p class="mb-1">인프라 확인 버튼을 누르면 인프라를 확인할수 있어요!</p>
                 </div>
             </div>
         </section>
     </div>
-        <ul>
-        <li>현재 채용중인 기업정보에 대하여 확인이 가능해요.</li>
-        <li>버튼을 누른 뒤, 마음에 드는 회사를 선택해봐요.</li>
-        <li>인프라 확인 버튼을 누르면 인프라를 확인할수 있어요!</li>
-        </ul>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
