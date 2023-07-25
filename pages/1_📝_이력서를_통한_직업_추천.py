@@ -236,7 +236,7 @@ with st.sidebar:
             <div class="d-flex align-items-start">
                 <div class="flex-shrink-0">
                     <div class="p-3 badge-primary rounded-4">
-                        <i class="fas fa-breifcase fa-lg text-primary fa-fw"></i>
+                        <i class="fas fa-briefcase fa-lg text-primary fa-fw"></i>
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-4">
