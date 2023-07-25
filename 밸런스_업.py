@@ -14,7 +14,6 @@ from openai.error import OpenAIError
 from st_pages import Page, add_page_title, show_pages
 from streamlit_chat import message
 from streamlit_extras.switch_page_button import switch_page
-from streamlit_javascript import st_javascript
 
 # -- import modules end --
 
