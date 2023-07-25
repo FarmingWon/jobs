@@ -222,7 +222,7 @@ with st.sidebar:
     htmlSide=f"""
     <div class="container sidebar">
         <section class="mb-5">
-            <div class="row gx-sm-5">
+            <div class="row gx-lg-5">
                 <div class="col-lg-6 mb-5">
                     <div class="d-flex align-items-start">
                         <div class="flex-shrink-0">
