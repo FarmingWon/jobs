@@ -43,13 +43,13 @@ def set_variable():
 
 
 def set_csv():
-  st.session_state.df_subway = pd.read_csv('csv/subway.csv')
-  st.session_state.df_bus = pd.read_csv('csv/bus.csv')
-  st.session_state.df_hospital = pd.read_csv('csv/hospital.csv')
-  st.session_state.df_museum = pd.read_csv('csv/museum.csv')
-  st.session_state.df_starbucks = pd.read_csv('csv/starbucks_busan.csv')
-  st.session_state.df_exercise = pd.read_csv('csv/exercise.csv')
-  st.session_state.df_oliveyoung = pd.read_csv('csv/oliveyoung.csv')
+	st.session_state.df_subway = pd.read_csv('csv/subway.csv')
+  	st.session_state.df_bus = pd.read_csv('csv/bus.csv')
+  	st.session_state.df_hospital = pd.read_csv('csv/hospital.csv')
+  	st.session_state.df_museum = pd.read_csv('csv/museum.csv')
+  	st.session_state.df_starbucks = pd.read_csv('csv/starbucks_busan.csv')
+  	st.session_state.df_exercise = pd.read_csv('csv/exercise.csv')
+  	st.session_state.df_oliveyoung = pd.read_csv('csv/oliveyoung.csv')
 
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
@@ -96,7 +96,7 @@ def main():
         st.markdown(htmlSide, unsafe_allow_html=True)
 
     #main
-    htmlHeader = f"""
+    htmlHeader = """
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -118,6 +118,7 @@ def main():
     <script src="./script/jquery-fadethis-master/dist/jquery.fadethis.js"></script>
     """
     st.markdown(htmlHeader, unsafe_allow_html=True)
+	
     html1=f"""
     <div class="container wrap">
         <div class="container title">
@@ -276,18 +277,19 @@ def main():
         }
     </style>
     """
-    st.markdown(html1, unsafe_allow_html=True)
+	st.markdown(html1, unsafe_allow_html=True)
 
     m = st.markdown("""
     <style>
-    div.stButton > button:first-child {
-        background-color: #0C377A;
-        color: #ffffff;
-        width: 100%;
-        height: 100%;
-        margin-top: 0%;
-    }
-    </style>""", unsafe_allow_html=True)
+	    div.stButton > button:first-child {
+	        background-color: #0C377A;
+	        color: #ffffff;
+	        width: 100%;
+	        height: 100%;
+	        margin-top: 0%;
+	    }
+    </style>
+	""", unsafe_allow_html=True)
 	
     col1, col2, col3 = st.columns([1,3,1])
     with col2:
@@ -297,6 +299,7 @@ def main():
 	# JobsGPT
 	GPT_KEY = st.secrets.KEY.GPT_KEY
 	openai.api_key = GPT_KEY
+		
 	htmlJobs = """
 	<!-- Font Awesome -->
 	<link
@@ -332,43 +335,31 @@ def main():
 	st.markdown(htmlJobs, unsafe_allow_html=True)
 	   
 	if 'generated' not in st.session_state: # 초기화
-		st.session_state['generated'] = [
-										"""웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
-
-
+		st.session_state['generated'] = ["""웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
 또한, 웹 개발에 필요한 프레임워크나 라이브러리를 습득하는 것이 중요합니다. 예를 들어, React, Angular 또는 Vue.js와 같은 프레임워크를 사용하여 웹 애플리케이션을 개발할 수 있습니다. 이러한 도구들은 개발 시간을 단축하고 효율적인 코드 작성을 도와줍니다.
-
-
 또한, 데이터베이스 및 서버 측 기술을 이해하는 것도 중요합니다. 웹 개발자는 사용자 데이터를 저장하고 관리하기 위해 데이터베이스를 사용하며, 서버 측 기술을 사용하여 웹 애플리케이션을 호스팅하고 구동시킵니다. 대표적인 데이터베이스는 MySQL, PostgreSQL, MongoDB 등이 있습니다.
-
-
-웹 개발자가 가져야할 기타 필수 스킬에는 문제 해결 능력, 시스템 아키텍처 이해, 협업 능력, 디자인 원칙에 대한 이해 등이 있습니다.
-
-
-마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
+웹 개발자가 가져야할 기타 필수 스킬에는 문제 해결 능력, 시스템 아키텍처 이해, 협업 능력, 디자인 원칙에 대한 이해 등이 있습니다.마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
 	if 'past' not in st.session_state: # 초기화
-  		st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
-
-
-  	query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
+		st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
+		
+	query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
   	button = st.button("submit")
   	if button or st.session_state.get("submit"):
-	  st.session_state["submit"] = True
-	  try:
-		  with st.spinner("Calling Job Description API..."):
-			  output = ask(query)
-			  st.session_state.past.append(query)
-			  st.session_state.generated.append(output)
+		st.session_state["submit"] = True
+	  	try:
+			with st.spinner("Calling Job Description API..."):
+				output = ask(query)
+			  	st.session_state.past.append(query)
+			  	st.session_state.generated.append(output)
 
-	  except OpenAIError as e:
-		  st.error(e._message)
-
-  	if st.session_state['generated']:
-	  for i in range(len(st.session_state['generated'])-1, -1, -1):
-		  message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-		  message(st.session_state["generated"][i], key=str(i)) 
-
-    html3 = f"""
+	  	except OpenAIError as e:
+			st.error(e._message)
+	if st.session_state['generated']:
+		for i in range(len(st.session_state['generated'])-1, -1, -1):
+			message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+			message(st.session_state["generated"][i], key=str(i))
+	
+	html3 = f"""
         <div class="slide-bottom">
             <div class="container" style="margin-top: 30%; height: auto;">
                 <div class="row">
@@ -448,7 +439,8 @@ def main():
             </div>
         </div>
     """
-    st.markdown(html3,unsafe_allow_html=True)
+    st.markdown(html3, unsafe_allow_html=True)
+
     st_javascript("""
         $(document).ready(function() {
 				$(window).fadeThis();
