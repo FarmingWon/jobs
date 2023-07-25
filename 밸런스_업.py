@@ -83,7 +83,7 @@ def main():
             </h5>
         </div>
         """
-        st.markdown(htmlSide2, unsafe_allow_html=True)
+        #st.markdown(htmlSide2, unsafe_allow_html=True)
 
     #main
     html1 = f"""
