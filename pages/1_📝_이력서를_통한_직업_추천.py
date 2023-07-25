@@ -74,7 +74,7 @@ def download_link(data, file_name, file_label):
 
 get_progress_score()
 htmlTitle = """
-    <div class="container header"><h3>📝이력서를 통한 직업 추천</h3></div>
+    <div class="container header" style="font-weight:600;"><p class="h3">📝이력서를 통한 직업 추천</p></div>
     <div class="container">
         <ol class="c-stepper">
             <li class="c-stepper-item completed">
