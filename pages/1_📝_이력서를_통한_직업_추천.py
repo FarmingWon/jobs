@@ -244,6 +244,12 @@ st.session_state.regions = r.getRegion()
 
 
 if uploaded_file:
+    htmlcode='''
+        <script type="text/javascript">
+        document.getElementById('c-item2').className += ' completed';
+        </script>
+        '''
+    st.markdown(htmlcode, unsafe_allow_html=True)
     if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
         save_upload_file('_pdf', uploaded_file)
         GPT_KEY = st.secrets.KEY.GPT_KEY
@@ -260,12 +266,6 @@ if uploaded_file:
 
 clickedJob = None
 if uploaded_file and  'selected_job' not in st.session_state or st.session_state.selected_job is None:
-    htmlcode='''
-        <script type="text/javascript">
-        document.getElementById('c-item2').className += ' completed';
-        </script>
-        '''
-    st.markdown(htmlcode, unsafe_allow_html=True)
     with st.expander(label = '직업 선택', expanded=True):
         if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
             showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
