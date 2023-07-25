@@ -105,10 +105,10 @@ def main():
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <div class="container wrap">
         <div class="container title">
-            <div class="row">
+            <div class="row" style="margin-top: 0%;">
                 <div class="col-md-4"></div>
                 <div class="col-md-5 d-flex justify-content-center">
-                    <img src="data:image/png;base64,{img_to_bytes("./img/balanceup_logo.png")}" style="width:200px; height:150px;">  
+                    <img src="data:image/png;base64,{img_to_bytes("./img/balanceup_logo.png")}" style="width:200px; height:200px;">  
                 </div>
                 <div class="col-md-4"></div>
             </div>
