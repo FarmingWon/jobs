@@ -277,7 +277,7 @@ def main():
             switch_page("이력서를_통한_직업_추천")
 
     html3 = f"""
-        <div class="container" style="margin-top: 30%; background-color: #EDEDED; height: auto;">
+        <div class="container" style="margin-top: 30%; height: auto;">
             <div class="row">
                 <!-- <div style="float: left; margin-left: 25%;"> -->
                 <div class="col">
