@@ -315,7 +315,7 @@ def main():
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     
-    <div class="container header" style="font-weight:600; margin-top: 10%;"><p class="h3">JobsGPT의 직업소개</p></div>
+    <div class="container header" style="font-weight:600; font-size: 16px; margin-top: 10%;"><p class="h3">JobsGPT의 직업소개</p></div>
 
     <style type="text/css">
       @font-face {
