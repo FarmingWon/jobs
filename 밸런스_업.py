@@ -340,13 +340,7 @@ def main():
                 message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
                 message(st.session_state["generated"][i], key=str(i)) 
 
-    html3 = """
-        <script type="text/javascript">
-        $( document ).ready( function() {
-            $( '.container.slide-bottom' ).fadeIn( 2000 );
-          } );
-        </script>
-        """ + f"""
+    html3 = f"""
         <div class="container slide-bottom" style="margin-top: 30%; height: auto;">
             <div class="row">
                 <div class="col">
