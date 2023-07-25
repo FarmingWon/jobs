@@ -44,12 +44,12 @@ def set_variable():
 
 def set_csv():
 	st.session_state.df_subway = pd.read_csv('csv/subway.csv')
-  	st.session_state.df_bus = pd.read_csv('csv/bus.csv')
-  	st.session_state.df_hospital = pd.read_csv('csv/hospital.csv')
-  	st.session_state.df_museum = pd.read_csv('csv/museum.csv')
-  	st.session_state.df_starbucks = pd.read_csv('csv/starbucks_busan.csv')
-  	st.session_state.df_exercise = pd.read_csv('csv/exercise.csv')
-  	st.session_state.df_oliveyoung = pd.read_csv('csv/oliveyoung.csv')
+  st.session_state.df_bus = pd.read_csv('csv/bus.csv')
+  st.session_state.df_hospital = pd.read_csv('csv/hospital.csv')
+  st.session_state.df_museum = pd.read_csv('csv/museum.csv')
+  st.session_state.df_starbucks = pd.read_csv('csv/starbucks_busan.csv')
+  st.session_state.df_exercise = pd.read_csv('csv/exercise.csv')
+  st.session_state.df_oliveyoung = pd.read_csv('csv/oliveyoung.csv')
 
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
