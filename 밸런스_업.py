@@ -113,6 +113,7 @@ def main():
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script/jquery-fadethis-master/dist/jquery.fadethis.min.js"></script>
     <script src="jquery.fadethis.min.js"></script>
     <script>$(window).fadeThis();</script>
     <div class="container wrap">
