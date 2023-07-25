@@ -228,6 +228,22 @@ def makeMarker(m, df, color, icon):
                   icon=(folium.Icon(color=color, icon=icon, prefix='fa'))
                  ).add_to(m)
 
+def get_color_list():
+  color_list = list()
+  eval_list = st.session_state.eval_list
+  for eval in eval_list:
+    color = None
+    if eval == "없음": # 주황
+      color = '#FF7F00'
+    elif eval == '보통': # 노랑
+      color = '#FFFF00'
+    elif eval == '여유': # 초록
+      color = '#00FF80'
+    else: #혼잡, 빨강
+      color = '##FF0000'
+    color_list.append(color)
+  return color_list
+
 htmlTitle = """
     <!-- Font Awesome -->
     <link
