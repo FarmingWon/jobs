@@ -285,7 +285,7 @@ if uploaded_file and  'selected_job' not in st.session_state or st.session_state
             showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
             clickedJob = st.button("직업 선택")
     if clickedJob:
-        st.session_state.selectJob = True
+        st.session_state.clickedJob = True
         st.session_state.clicked_jobCd = None
         st.session_state.clicked_jobNm = None
         if st.session_state.jobs is not None:
@@ -305,7 +305,7 @@ if 'clicked_jobNm' in st.session_state and st.session_state.clicked_jobNm != Non
     st.markdown(selectJobHtml, unsafe_allow_html=True)
 
 
-if 'selectJob' in st.session_state and st.session_state.selectJob:
+if 'clickedJob' in st.session_state and st.session_state.clickedJob:
     with st.expander(label="지역 선택", expanded=True):
         showRegion(st.session_state.regions)
         regionBtn_clicked = st.button("지역 선택")
