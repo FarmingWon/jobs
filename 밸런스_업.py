@@ -315,7 +315,7 @@ def main():
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     
-    <div class="container header" style="font-weight:600; font-size: 16px; margin-top: 10%;"><p class="h3">JobsGPT의 직업소개</p></div>
+    <div class="container header" style="font-weight:600; font-size: 20px; margin-top: 10%;"><p class="h3">JobsGPT의 직업소개</p></div>
 
     <style type="text/css">
       @font-face {
@@ -347,7 +347,7 @@ def main():
 마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
     if 'past' not in st.session_state: # 초기화
       st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
-    query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
+    query = st.text_area('LLM기반 AI 챗봇 프로그램을 통해 구직 상담을 진행하세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
     button = st.button("submit")
     if button or st.session_state.get("submit"):
       st.session_state["submit"] = True
