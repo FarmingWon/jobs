@@ -444,11 +444,11 @@ def main():
                   </div>
               </div>
           </div>
-	  	<script>
+		<script>
 				$(document).ready(function() {
 					$(window).fadeThis();
 				});
-   		</script>
+		</script>
       """
       st.markdown(html3,unsafe_allow_html=True)
 
