@@ -16,3 +16,4 @@ streamlit_chat
 pathlib
 streamlit_extras
 streamlit-javascript
+plotly
