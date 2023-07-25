@@ -70,7 +70,7 @@ with con3:
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     
-    <div class="container header" style="font-weight:600;"><p class="h3">📝이력서를 통한 직업 추천</p></div>
+    <div class="container header" style="font-weight:600;"><p class="h3">JobsGPT의 직업소개</p></div>
 
     <style type="text/css">
         @font-face {
