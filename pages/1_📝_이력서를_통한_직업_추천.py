@@ -109,7 +109,8 @@ def download_link(data, file_name, file_label):
     b64 = base64.b64encode(data).decode()
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_name}">{file_label}</a>'
     return href
-
+if 'barScore' not in st.session_state:
+    st.session_state.barScore = 0
 get_progress_score()
 htmlTitle = """
     <!-- Font Awesome -->
