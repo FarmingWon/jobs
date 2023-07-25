@@ -445,9 +445,9 @@ def main():
               </div>
           </div>
 		<script>
-				$(document).ready(function() {
-					$(window).fadeThis();
-				});
+		$(document).ready(function() {
+			$(window).fadeThis();
+		});
 		</script>
       """
       st.markdown(html3,unsafe_allow_html=True)
