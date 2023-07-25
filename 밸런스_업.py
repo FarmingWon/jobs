@@ -152,7 +152,7 @@ def main():
             font-weight: 400;
             font-style: normal;
         }
-        body {
+        .container {
             font-family: 'Pretendard-Regular';
         }
         .container.wrap{
