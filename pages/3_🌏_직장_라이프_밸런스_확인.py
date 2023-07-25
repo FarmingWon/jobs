@@ -299,4 +299,4 @@ else:
     else:
         st.error('직장 선택을 먼저 진행해주세요')
         if st.button("< Prev"):
-            switch_page("직장 선택")
+            switch_page("직장_선택")
