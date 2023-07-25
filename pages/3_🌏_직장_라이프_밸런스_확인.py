@@ -446,7 +446,7 @@ if 'company' in st.session_state:
           <br><br>
       </div>
       <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>인프라 점수</span>는? </div>
-      <h1>라이프 밸런스 점수는 {st.session_state.score}점 이네요.</h1>
+      <h2>라이프 밸런스 점수는 {st.session_state.score}점 이네요.</h2>
     """
        st.markdown(htmlStyle, unsafe_allow_html=True)
        st.markdown(col1Html, unsafe_allow_html=True)
