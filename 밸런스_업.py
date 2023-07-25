@@ -446,10 +446,8 @@ def main():
           </div>
 		<script>
 		$(document).ready(function() {
-					$(window).fadeThis({
-						speed: 1000,
-					});
-				});
+			$(window).fadeThis();
+		});
 		</script>
       """
       st.markdown(html3,unsafe_allow_html=True)
