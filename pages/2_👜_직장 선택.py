@@ -78,39 +78,47 @@ def calculate_distance(df, center_xy):
 
 def eval_infra(score_list):
     eval_list = list()
-    if (score_list[0] + score_list[1]) == 0 : 
+    if (score_list[0] + score_list[1]) == 0 : #대중교통
         eval_list.append("없음")
     elif (score_list[0] + score_list[1]) > 200:
         eval_list.append("혼잡")
     else :
         eval_list.append("보통")
 
-    if score_list[2] == 0:
+    if score_list[2] == 0: #병원
         eval_list.append("없음")
-    else :
-        eval_list.append("있음")
+    elif score_list[2] >= 1 and score_list[2] <= 2:
+        eval_list.append("보통")
+    else:
+        eval_list.append("여유")
     
-    if score_list[3] == 0:
+    if score_list[3] == 0: #문화시설
         eval_list.append("없음")
-    else :
-        eval_list.append("있음")
+    elif score_list[3] >= 1 and score_list[3] <= 2:
+        eval_list.append("보통")
+    else:
+        eval_list.append("여유")
     
-    if score_list[4] == 0:
+    if score_list[4] == 0: #스벽
         eval_list.append("없음")
-    else :
-        eval_list.append("있음")
+    elif score_list[4] >= 1 and score_list[4] <= 2:
+        eval_list.append("보통")
+    else:
+        eval_list.append("여유")
     
-    if score_list[5] == 0:
+    if score_list[5] == 0: #운동
         eval_list.append("없음")
-    elif score_list[5] >= 200 :
-        eval_list.append("많음")
+    elif score_list[5] >= 100 :
+        eval_list.append("여유")
     else :
-        eval_list.append("있음")
+        eval_list.append("보통")
     
-    if score_list[6] == 0:
+    if score_list[6] == 0: #올영
         eval_list.append("없음")
-    else :
-        eval_list.append("있음")
+    elif score_list[6] >= 1 and score_list[6] <= 2:
+        eval_list.append("보통")
+    else:
+        eval_list.append("여유")
     return eval_list
 
 # EventListener: Button(Show More)
@@ -123,7 +131,7 @@ def on_less_click(show_more, idx):
     st.session_state.show_more = show_more
 
 # func: calculate score of company
-def make_score(company_name,address,busisize): # 점수 계산
+def make_score(company_name,address,busisize,isShow=False): # 점수 계산
     set_csv()
     center_xy = list(addr_to_lat_lon(address))
 
@@ -194,7 +202,22 @@ def make_score(company_name,address,busisize): # 점수 계산
     st.session_state.score = int(score)
 
     st.session_state.query = query
-    st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
+    if isShow:
+        st.session_state.query = query
+        st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
+        st.session_state.eval_list = eval_list
+    return int(score)
+
+def all_score():
+    li = list()
+    for idx,row in st.session_state.companys.iterrows():
+        score = make_score(row['기업명'], row['기업위치'], row['기업규모'])
+        li.append(score)
+    df = pd.DataFrame(li, columns=['score'])
+    st.session_state.companys['score'] = li
+    st.session_state.companys['score'].sort_values(ascending=False) # 내림차순
+
+
 
 htmlTitle = """
     <!-- Font Awesome -->
@@ -338,23 +361,23 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
             st.session_state.show_more = dict.fromkeys([i for i in range(len(st.session_state.companys))], False)
         show_more = st.session_state.show_more
                 
-        cols = st.columns(2)
-        rows = ['기업명', '더보기']
+        cols = st.columns(3)
+        rows = ['기업명', '더보기', '라이프 밸런스 점수']
     
         # table header
         for col, field in zip(cols, rows):
             col.write("**"+field+"**")
-    
+        all_score()
         # table rows
         for idx, row in st.session_state.companys.iterrows():
-          col1, col2 = st.columns(2)
+          col1, col2,col3 = st.columns(3)
           col1.write(row['기업명'])
           placeholder = col2.empty()
           if show_more[int(idx)]:
               placeholder.button(
                   "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
               )
-              make_score(row['기업명'], row['기업위치'], row['기업규모'])
+              make_score(row['기업명'], row['기업위치'], row['기업규모'], isShow= True)
                     
               st.write('기업규모 : ' + row['기업규모'])
               st.write('근로계약 : ' + row['근로계약'])
@@ -381,3 +404,4 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
                   args=[show_more, idx],
                   type="primary",
                 )
+          col3.write(f"{row['score']}점")
