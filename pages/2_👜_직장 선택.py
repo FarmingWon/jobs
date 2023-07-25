@@ -196,7 +196,109 @@ def make_score(company_name,address,busisize): # 점수 계산
     st.session_state.query = query
     st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
 
-st.title('👜직장 선택')
+htmlTitle = """
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"/>
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+    rel="stylesheet"/>
+    <!-- MDB -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    
+    <div class="container header" style="font-weight:600;"><p class="h3">👜기업의 직업/지역 선택</p></div>
+    <div class="container">
+        <ol class="c-stepper">
+            <li class="c-stepper-item completed" id="c-item1">
+                <p class="c-stepper-title">이력서 파일 입력</p>
+            </li>
+            <li class="c-stepper-item completed" id="c-item2">
+                <p class="c-stepper-title">개인 맞춤 직무 추천</p>
+            </li>
+            <li class="c-stepper-item completed" id="c-item3">
+                <p class="c-stepper-title">기업의 직업/지역 선택</p>
+            </li>
+            <li class="c-stepper-item" id="c-item4">
+                <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
+            </li>
+        </ol>
+    </div>
+    <style type="text/css">
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        .container {
+            font-family: 'Pretendard-Regular';
+        }
+
+        .c-stepper {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+
+        .c-stepper-title {
+            margin-top:5px;
+            font-size: small;
+        }
+        
+        .c-stepper-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .c-stepper-item:before {
+            --size: 3rem;
+            content: '';
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            border: 0.5px solid #0E3E89;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .c-stepper-item:not(:last-child):after {
+            content: '';
+            position: relative;
+            top: 1.5rem;
+            left: 50%;
+            height: 1.5px;
+            background-color: #D1D1D1;
+            order: -1;
+        }
+        .c-stepper-item.completed:before {
+            --size: 3rem;
+            content: '';
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            border: 0.5px solid #0E3E89;
+            margin: 0 auto;
+            background-color: #0E3E89
+        }
+    </style>
+    """
+st.markdown(htmlTitle, unsafe_allow_html=True)
 with st.sidebar:
     htmlSide=f"""
         <br/>
