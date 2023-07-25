@@ -284,7 +284,8 @@ def main():
                     <h2>개인 맞춤 직무 추천과<br/>관련 기업의 인프라 평가까지</h2> 
                     <p>거대언어모델을 활용한 <strong>개인 커스텀 AI 직무 추천</strong>과<br/>밸런스업의 내부 평가 모델을 통한 ELEI 차트를 제공합니다.</p>
                     <br/>
-                    <p style="align-items-bottom"><small>*ELEI(Enterprise Living Environment Index): 기업 생활 환경 지수 </small></p>
+                    <p style="align-items-bottom"><small>*ELEI(Enterprise Living Environment Index): 기업 생활 환경 지수로
+MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대한 평가를 진행합니다.</small></p>
                 </div>
                 <!-- <div style="float: left;"> -->
                 <div class="col">
