@@ -324,7 +324,7 @@ MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대�
                     </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center">
+            <div class="row d-flex justify-content-center" style="margin-top: 5%">
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
