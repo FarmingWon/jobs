@@ -467,7 +467,7 @@ else:
     if 'clicked_regionCd' not in st.session_state:
       st.error('직업 추천을 먼저 진행해주세요')
       if st.button("< Prev"):
-        switch_page("이력서를_통한_직업_추천")
+        switch_page("이력서를_통한_직업_추천")
     else:
        st.error('직장 선택을 먼저 진행해주세요')
        if st.button("< Prev"):
