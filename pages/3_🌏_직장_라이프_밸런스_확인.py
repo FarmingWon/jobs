@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_echarts import st_echarts
 from streamlit_folium import st_folium
 from st_pages import add_page_title
+from streamlit_extras.switch_page_button import switch_page
 
 import folium
 
