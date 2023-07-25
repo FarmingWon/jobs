@@ -330,7 +330,7 @@ def main():
 		        }
 		    </style>
 	    """
-		st.markdown(htmlTitle, unsafe_allow_html=True)
+	st.markdown(htmlTitle, unsafe_allow_html=True)
 
     	if 'generated' not in st.session_state: # 초기화
             st.session_state['generated'] = [
