@@ -232,23 +232,30 @@ with st.sidebar:
                     <p class="mb-1">이력서를 올려서 추천직업을 확인해보세요.</p>
                 </div>
             </div>
+            <br/>
             <div class="d-flex align-items-start">
                 <div class="flex-shrink-0">
                     <div class="p-3 badge-primary rounded-4">
-                        <i class="fas fa-breifcase-alt fa-lg text-primary fa-fw"></i>
+                        <i class="fas fa-breifcase fa-lg text-primary fa-fw"></i>
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-4">
-                    <p class="mb-1">이력서를 올려서 추천직업을 확인해보세요.</p>
+                    <p class="mb-1">가장 적합한 직업과 유사한 직업을 추천해드릴게요!</p>
+                </div>
+            </div>
+            <br/>
+            <div class="d-flex align-items-start">
+                <div class="flex-shrink-0">
+                    <div class="p-3 badge-primary rounded-4">
+                        <i class="fas fa-earth-asia fa-lg text-primary fa-fw"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-4">
+                    <p class="mb-1">지역과 직업을 고르면 채용정보도 추천해드릴게요!</p>
                 </div>
             </div>
         </section>
     </div>
-        <ul>
-            <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
-            <li style="text-align:left; text-decoration:center; color:inherit;"> 가장 적합한 직업과 유사한 직업을 추천해드릴게요!</li>
-            <li style="text-align:left; text-decoration:center; color:inherit;"> 지역과 직업을 고르면 채용정보도 추천해드릴게요!</li>
-        </ul>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
