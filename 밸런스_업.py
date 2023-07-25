@@ -118,9 +118,6 @@ def main():
     <script src="./script/jquery-fadethis-master/dist/jquery.fadethis.min.js"></script>
     """
     st.markdown(htmlHeader, unsafe_allow_html=True)
-    st_javascript("""
-    <script>$(window).fadeThis();</script>
-    """)
     html1=f"""
     <div class="container wrap">
         <div class="container title">
@@ -427,7 +424,16 @@ def main():
             </div>
         </div>
     """
-    st.markdown(html3,unsafe_allow_html=True)     
+    st.markdown(html3,unsafe_allow_html=True)
+    st_javascript("""
+    <script>
+        $(document).ready(function() {
+				$(window).fadeThis({
+					speed: 1000,
+				});
+			});
+    </script>
+    """)
 
 if __name__ == "__main__":
     set_variable()
