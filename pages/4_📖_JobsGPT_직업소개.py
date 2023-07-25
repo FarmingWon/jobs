@@ -41,7 +41,6 @@ openai.api_key = GPT_KEY
 
 with st.sidebar:
     htmlSide=f"""
-        <br/>
         <ul>
             <li>ChatGPT를 이용해 직업의 상세 설명을 제공하는 페이지에요.</li>
             <li>궁금하거나 직업 추천을 통해 나온 결과를 입력해보세요!</li>
@@ -53,7 +52,40 @@ with st.sidebar:
 empty,con3,empty2= st.columns([0.1,0.5,0.1])
 
 with con3:
-    st.title("JobsGPT의 직업소개")
+    htmlTitle = """
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"/>
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+    rel="stylesheet"/>
+    <!-- MDB -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    
+    <div class="container header" style="font-weight:600;"><p class="h3">📝이력서를 통한 직업 추천</p></div>
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        .container {
+            font-family: 'Pretendard-Regular';
+        }
+    </style>
+    """
+    st.markdown(htmlTitle, unsafe_allow_html=True)
+    #st.title("JobsGPT의 직업소개")
 
     if 'generated' not in st.session_state: # 초기화
         st.session_state['generated'] = [
