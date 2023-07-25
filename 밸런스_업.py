@@ -87,10 +87,10 @@ def main():
     with st.sidebar:
         htmlSide=f"""
         <div class="container sidebar">
-            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
-            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
-            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
-            <a href="#" style="text-align:left; text-decoration:center; color:inherit;"><p>📝Feature</p></a>
+            <a href="#" style="text-decoration:center; color:inherit;"><p>✔ What is BalanceUP?</p></a>
+            <a href="#" style="text-decoration:center; color:inherit;"><p>🔔 How To Use</p></a>
+            <a href="#" style="text-decoration:center; color:inherit;"><p>❓ Why BalanceUP?</p></a>
+            <a href="#" style="text-decoration:center; color:inherit;"><p>📝Feature</p></a>
         </div>
         """
         st.markdown(htmlSide, unsafe_allow_html=True)
@@ -142,7 +142,7 @@ def main():
             </div>
         </div>
         <br/>
-        <div class="container">
+        <div class="container slide-bottom">
             <ol class="c-stepper">
                 <li class="c-stepper-item">
                     <p class="c-stepper-title">이력서 파일 입력</p>
