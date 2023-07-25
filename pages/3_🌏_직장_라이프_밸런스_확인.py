@@ -258,7 +258,7 @@ htmlTitle = """
             <li class="c-stepper-item completed" id="c-item3">
                 <p class="c-stepper-title">기업의 직업/지역 선택</p>
             </li>
-            <li class="c-stepper-item" id="c-item4">
+            <li class="c-stepper-item completed" id="c-item4">
                 <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
             </li>
         </ol>
