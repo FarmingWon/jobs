@@ -110,7 +110,9 @@ def download_link(data, file_name, file_label):
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_name}">{file_label}</a>'
     return href
     
+set_variable()
 get_progress_score()
+
 htmlTitle = """
     <!-- Font Awesome -->
     <link
@@ -215,16 +217,15 @@ htmlTitle = """
     """
 st.markdown(htmlTitle, unsafe_allow_html=True)
 
+
 with st.sidebar:
     htmlSide=f"""
         <br/>
-        <div class="container">
-            <ul>
-                <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
-                <li style="text-align:left; text-decoration:center; color:inherit;"> 가장 적합한 직업과 유사한 직업을 추천해드릴게요!</li>
-                <li style="text-align:left; text-decoration:center; color:inherit;"> 지역과 직업을 고르면 채용정보도 추천해드릴게요!</li>
-            </ul>
-        </div>
+        <ul>
+            <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
+            <li style="text-align:left; text-decoration:center; color:inherit;"> 가장 적합한 직업과 유사한 직업을 추천해드릴게요!</li>
+            <li style="text-align:left; text-decoration:center; color:inherit;"> 지역과 직업을 고르면 채용정보도 추천해드릴게요!</li>
+        </ul>
     """
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
@@ -256,12 +257,13 @@ file_path = './_pdf/ws.pdf'
 with open(file_path, 'rb') as file:
     pdf_data= file.read()
 download_btn = download_link(pdf_data, "sample_data.pdf", "여기")
-htmlCode= f"""
+html= f"""
 샘플 파일을 다운하고싶으면 {download_btn}를 눌러봐요.
 """
-st.markdown(htmlCode, unsafe_allow_html=True)
+st.markdown(html, unsafe_allow_html=True)
 uploaded_file = st.file_uploader("이력서를 올려보세요!", type="pdf")
 st.session_state.regions = r.getRegion()
+
 
 if uploaded_file:
     if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
@@ -273,7 +275,7 @@ if uploaded_file:
         if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
             st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
         jobsHtml = f"""
-            <p>가장 적합한 직업은 <strong>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
+            <p>가장 적합한 직업은 <strong style='color:#2A9DF4;'>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
         """
         st.markdown(jobsHtml, unsafe_allow_html=True)
         st.write(f"")
@@ -285,7 +287,7 @@ if uploaded_file and  'selected_job' not in st.session_state or st.session_state
             showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
             clickedJob = st.button("직업 선택")
     if clickedJob:
-        st.session_state.clickedJob = True
+        st.session_state.selectJob = True
         st.session_state.clicked_jobCd = None
         st.session_state.clicked_jobNm = None
         if st.session_state.jobs is not None:
@@ -305,7 +307,7 @@ if 'clicked_jobNm' in st.session_state and st.session_state.clicked_jobNm != Non
     st.markdown(selectJobHtml, unsafe_allow_html=True)
 
 
-if 'clickedJob' in st.session_state and st.session_state.clickedJob:
+if 'selectJob' in st.session_state and st.session_state.selectJob:
     with st.expander(label="지역 선택", expanded=True):
         showRegion(st.session_state.regions)
         regionBtn_clicked = st.button("지역 선택")
