@@ -301,7 +301,7 @@ MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대�
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <div id="logo">
+                            <div class="d-flex justify-content-center" id="logo">
                                 <h5>
                                     <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
                                 </h5>
@@ -312,18 +312,18 @@ MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대�
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                        <div id="logo">
-                            <h5>
-                                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:200px; height:60px;">
-                            </h5>
-                        </div>
+                            <div class="d-flex justify-content-center" id="logo">
+                                <h5>
+                                    <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:200px; height:60px;">
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <div id="logo">
+                            <div class="d-flex justify-content-center" id="logo">
                                 <h5>
                                     <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
                                 </h5>
