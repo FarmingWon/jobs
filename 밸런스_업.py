@@ -427,9 +427,7 @@ def main():
     st.markdown(html3,unsafe_allow_html=True)
     st_javascript("""
         $(document).ready(function() {
-				$(window).fadeThis({
-					speed: 1000,
-				});
+				$(window).fadeThis();
 			});
     """)
 
