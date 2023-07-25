@@ -330,9 +330,9 @@ def main():
 		        }
 		    </style>
 	    """
-	st.markdown(htmlJobs, unsafe_allow_html=True)
-
-    	if 'generated' not in st.session_state: # 초기화
+    st.markdown(htmlJobs, unsafe_allow_html=True)
+           
+    if 'generated' not in st.session_state: # 초기화
             st.session_state['generated'] = [
                                             """웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
 
