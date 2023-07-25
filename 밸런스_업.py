@@ -115,7 +115,7 @@ def main():
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script/jquery-fadethis-master/dist/jquery.fadethis.min.js"></script>
     <script src="jquery.fadethis.min.js"></script>
-    <script>$(window).fadeThis();</script>
+    <script>$(div).fadeThis();</script>
     <div class="container wrap">
         <div class="container title">
             <div class="row" style="margin-top: 0%;">
@@ -342,7 +342,6 @@ def main():
                 message(st.session_state["generated"][i], key=str(i)) 
 
     html3 = f"""
-        <script>$(container).fadeThis();</script>
         <div class="container slide-bottom" style="margin-top: 30%; height: auto;">
             <div class="row">
                 <div class="col">
