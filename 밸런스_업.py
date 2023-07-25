@@ -158,7 +158,7 @@ def main():
         .container.wrap{
             overflow: hidden;
             #height: 700px;
-            padding: 500px 0px 0px 0px;
+            padding: 450px 0px 0px 0px;
             top:100%;
             left: 50%;
             position: relative;
