@@ -74,47 +74,16 @@ def calculate_distance(df, center_xy):
 
 def eval_infra(score_list):
     eval_list = list()
-    if (score_list[0] + score_list[1]) == 0 : #대중교통
-        eval_list.append("없음")
-    elif (score_list[0] + score_list[1]) > 200:
-        eval_list.append("혼잡")
-    else :
-        eval_list.append("보통")
-
-    if score_list[2] == 0: #병원
-        eval_list.append("없음")
-    elif score_list[2] >= 1 and score_list[2] <= 2:
-        eval_list.append("보통")
-    else:
-        eval_list.append("여유")
-    
-    if score_list[3] == 0: #문화시설
-        eval_list.append("없음")
-    elif score_list[3] >= 1 and score_list[3] <= 2:
-        eval_list.append("보통")
-    else:
-        eval_list.append("여유")
-    
-    if score_list[4] == 0: #스벽
-        eval_list.append("없음")
-    elif score_list[4] >= 1 and score_list[4] <= 2:
-        eval_list.append("보통")
-    else:
-        eval_list.append("여유")
-    
-    if score_list[5] == 0: #운동
-        eval_list.append("없음")
-    elif score_list[5] >= 100 :
-        eval_list.append("여유")
-    else :
-        eval_list.append("보통")
-    
-    if score_list[6] == 0: #올영
-        eval_list.append("없음")
-    elif score_list[6] >= 1 and score_list[6] <= 2:
-        eval_list.append("보통")
-    else:
-        eval_list.append("여유")
+    for idx, score in enumerate(score_list):
+        if score >= 18:
+            eval_list.append("여유")
+        elif score >= 7:
+            if idx == 0:
+                eval_list.append("혼잡")
+            else:
+                eval_list.append("보통")
+        else:
+            eval_list.append("없음")
     return eval_list
 
 # EventListener: Button(Show More)
@@ -169,40 +138,74 @@ def make_score(company_name,address,busisize,isShow=False): # 점수 계산
                         len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 0.5) & (df_oliveyoung_distance['distance'] <= 1.0)]),
                         len(df_oliveyoung_distance.loc[(df_oliveyoung_distance['distance'] > 1.0) & (df_oliveyoung_distance['distance'] <= 3.0)])]
     col_name = ['subway','bus','hospital','museum','starbucks','exercise','oliveyoung']
-    score_list = list()
+    score_weight = 2
+    score_weight_list = list() # 만점 144
     score = 0
+    minusList = [3,2,1]
+    plusList = [2,1,0]
     for name in col_name:
         tp_score = 0
+        total_cal_score = 0
+        minus = 0
+        plus = 0
         for i in range(3):
             tp_score = tp_score + df_graph.loc[i][name]
-        score_list.append(tp_score)
-        if tp_score >= 100:
-            if tp_score >= 1000:
-                tp_score = tp_score * 0.02
-            else :
-                tp_score = tp_score * 0.2
-        
-        score = score + tp_score
+            if df_graph.loc[i][name] == 0:
+                minus = minus + minusList[i]
+            else:
+                plus = plus + plusList[i]
+        tp_score = tp_score - minus + plus
+        if tp_score < 0:
+            tp_score = 0
+        elif tp_score > 24:
+            tp_score = 24
+        if name == 'subway' or name == 'bus':
+            if tp_score >= 100: # 혼잡 
+                tp_score = score_weight * 3
+            elif tp_score == 0:
+                tp_score = score_weight * 0
+            else:
+                tp_score = score_weight * 6 
+        elif name =='exercise':
+            if tp_score >= 100:
+                tp_score = score_weight * 12 
+            elif tp_score == 0:
+                tp_score = score_weight * 0
+            else:
+                tp_score = score_weight * 6
+        else:
+            if tp_score > 2:
+                tp_score = score_weight * 12
+            elif tp_score == 0:
+                tp_score = score_weight * 0 
+            else:
+                tp_score = score_weight * 6
+        total_cal_score = total_cal_score + tp_score
+        if name == 'bus':
+            score_weight_list[0] = score_weight_list[0] + total_cal_score
+        else:
+            score_weight_list.append(total_cal_score)
+        score = score + total_cal_score
         
     if busisize == '강소기업':
-        score = int(score*1.2)
-    st.session_state.score = int(score)
+        score = score + 16
+    elif busisize == "중견기업" or busisize == "대기업":
+        score = score + 8
+    else:
+        score = score + 4 
+    st.session_state.score = score
     
-    eval_list = eval_infra(score_list)
-    query = f"""
-    현재 회사 근처에 대중교통 {eval_list[0]}, 병원 {eval_list[1]}, 박물관 {eval_list[2]}, 커피숍 {eval_list[3]}, 운동시설 {eval_list[4]}, 화장품샵 {eval_list[5]} 인데 회사 주변의 인프라를 평가해줘.
-    """
-    
-    if busisize == '강소기업':
-        score = int(score*1.2)
-    st.session_state.score = int(score)
-
-    st.session_state.query = query
     if isShow:
+        st.session_state.score_weight_list = score_weight_list
+        eval_list = eval_infra(score_weight_list)
+        query = f"""
+        현재 회사 근처에 대중교통 {eval_list[0]}, 병원 {eval_list[1]}, 박물관 {eval_list[2]}, 커피숍 {eval_list[3]}, 운동시설 {eval_list[4]}, 화장품샵 {eval_list[5]} 인데 회사 주변의 라이프 밸런스를 평가해줘.
+        """
         st.session_state.query = query
         st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
+        st.df_graph = df_graph
         st.session_state.eval_list = eval_list
-    return int(score)
+    return score
 
 def all_score():
     li = list()
@@ -211,7 +214,7 @@ def all_score():
         li.append(score)
     df = pd.DataFrame(li, columns=['score'])
     st.session_state.companys['score'] = li
-    st.session_state.companys['score'].sort_values(ascending=False) # 내림차순
+    st.session_state.companys =st.session_state.companys.sort_values(by='score',ascending=False) # 내림차순
 
 
 
@@ -246,7 +249,7 @@ htmlTitle = """
                 <p class="c-stepper-title">기업의 직업/지역 선택</p>
             </li>
             <li class="c-stepper-item" id="c-item4">
-                <p class="c-stepper-title">기업 인프라 평가 + ELEI 차트</p>
+                <p class="c-stepper-title">기업 라이프 밸런스 평가 + ELEI 차트</p>
             </li>
         </ol>
     </div>
@@ -351,7 +354,7 @@ with st.sidebar:
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-4">
-                    <p class="mb-1">인프라 확인 버튼을 누르면 인프라를 확인할수 있어요!</p>
+                    <p class="mb-1">라이프 밸런스 확인 버튼을 누르면 라이프 밸런스를 확인할수 있어요!</p>
                 </div>
             </div>
         </section>
@@ -367,6 +370,13 @@ if 'clicked_regionCd' not in st.session_state:
         switch_page("이력서를_통한_직업_추천")
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
     st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
+    html = f"""
+        <span><strong>{st.session_state.clicked_regionNm}</strong>지역의 <strong>{st.session_state.clicked_jobNm}</strong> 채용공고가 </span>
+        <span style='color:#2A9DF4; font-weight:bold'>{len(st.session_state.gangso) + len(st.session_state.recommend_company)}</span>개의 채용공고가 있네요.
+        <br>잠시만 기다리시면 라이프 밸런스 점수와 함께 보여드리겠습니다.!
+    """
+    st.markdown(html,unsafe_allow_html=True)
+    
     fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
     st.subheader('기업목록')
     if len(st.session_state.gangso) != 0:
@@ -404,17 +414,32 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
                   "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
               )
               make_score(row['기업명'], row['기업위치'], row['기업규모'], isShow= True)
-                    
-              st.write('기업규모 : ' + row['기업규모'])
-              st.write('근로계약 : ' + row['근로계약'])
-              st.write('근무시간 : ' + row['근무시간'])
-              url = row['URL']
-              st.write("공고 URL : [%s](%s)" % (url, url))
-              st.write("인프라 점수 : " + str(st.session_state.score))
               subcol1, subcol2 = st.columns(2)
-              subcol1.write('기업위치 : ' + row['기업위치'])
+              with subcol1:
+                    html = """
+                        <div style='height:50px'></div>
+                    """
+                    st.markdown(html,unsafe_allow_html=True)
+                    st.write('기업규모 : ' + row['기업규모'])
+                    st.write('근로계약 : ' + row['근로계약'])
+                    st.write('근무시간 : ' + row['근무시간'])
+                    url = row['URL']
+                    st.write("공고 URL : [%s](%s)" % (url, url))
+                    st.write("라이프 밸런스 점수 : " + str(st.session_state.score) + "/160점")
               with subcol2:
-                  if st.button('기업 주변 인프라 확인'):
+                    columns_name = ['대중교통','병원','문화시설','커피숍','운동시설','올리브영']
+                    score_weight_list = st.session_state.score_weight_list
+                    merge_data = list()
+                    for i in range(6):
+                        merge_data.append([columns_name[i],score_weight_list[i]])
+                    df = pd.DataFrame(merge_data, columns=['라이프 밸런스','점수'])
+                    fig1 = px.pie(df, values='점수' ,names='라이프 밸런스', title='라이프 밸런스 점수 비율 차트')
+                    fig1.update_traces(textposition='outside',textinfo='label+percent', textfont_size=20,textfont_color="black")
+                    st.plotly_chart(fig1)  
+                  
+              subcol3,subcol4 = st.columns(2)    
+              with subcol4:
+                  if st.button('기업 주변 라이프 밸런스 확인'):
                       st.session_state.selectCompany = True
                       get_progress_score()
                       bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
@@ -430,4 +455,4 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
                   args=[show_more, idx],
                   type="primary",
                 )
-          col3.write(f"{row['score']}점")
+          col3.write(f"{row['score']}/160점")
