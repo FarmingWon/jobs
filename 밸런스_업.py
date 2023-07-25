@@ -329,8 +329,8 @@ def main():
 	            font-family: 'Pretendard-Regular';
 	        }
 	    </style>
-	"""
-    st.markdown(htmlJobs, unsafe_allow_html=True)
+		"""
+    	st.markdown(htmlJobs, unsafe_allow_html=True)
            
     if 'generated' not in st.session_state: # 초기화
             st.session_state['generated'] = [
