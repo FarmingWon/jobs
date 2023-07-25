@@ -240,28 +240,7 @@ with st.sidebar:
     st.markdown(htmlSide, unsafe_allow_html=True)
     st.sidebar.markdown("---")
     bar = st.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-    st.sidebar.markdown("---")
-    htmlSide2=f"""
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        <div id="logo">
-            <h5>
-                <span>Powered By  &nbsp; &nbsp; &nbsp;</span>
-                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
-            </h5>
-        </div>
-        """
-    st.markdown(htmlSide2, unsafe_allow_html=True)
+    
 # set_csv()
 if 'company' in st.session_state:
     st.session_state.selectWLB = True
