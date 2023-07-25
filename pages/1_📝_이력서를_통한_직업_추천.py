@@ -221,7 +221,22 @@ st.markdown(htmlTitle, unsafe_allow_html=True)
 with st.sidebar:
     htmlSide=f"""
     <div class="container sidebar">
-        <section class="mb-5"></section>
+        <section class="mb-5">
+            <div class="row gx-sm-5">
+                <div class="col-lg-6 mb-5">
+                    <div class="d-flex align-items-start">
+                        <div class="flex-shrink-0">
+                            <div class="p-3 badge-primary rounded-4">
+                                <i class="fas fa-cloud-upload-alt fa-lg text-primary fa-fw"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-4">
+                            <p>이력서를 올려서 추천직업을 확인해보세요.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
         <ul>
             <li style="text-align:left; text-decoration:center; color:inherit;">이력서를 올려서 추천직업을 확인해보세요.</li>
