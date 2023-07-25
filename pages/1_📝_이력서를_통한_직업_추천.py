@@ -77,7 +77,7 @@ htmlTitle = """
     <div class="container header"><h3>📝이력서를 통한 직업 추천</h3></div>
     <div class="container">
         <ol class="c-stepper">
-            <li class="c-stepper-item">
+            <li class="c-stepper-item completed">
                 <p class="c-stepper-title">이력서 파일 입력</p>
             </li>
             <li class="c-stepper-item">
