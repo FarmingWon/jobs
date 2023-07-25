@@ -11,6 +11,10 @@ from pathlib import Path
 import pandas as pd
 import math
 
+#openai
+import openai
+from openai.error import OpenAIError
+from streamlit_chat import message
 # -- import modules end --
 
 # func: setting variable & files
@@ -50,6 +54,32 @@ def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
+
+def clear_submit():
+    st.session_state["submit"] = False
+    
+def ask(q):
+    message = """
+    직업에 대하여 소개를 해줘. 질문에도 답하고,
+    해당 직업이 주로 하는 일, 필요한 skill 및 역량, 전망에 대하여 말해줘.
+    """
+    messages=[{"role": "system", "content": q },
+              {"role" : "assistant", "content" : message}]
+    q = {"role" : "user" , "content" : q}
+    messages.append(q)
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo", 
+        messages = messages
+    )
+
+    bot_text  = response['choices'][0]['message']['content']
+    bot_input = {"role": "assistant", "content": bot_text }
+
+    messages.append(bot_input)
+
+    return bot_text
+
 
 def main():
     #side
@@ -255,6 +285,53 @@ def main():
     with col2:
         if st.button("무료로 이용하기"):
             switch_page("이력서를_통한_직업_추천")
+
+
+
+    empty,con3,empty2= st.columns([0.1,0.8,0.1])
+    with con3:
+        GPT_KEY = st.secrets.KEY.GPT_KEY
+        openai.api_key = GPT_KEY
+        st.title("JobsGPT의 직업 상담")
+
+        if 'generated' not in st.session_state: # 초기화
+            st.session_state['generated'] = [
+                                            """웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
+
+
+또한, 웹 개발에 필요한 프레임워크나 라이브러리를 습득하는 것이 중요합니다. 예를 들어, React, Angular 또는 Vue.js와 같은 프레임워크를 사용하여 웹 애플리케이션을 개발할 수 있습니다. 이러한 도구들은 개발 시간을 단축하고 효율적인 코드 작성을 도와줍니다.
+
+
+또한, 데이터베이스 및 서버 측 기술을 이해하는 것도 중요합니다. 웹 개발자는 사용자 데이터를 저장하고 관리하기 위해 데이터베이스를 사용하며, 서버 측 기술을 사용하여 웹 애플리케이션을 호스팅하고 구동시킵니다. 대표적인 데이터베이스는 MySQL, PostgreSQL, MongoDB 등이 있습니다.
+
+
+웹 개발자가 가져야할 기타 필수 스킬에는 문제 해결 능력, 시스템 아키텍처 이해, 협업 능력, 디자인 원칙에 대한 이해 등이 있습니다.
+
+
+마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
+
+        if 'past' not in st.session_state: # 초기화
+            st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
+
+
+        query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
+        button = st.button("submit")
+        if button or st.session_state.get("submit"):
+            st.session_state["submit"] = True
+            try:
+                with st.spinner("Calling Job Description API..."):
+                    
+                    output = ask(query)
+                    st.session_state.past.append(query)
+                    st.session_state.generated.append(output)
+
+            except OpenAIError as e:
+                st.error(e._message)
+
+        if st.session_state['generated']:
+            for i in range(len(st.session_state['generated'])-1, -1, -1):
+                message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+                message(st.session_state["generated"][i], key=str(i)) 
 
     html3 = f"""
         <div class="container" style="margin-top: 30%; height: auto;">
