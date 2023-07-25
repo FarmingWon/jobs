@@ -43,7 +43,7 @@ def set_variable():
 
 
 def set_csv():
-	st.session_state.df_subway = pd.read_csv('csv/subway.csv')
+  st.session_state.df_subway = pd.read_csv('csv/subway.csv')
   st.session_state.df_bus = pd.read_csv('csv/bus.csv')
   st.session_state.df_hospital = pd.read_csv('csv/hospital.csv')
   st.session_state.df_museum = pd.read_csv('csv/museum.csv')
@@ -96,7 +96,7 @@ def main():
         st.markdown(htmlSide, unsafe_allow_html=True)
 
     #main
-    htmlHeader = """
+    htmlHeader = f"""
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -118,7 +118,6 @@ def main():
     <script src="./script/jquery-fadethis-master/dist/jquery.fadethis.js"></script>
     """
     st.markdown(htmlHeader, unsafe_allow_html=True)
-	
     html1=f"""
     <div class="container wrap">
         <div class="container title">
@@ -277,19 +276,18 @@ def main():
         }
     </style>
     """
-	st.markdown(html1, unsafe_allow_html=True)
+    st.markdown(html1, unsafe_allow_html=True)
 
     m = st.markdown("""
     <style>
-	    div.stButton > button:first-child {
-	        background-color: #0C377A;
-	        color: #ffffff;
-	        width: 100%;
-	        height: 100%;
-	        margin-top: 0%;
-	    }
-    </style>
-	""", unsafe_allow_html=True)
+    div.stButton > button:first-child {
+        background-color: #0C377A;
+        color: #ffffff;
+        width: 100%;
+        height: 100%;
+        margin-top: 0%;
+    }
+    </style>""", unsafe_allow_html=True)
 	
     col1, col2, col3 = st.columns([1,3,1])
     with col2:
@@ -297,155 +295,162 @@ def main():
             switch_page("이력서를_통한_직업_추천")
 	
 	# JobsGPT
-	GPT_KEY = st.secrets.KEY.GPT_KEY
-	openai.api_key = GPT_KEY
-		
-	htmlJobs = """
-	<!-- Font Awesome -->
-	<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-	rel="stylesheet"/>
-	<!-- Google Fonts -->
-	<link
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-	rel="stylesheet"/>
-	<!-- MDB -->
-	<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
-	rel="stylesheet"/>
-	<!-- MDB -->
-	<script
-	type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-	
-	<div class="container header" style="font-weight:600;"><p class="h3">JobsGPT의 직업소개</p></div>
+    GPT_KEY = st.secrets.KEY.GPT_KEY
+    openai.api_key = GPT_KEY
+    htmlJobs = """
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"/>
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+    rel="stylesheet"/>
+    <!-- MDB -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    
+    <div class="container header" style="font-weight:600;"><p class="h3">JobsGPT의 직업소개</p></div>
 
-	<style type="text/css">
-		@font-face {
-			font-family: 'Pretendard-Regular';
-			src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-			font-weight: 400;
-			font-style: normal;
-		}
-		.container {
-			font-family: 'Pretendard-Regular';
-		}
-	</style>
-	"""
-	st.markdown(htmlJobs, unsafe_allow_html=True)
-	   
-	if 'generated' not in st.session_state: # 초기화
-		st.session_state['generated'] = ["""웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
+    <style type="text/css">
+      @font-face {
+        font-family: 'Pretendard-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+      }
+      .container {
+        font-family: 'Pretendard-Regular';
+      }
+    </style>
+	  """
+    st.markdown(htmlJobs, unsafe_allow_html=True) 
+    if 'generated' not in st.session_state: # 초기화
+      st.session_state['generated'] = [
+										"""웹 개발자가 되기 위해서는 몇 가지 단계를 거쳐야합니다. 먼저, 프로그래밍 언어를 학습해야합니다. 웹 개발에서는 일반적으로 HTML, CSS, JavaScript와 같은 기본 언어를 알아야합니다. 이러한 언어들은 웹 사이트의 구조, 디자인 및 상호 작용을 구현하는 데 사용됩니다.
+
+
 또한, 웹 개발에 필요한 프레임워크나 라이브러리를 습득하는 것이 중요합니다. 예를 들어, React, Angular 또는 Vue.js와 같은 프레임워크를 사용하여 웹 애플리케이션을 개발할 수 있습니다. 이러한 도구들은 개발 시간을 단축하고 효율적인 코드 작성을 도와줍니다.
+
+
 또한, 데이터베이스 및 서버 측 기술을 이해하는 것도 중요합니다. 웹 개발자는 사용자 데이터를 저장하고 관리하기 위해 데이터베이스를 사용하며, 서버 측 기술을 사용하여 웹 애플리케이션을 호스팅하고 구동시킵니다. 대표적인 데이터베이스는 MySQL, PostgreSQL, MongoDB 등이 있습니다.
-웹 개발자가 가져야할 기타 필수 스킬에는 문제 해결 능력, 시스템 아키텍처 이해, 협업 능력, 디자인 원칙에 대한 이해 등이 있습니다.마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
-	if 'past' not in st.session_state: # 초기화
-		st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
-		
-	query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
-  	button = st.button("submit")
-  	if button or st.session_state.get("submit"):
-		st.session_state["submit"] = True
-	  	try:
-			with st.spinner("Calling Job Description API..."):
-				output = ask(query)
-			  	st.session_state.past.append(query)
-			  	st.session_state.generated.append(output)
 
-	  	except OpenAIError as e:
-			st.error(e._message)
-	if st.session_state['generated']:
-		for i in range(len(st.session_state['generated'])-1, -1, -1):
-			message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-			message(st.session_state["generated"][i], key=str(i))
-	
-	html3 = f"""
-        <div class="slide-bottom">
-            <div class="container" style="margin-top: 30%; height: auto;">
-                <div class="row">
-                    <div class="col">
-                        <h2 class="slide-bottom">개인 맞춤 직무 추천과<br/>관련 기업의 인프라 평가까지</h2> 
-                        <p>거대언어모델을 활용한 <strong>개인 커스텀 AI 직무 추천</strong>과<br/>밸런스업의 내부 평가 모델을 통한 ELEI 차트를 제공합니다.</p>
-                        <br/>
-                        <p style="align-items-bottom"><small>*ELEI(Enterprise Living Environment Index): 기업 생활 환경 지수로
-    MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대한 평가를 진행합니다.</small></p>
-                    </div>
-                    <div class="col">
-                        <img src="data:image/png;base64,{img_to_bytes("img/tmpImg.png")}"  style="height: 300px; width: 300px; margin-left: 10%;">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container" style="margin-top: 10%"></div>
-        <div class="container">
-            <h5>Powered by</h5>
-            <div class="row d-flex justify-content-center">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center" id="logo">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center" id="logo">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:200px; height:60px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center" id="logo">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center" style="margin-top: 5%">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center" id="logo">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/kakaomap_logo.jpg")}" style="width:180px; height:60px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center" id="logo">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/vworld_logo.png")}" style="width:180px; height:59px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center" id="logo">
-                                <img src="data:image/png;base64,{img_to_bytes("./img/worknet_logo.png")}" style="width:180px; height:60px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    """
-    st.markdown(html3, unsafe_allow_html=True)
 
-    st_javascript("""
-        $(document).ready(function() {
-				$(window).fadeThis();
-			});
-    """)
+웹 개발자가 가져야할 기타 필수 스킬에는 문제 해결 능력, 시스템 아키텍처 이해, 협업 능력, 디자인 원칙에 대한 이해 등이 있습니다.
+
+
+마지막으로, 웹 개발자의 전망은 매우 밝습니다. 모든 조직과 기업이 온라인 존재를 강화하려고하는 현대 비즈니스 환경에서 웹 개발자는 매우 필요한 직업입니다. 또한, 기술의 빠른 발전으로 인해 웹 개발은 계속해서 성장하고 있는 분야입니다. 따라서 웹 개발자는 취업과 경력 발전에 매우 좋은 전망을 가지고 있습니다."""]
+    if 'past' not in st.session_state: # 초기화
+      st.session_state['past'] = ["웹 개발자가 되려면 어떻게 해야돼?."]
+    query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자가 되려면 어떤 공부를 해야돼?")
+    button = st.button("submit")
+    if button or st.session_state.get("submit"):
+      st.session_state["submit"] = True
+      try:
+        with st.spinner("Calling Job Description API..."):
+          output = ask(query)
+          st.session_state.past.append(query)
+          st.session_state.generated.append(output)
+
+      except OpenAIError as e:
+        st.error(e._message)
+
+    if st.session_state['generated']:
+      for i in range(len(st.session_state['generated'])-1, -1, -1):
+        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+        message(st.session_state["generated"][i], key=str(i)) 
+
+      html3 = f"""
+          <div class="slide-bottom">
+              <div class="container" style="margin-top: 30%; height: auto;">
+                  <div class="row">
+                      <div class="col">
+                          <h2 class="slide-bottom">개인 맞춤 직무 추천과<br/>관련 기업의 인프라 평가까지</h2> 
+                          <p>거대언어모델을 활용한 <strong>개인 커스텀 AI 직무 추천</strong>과<br/>밸런스업의 내부 평가 모델을 통한 ELEI 차트를 제공합니다.</p>
+                          <br/>
+                          <p style="align-items-bottom"><small>*ELEI(Enterprise Living Environment Index): 기업 생활 환경 지수로
+      MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대한 평가를 진행합니다.</small></p>
+                      </div>
+                      <div class="col">
+                          <img src="data:image/png;base64,{img_to_bytes("img/tmpImg.png")}"  style="height: 300px; width: 300px; margin-left: 10%;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="container" style="margin-top: 10%"></div>
+          <div class="container">
+              <h5>Powered by</h5>
+              <div class="row d-flex justify-content-center">
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex justify-content-center align-items-center" id="logo">
+                                  <img src="data:image/png;base64,{img_to_bytes("./img/openai_logo-removebg.png")}" style="width:180px; height:60px;">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex justify-content-center align-items-center" id="logo">
+                                  <img src="data:image/png;base64,{img_to_bytes("./img/mongodb logo.png")}" style="width:200px; height:60px;">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex justify-content-center align-items-center" id="logo">
+                                  <img src="data:image/png;base64,{img_to_bytes("./img/Neo4j-logo_color.png")}" style="width:180px; height:60px;">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row d-flex justify-content-center" style="margin-top: 5%">
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex justify-content-center align-items-center" id="logo">
+                                  <img src="data:image/png;base64,{img_to_bytes("./img/kakaomap_logo.jpg")}" style="width:180px; height:60px;">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex justify-content-center align-items-center" id="logo">
+                                  <img src="data:image/png;base64,{img_to_bytes("./img/vworld_logo.png")}" style="width:180px; height:59px;">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex justify-content-center align-items-center" id="logo">
+                                  <img src="data:image/png;base64,{img_to_bytes("./img/worknet_logo.png")}" style="width:180px; height:60px;">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      """
+      st.markdown(html3,unsafe_allow_html=True)
+      st_javascript("""
+          $(document).ready(function() {
+          $(window).fadeThis();
+        });
+      """)
 
 if __name__ == "__main__":
     set_variable()
