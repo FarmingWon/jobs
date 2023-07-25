@@ -444,14 +444,16 @@ def main():
                   </div>
               </div>
           </div>
-	"""+"""
+	"""
+	htmlScript = """
 	<script>
-	$(document).ready(function() {
-		$(window).fadeThis();
-	});
+		$(document).ready(function() {
+			$(window).fadeThis();
+		});
 	</script>
-      """
-      st.markdown(html3,unsafe_allow_html=True)
+    """
+    st.markdown(html3,unsafe_allow_html=True)
+	st.markdown(htmlScript,unsafe_allow_html=True)
 
 if __name__ == "__main__":
     set_variable()
