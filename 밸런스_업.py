@@ -117,7 +117,7 @@ def main():
     <script src="./script/jquery-fadethis-master/dist/jquery.fadethis.min.js"></script>
     """
     st.markdown(htmlHeader, unsafe_allow_html=True)
-    st.javascript("""
+    st_javascript("""
     <script>$(window).fadeThis();</script>
     """)
     html1=f"""
