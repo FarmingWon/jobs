@@ -278,13 +278,13 @@ if uploaded_file:
         st.markdown(jobsHtml, unsafe_allow_html=True)
         st.write(f"")
 
-selectJob = None
+clickedJob = None
 if uploaded_file and  'selected_job' not in st.session_state or st.session_state.selected_job is None:
     with st.expander(label = '직업 선택', expanded=True):
         if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
             showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
-            selectJob = st.button("직업 선택")
-    if selectJob:
+            clickedJob = st.button("직업 선택")
+    if clickedJob:
         st.session_state.selectJob = True
         st.session_state.clicked_jobCd = None
         st.session_state.clicked_jobNm = None
@@ -299,7 +299,7 @@ if uploaded_file and  'selected_job' not in st.session_state or st.session_state
                     break
 if 'clicked_jobNm' in st.session_state and st.session_state.clicked_jobNm != None:
     selectJobHtml = f"""
-        <strong style='color:#2A9DF4;>{st.session_state.clicked_jobNm}</strong>직업을 선택하셨네요.<br>
+        <strong style='color:#2A9DF4;'>{st.session_state.clicked_jobNm}</strong>직업을 선택하셨네요.<br>
         해당 직업을 가지고 보고싶은 채용공고의 지역을 선택해주세요. 
     """
     st.markdown(selectJobHtml, unsafe_allow_html=True)
