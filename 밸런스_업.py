@@ -435,13 +435,7 @@ def main():
                     </div>
                 </div>
             </div>
-	""" + """
-	<script>
-		$(document).ready(function() {
-			$(window).fadeThis();
-		});
-	</script>
-    """
+	"""
     st.markdown(html3, unsafe_allow_html=True)
     st_javascript("""$(document).ready(function() {
 			$(window).fadeThis();
