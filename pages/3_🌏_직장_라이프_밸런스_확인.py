@@ -39,14 +39,21 @@ def get_progress_score():
                 st.session_state.barScore = 75
                 if st.session_state.selectWLB:
                     st.session_state.barScore = 100
-# def set_csv():
-#   st.session_state.df_subway = pd.read_csv('./csv/subway.csv')
-#   st.session_state.df_bus = pd.read_csv('./csv/bus.csv')
-#   st.session_state.df_hospital = pd.read_csv('./csv/hospital.csv')
-#   st.session_state.df_museum = pd.read_csv('./csv/museum.csv')
-#   st.session_state.df_starbucks = pd.read_csv('./csv/starbucks_busan.csv')
-#   st.session_state.df_exercise = pd.read_csv('./csv/exercise.csv')
-#   st.session_state.df_oliveyoung = pd.read_csv('./csv/oliveyoung.csv')
+
+def get_min(df):
+  min_val = df['distance'].min(0)
+  if np.isnan(min_val): #nan check
+     return 0 
+  min_val = int(min_val*10)
+  if min_val <= 3:
+     min_val = 3
+  return min_val
+
+def get_max(df):
+  max_val = df['distance'].max(0)
+  if np.isnan(max_val): #nan check
+     return 0 
+  return int(max_val*10)
 
 # func: address to lat, lon
 def addr_to_lat_lon(addr):
@@ -93,6 +100,31 @@ def makeMap(address,corpNm):
   df_starbucks_distance = calculate_distance(st.session_state.df_starbucks, center_xy)
   df_exercise_distance = calculate_distance(st.session_state.df_exercise, center_xy)
   df_oliveyoung_distance = calculate_distance(st.session_state.df_oliveyoung, center_xy)
+
+  min_dis = list()
+  sub_dis = get_min(df_subway_distance)
+  bus_dis = get_min(df_bus_distance)
+  
+  min_dis.append(min(sub_dis,bus_dis))
+  min_dis.append(get_min(df_hospital_distance))
+  min_dis.append(get_min(df_museum_distance))
+  min_dis.append(get_min(df_starbucks_distance))
+  min_dis.append(get_min(df_exercise_distance))
+  min_dis.append(get_min(df_oliveyoung_distance))
+
+  max_dis = list()
+  sub_dis = get_max(df_subway_distance)
+  bus_dis = get_max(df_bus_distance)
+  max_dis.append(max(sub_dis, bus_dis))
+  max_dis.append(get_max(df_hospital_distance))
+  max_dis.append(get_max(df_museum_distance))
+  max_dis.append(get_max(df_starbucks_distance))
+  max_dis.append(get_max(df_exercise_distance))
+  max_dis.append(get_max(df_oliveyoung_distance))
+
+  st.session_state.min_dis = min_dis
+  st.session_state.max_dis = max_dis
+    
 
   df_graph = pd.DataFrame({'distance': ['500m', '1km', '3km']})
 
@@ -209,13 +241,13 @@ def makeMap(address,corpNm):
     options=options, height=550
   )
 
-  makeMarker(m, df_subway_distance, 'orange', 'train')
-  makeMarker(m, df_bus_distance, 'orange', 'bus')
-  makeMarker(m, df_hospital_distance, 'red', 'plus')
-  makeMarker(m, df_museum_distance, 'pink', 'institution')
-  makeMarker(m, df_starbucks_distance, 'green', 'coffee')
-  makeMarker(m, df_exercise_distance, 'black', 'soccer-ball-o')
-  makeMarker(m, df_oliveyoung_distance, 'green', 'meteor')
+  makeMarker(m, df_subway_distance, 'blue', 'train')
+  makeMarker(m, df_bus_distance, 'lightgreen', 'bus')
+  makeMarker(m, df_hospital_distance, 'black', 'plus')
+  makeMarker(m, df_museum_distance, 'darkred', 'institution')
+  makeMarker(m, df_starbucks_distance, 'lightblue', 'coffee')
+  makeMarker(m, df_exercise_distance, 'green', 'soccer-ball-o')
+  makeMarker(m, df_oliveyoung_distance, 'orange', 'meteor')
   return m
 
 # func: make Marker in map
@@ -244,6 +276,41 @@ def get_color_list():
     color_list.append(color)
   return color_list
 
+def draw_radar():
+  # Sample data for radar chart
+  categories = ["대중교통", "병원", "문화시설", "커피숍", "운동시설", "올리브영"]
+  min_dis = st.session_state.min_dis
+  max_dis = st.session_state.max_dis
+  # Create a radar chart using Plotly
+  fig = go.Figure()
+  fig.add_trace(go.Scatterpolar(
+      r=max_dis, 
+      theta=categories,
+      fill='toself',
+      name='가장 먼 도보시간(분)',
+      line_color='dodgerblue',
+      opacity=0.6,
+  ))
+  fig.add_trace(go.Scatterpolar(
+      r=min_dis, 
+      theta=categories,
+      fill='toself',
+      name='가장 가까운 도보시간(분)',
+      line_color='tomato',
+  ))
+  
+  fig.update_layout(
+      polar=dict(
+          radialaxis=dict(range=[0, 30])
+      ),
+      showlegend=True,
+      width = 650,
+      height = 650
+  )
+
+  # Display the radar chart in the Streamlit app
+  st.plotly_chart(fig,use_container_width= True)
+    
 htmlTitle = """
     <!-- Font Awesome -->
     <link
@@ -389,23 +456,59 @@ if 'company' in st.session_state:
     company_name = company['기업명']
     html = f"""
     <div style="font-size:20px">
-        선택한 채용공고는 <span style="color: blue;">{company_name}</span>의 채용공고네요.<br>
+        선택한 채용공고는 <span style="color: #2A9DF4;">{company_name}</span>의 채용공고네요.<br>
         해당 회사에 대한 <strong>라이프 밸런스</strong>를 알려드릴게요 ! 
     </div><br>
     """
     st.markdown(html, unsafe_allow_html=True)
 
-    col0,col1, col2 = st.columns([0.05,0.4,0.4])
-    con3,con4,con5= st.columns([0.2,0.5,0.2])
+    html = f"""
+    <h2>AI의 {company_name}회사 라이프 밸런스 평가</h2>
+    """
+    st.markdown(html, unsafe_allow_html=True)
+    st.write(st.session_state.infra)
+    col1, col2 = st.columns([0.55,0.4])
+    con3,con4,con5,con6= st.columns([0.05,0.6,0.5,0.05])
+    emp1,con6 = st.columns([0.01,0.99])
     color_list = get_color_list()
-    with col1:
-      st.markdown("<p>&nbsp;</p>", unsafe_allow_html=True)
+    
+
+    with con5:
       m = makeMap(address, company_name)
       con3_html = """ 
         <h3 style="text-align:center">생활 편의시설 통계</h3>
         """
       st.markdown(con3_html, unsafe_allow_html=True)
 
+    with con4:
+      # if 'starbucks' in st.session_state.df_graph.columns:
+      #   st.session_state.df_graph.rename(columns={'subway' : '지하철',
+      #                                             'bus' : '버스',
+      #                                             'hospital' : '병원',
+      #                                             'museum' : '박물관/미술관',
+      #                                             'starbucks' : '스타벅스',
+      #                                             'exercise' : '체육시설',
+      #                                             'oliveyoung' : '올리브영'}, inplace=True)
+      print(st.session_state.df_graph)
+      fig, ax = plt.subplots()
+      ax.set_ylim(0,50)
+      st.session_state.df_graph.plot.bar(x = 'distance', 
+                                         y=['subway','bus','hospital','museum','starbucks','exercise','oliveyoung'] ,
+                                         color = ['#5A6FC0', '#59A076', '#F2CA6B', '#DE6E6A', '#59A076', '#EC8A5D'],
+                                         ax=ax,
+                                         legend = False)
+      fig.legend(prop={'size':10}, bbox_to_anchor=(1.05, 1))
+      st.pyplot(fig)
+
+    with con6:
+      st_folium(m, width=2500, returned_objects=[])
+      con4_html = """ 
+        <h3 style="text-align:center">기업 주변 라이프 밸런스</h3>
+        """
+      st.markdown(con4_html, unsafe_allow_html=True)
+    with col1:
+      draw_radar()
+      
     with col2:
        score_weight_list = st.session_state.score_weight_list
        htmlStyle="""
@@ -416,7 +519,7 @@ if 'company' in st.session_state:
             border-radius: 10px;
             box-sizing: border-box;
             text-align: center;
-            font-size: 18px;
+            font-size: 17px;
             width: 110px;
             height: 60px;
             font-weight :bolder;
@@ -441,8 +544,6 @@ if 'company' in st.session_state:
         """
        eval_list = st.session_state.eval_list
        col1Html = f"""
-       <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>라이프 밸런스 점수</span>는? </div>
-          <h2>라이프 밸런스 점수는 {st.session_state.score}/160점 이네요.</h2>
        <div>
           <span class="box">대중교통</span> 
           <span class="cololrBox" style="background-color: {color_list[0]};"></span>
@@ -469,24 +570,13 @@ if 'company' in st.session_state:
           <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[5]}({score_weight_list[5]}/24점)</span>
           <br><br>
       </div>
-      
+      <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>라이프 밸런스 점수</span>는? </div>
+      <h2>라이프 밸런스 점수는 {st.session_state.score}/160점</h2>
     """
        st.markdown(htmlStyle, unsafe_allow_html=True)
        st.markdown(col1Html, unsafe_allow_html=True)
-    
+
     st.markdown("<div></div>", unsafe_allow_html=True)
-    with con4:
-      st.markdown("<p>&nbsp;</p><p>&nbsp;</p>", unsafe_allow_html=True)
-      st_folium(m, width=700, returned_objects=[])
-      con4_html = """ 
-        <h3 style="text-align:center">기업 주변 라이프 밸런스</h3>
-        """
-      st.markdown(con4_html, unsafe_allow_html=True)
-    html = f"""
-    <h2>AI의 {company_name}회사 라이프 밸런스 평가</h2>
-    """
-    st.markdown(html, unsafe_allow_html=True)
-    st.write(st.session_state.infra)
 else:
     if 'clicked_regionCd' not in st.session_state:
       st.error('직업 추천을 먼저 진행해주세요')
