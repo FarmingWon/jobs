@@ -283,9 +283,10 @@ def main():
         div.stButton > button:first-child {
             background-color: #2A9DF4;
             color: #ffffff;
-            width: 100%;
-            height: 100%;
+            width: 60%;
+            height: 60px;
             margin-top: 0%;
+	    margin-left : 20%;
         }
     </style>""", unsafe_allow_html=True)
 	
