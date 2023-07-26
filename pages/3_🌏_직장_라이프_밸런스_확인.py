@@ -578,7 +578,6 @@ if 'company' in st.session_state:
        st.markdown(col1Html, unsafe_allow_html=True)
        st.markdown("<div>&nbsp;</div><div>&nbsp;</div>", unsafe_allow_html=True
 
-    st.markdown("<div>&nbsp;</div><div>&nbsp;</div>", unsafe_allow_html=True)
 else:
     if 'clicked_regionCd' not in st.session_state:
       st.error('직업 추천을 먼저 진행해주세요')
