@@ -299,7 +299,7 @@ def main():
 	
     html3 = f"""
             <div class="slide-bottom">
-                <div class="container" style="margin-top: 30%; height: auto;">
+                <div class="container" style="margin-top: 10%; height: auto;">
                     <div class="row">
                         <div class="col">
                             <h2 class="slide-bottom">개인 맞춤 직무 추천과<br/>관련 기업의 인프라 평가까지</h2> 
