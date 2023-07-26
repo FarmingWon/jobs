@@ -290,12 +290,24 @@ def main():
         font-size : large;
       }
   </style>""", unsafe_allow_html=True)
-
+#0C377A
   col1, col2, col3 = st.columns([1,3,1])
   with col2:
       if st.button("무료로 이용하기"):
           switch_page("이력서를_통한_직업_추천")
 
+  m = st.markdown("""
+  <style>
+      div.stButton > button:first-child {
+          background-color: #0C377A;
+          color: #ffffff;
+          width: 60%;
+          height: 60px;
+          margin-top: 0%;
+          margin-left : 20%;
+          font-size : large;
+      }
+  </style>""", unsafe_allow_html=True)
   col4, col5, col6 = st.columns([1,3,1])
   with col5:
       if st.button("직업 소개"):    
