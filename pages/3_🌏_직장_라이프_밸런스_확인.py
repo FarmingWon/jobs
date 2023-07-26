@@ -500,7 +500,11 @@ if 'company' in st.session_state:
                                          legend = False)
       fig.legend(prop={'size':10}, bbox_to_anchor=(1.05, 1))
       st.pyplot(fig)
-
+      con4_html = """ 
+        <h3 style="text-align:center">거리별 라이프 밸런스 시설 개수</h3>
+        """
+      st.markdown(con4_html, unsafe_allow_html=True)
+        
     with con6:
       st_folium(m, width=2500, returned_objects=[])
       con4_html = """ 
@@ -509,10 +513,7 @@ if 'company' in st.session_state:
       st.markdown(con4_html, unsafe_allow_html=True)
     with col1:
       draw_radar()
-      con4_html = """ 
-        <h3 style="text-align:center">거리별 라이프 밸런스 시설 개수</h3>
-        """
-      st.markdown(con4_html, unsafe_allow_html=True)
+      
     with col2:
        score_weight_list = st.session_state.score_weight_list
        htmlStyle="""
