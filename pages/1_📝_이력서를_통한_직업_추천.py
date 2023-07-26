@@ -339,6 +339,7 @@ if 'selectJob' in st.session_state and st.session_state.selectJob:
         bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
 
 if st.session_state.selectRegion:
+    st.success('Next 버튼을 눌러 다음 페이지로 이동하세요!')
     next_col1,next_col2,next_col3 = st.columns([0.45,0.45,0.1])
     with next_col3:
         jobs_btn = st.button("Next >")
