@@ -372,12 +372,12 @@ if 'clicked_regionCd' not in st.session_state:
 elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regionNm != None and st.session_state.clicked_jobCd != None and st.session_state.clicked_jobNm != None:
     st.session_state.gangso, st.session_state.recommend_company = corp.find_company(st.session_state.clicked_regionCd, st.session_state.clicked_jobCd, st.secrets.KEY.MONGO_KEY)
     html = f"""
-        <div class="container">
+        <div class="container" style="margin-top: 5%;">
             <span><strong>{st.session_state.clicked_regionNm}</strong>지역의 <strong>{st.session_state.clicked_jobNm}</strong> 채용공고가 </span>
             <span style='color:#2A9DF4; font-weight:bold'>{len(st.session_state.gangso) + len(st.session_state.recommend_company)}</span>개의 채용공고가 있네요.
-            <br>잠시만 기다리시면 라이프 밸런스 점수와 함께 보여드리겠습니다.!
+            <br>잠시만 기다리시면 라이프 밸런스 점수와 함께 보여드리겠습니다!
         </div>
-        <div class="container">
+        <div class="container" style="margin-top: 5%;">
             <p style="font-weight: 700; font-size: 40px;">기업 목록</p>
         </div>
     """
