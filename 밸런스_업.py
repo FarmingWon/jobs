@@ -131,7 +131,7 @@ def main():
         </div>
         <div class="container">
             <div class="subtitle" id="subtitle">
-                <p class="h5 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
+                <p class="h3 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
                 <br/>
                 <p class="text-center" style="margin-bottom:0px;">
                     <small>내 이력서를 분석하여 연관성이 높은 포지션들을 알려드려요.</small>
@@ -315,7 +315,7 @@ def main():
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     
-    <div class="container header" style="font-weight:600; font-size: 20px; margin-top: 10%;"><p class="h3">JobsGPT를 통한 직업 상담</p></div>
+    <div class="container header" style="font-weight:600; font-size: 20px; margin-top: 10%;"><p class="h1">JobsGPT를 통한 직업 상담</p></div>
 
     <style type="text/css">
         @font-face {
