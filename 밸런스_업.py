@@ -131,13 +131,13 @@ def main():
         </div>
         <div class="container">
             <div class="subtitle" id="subtitle">
-                <p class="h5 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
+                <p class="h3 text-center">이력서만 등록해도 맞춤 포지션 추천과 기업 평가까지!!</p>
                 <br/>
                 <p class="text-center" style="margin-bottom:0px;">
-                    <small>내 이력서를 분석하여 연관성이 높은 포지션들을 알려드려요.</small>
+                    내 이력서를 분석하여 연관성이 높은 포지션들을 알려드려요.
                 </p>
                 <p class="text-center">
-                    <small>기업 평가는 기업 주변 인프라의 접근성과 다양성을 기준으로 제공됩니다.</small>
+                    기업 평가는 기업 주변 인프라의 접근성과 다양성을 기준으로 제공됩니다.
                 </p>
             </div>
         </div>
