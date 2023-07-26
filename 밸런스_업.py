@@ -290,9 +290,9 @@ def main():
     </style>""", unsafe_allow_html=True)
 	
     col1, col2, col3 = st.columns([1,3,1])
-    # with col2:
-    #     if st.button("무료로 이용하기"):
-    #         switch_page("이력서를_통한_직업_추천")
+    with col2:
+        if st.button("무료로 이용하기"):
+            switch_page("이력서를_통한_직업_추천")
 	
 	# JobsGPT
 #     GPT_KEY = st.secrets.KEY.GPT_KEY
@@ -437,9 +437,6 @@ def main():
             </div>
 	"""
     st.markdown(html3, unsafe_allow_html=True)
-    with col2:
-        if st.button("무료로 이용하기"):
-            switch_page("이력서를_통한_직업_추천")
     st_javascript("""$(document).ready(function() {
 			$(window).fadeThis();
 		});""")
