@@ -378,7 +378,7 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
             <br>잠시만 기다리시면 라이프 밸런스 점수와 함께 보여드리겠습니다!
         </div>
         <div class="container" style="margin-top: 10px;">
-            <p style="font-weight: 600; font-size: 40px;">기업 목록</p>
+            <p style="font-weight: 600; font-size: 32px;">기업 목록</p>
         </div>
     """
     st.markdown(html,unsafe_allow_html=True)
