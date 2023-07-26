@@ -155,7 +155,10 @@ def make_score(company_name,address,busisize,isShow=False): # 점수 계산
                 minus = minus + minusList[i]
             else:
                 plus = plus + plusList[i]
-        tp_score = tp_score - minus + plus
+        if tp_score > 6:
+            tp_score = tp_score - minus + plus
+        else:
+            tp_score = tp_score + plus
         if tp_score < 0:
             tp_score = 0
         elif tp_score > 24:
