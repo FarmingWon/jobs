@@ -6,6 +6,7 @@ streamlit
 streamlit-folium
 folium
 extra-streamlit-components
+streamlit-javascript
 streamlit-echarts
 pandas
 numpy
