@@ -399,7 +399,7 @@ if 'company' in st.session_state:
     con3,con4,con5= st.columns([0.2,0.5,0.2])
     color_list = get_color_list()
     with col1:
-      st.markdown("<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>", unsafe_allow_html=True)
+      st.markdown("<p>&nbsp;</p>", unsafe_allow_html=True)
       m = makeMap(address, company_name)
       con3_html = """ 
         <h3 style="text-align:center">생활 편의시설 통계</h3>
