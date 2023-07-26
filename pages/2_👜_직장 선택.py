@@ -377,6 +377,9 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
             <span style='color:#2A9DF4; font-weight:bold'>{len(st.session_state.gangso) + len(st.session_state.recommend_company)}</span>개의 채용공고가 있네요.
             <br>잠시만 기다리시면 라이프 밸런스 점수와 함께 보여드리겠습니다.!
         </div>
+        <div class="container">
+            <p style="font-weight: 700; font-size: 20px;">기업 목록</p>
+        </div>
     """
     st.markdown(html,unsafe_allow_html=True)
     
