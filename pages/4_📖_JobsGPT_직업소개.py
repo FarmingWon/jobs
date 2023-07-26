@@ -57,7 +57,7 @@ htmlTitle = """
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     
-    <div class="container header" style="font-weight:600; font-size: 20px; margin-top: 5%;"><p class="h1">JobsGPT를 통한 직업 상담</p></div>
+    <div style="font-weight:600; font-size: 20px; margin-top: 5%;"><p class="h1">JobsGPT를 통한 직업 상담</p></div>
 
     <style type="text/css">
         @font-face {
