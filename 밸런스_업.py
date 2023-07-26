@@ -159,7 +159,7 @@ def main():
             </ol>
         </div>
     </div>
-    <div class="container" style="margin-bottom: 10%"></div>
+    <div class="container" style="margin-bottom: 5%"></div>
     """ + """
     <style type="text/css">
         @font-face {
