@@ -295,8 +295,10 @@ def main():
     with col2:
         if st.button("무료로 이용하기"):
             switch_page("이력서를_통한_직업_추천")
-	
-	
+    col4, col5, col6 = st.columns([1,3,1])
+    with col5:
+	if st.button("직업 소개"):    
+	    switch_page("JobsGPT_직업소개")  	
     html3 = f"""
             <div class="slide-bottom">
                 <div class="container" style="margin-top: 10%; height: auto;">
