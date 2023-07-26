@@ -444,6 +444,7 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
                   
               subcol3,subcol4 = st.columns(2)    
               with subcol4:
+                  st.success('아래의 버튼을 눌러 라이프 밸런스를 확인하세요')         
                   if st.button('기업 주변 라이프 밸런스 확인'):
                       st.session_state.selectCompany = True
                       get_progress_score()
