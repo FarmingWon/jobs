@@ -289,7 +289,7 @@ if uploaded_file:
         if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
             st.session_state.similarity_jobs = jaccard.recommend_similarity_job(recommend_jobs)
         jobsHtml = f"""
-            <p>가장 적합한 직업은 <strong style='color:#2A9DF4;'>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
+            <p>가장 적합한 직업은 <strong style='color:blue;'>{recommend_jobs[0]['occupation3Nm']}</strong>이네요. 유사한 직업도 같이 보여드릴게요.</p>
         """
         st.markdown(jobsHtml, unsafe_allow_html=True)
         st.write(f"")
@@ -315,7 +315,7 @@ if uploaded_file and  'selected_job' not in st.session_state or st.session_state
                     break
 if 'clicked_jobNm' in st.session_state and st.session_state.clicked_jobNm != None:
     selectJobHtml = f"""
-        <strong style='color:#2A9DF4;'>{st.session_state.clicked_jobNm}</strong>직업을 선택하셨네요.<br>
+        <strong style='color:blue;'>{st.session_state.clicked_jobNm}</strong>직업을 선택하셨네요.<br>
         해당 직업을 가지고 보고싶은 채용공고의 지역을 선택해주세요. 
     """
     st.markdown(selectJobHtml, unsafe_allow_html=True)
