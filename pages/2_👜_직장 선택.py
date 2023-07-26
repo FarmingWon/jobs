@@ -384,7 +384,6 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
     st.markdown(html,unsafe_allow_html=True)
     
     fields = ['기업명','기업규모','근로계약','기업위치','근무시간' ,'URL']
-    st.subheader('기업목록')
     if len(st.session_state.gangso) != 0:
         gangso_df = pd.DataFrame(st.session_state.gangso, columns=fields)
     if len(st.session_state.recommend_company) != 0:
