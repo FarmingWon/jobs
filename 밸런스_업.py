@@ -293,7 +293,7 @@ def main():
 #0C377A
   col1, col2, col3 = st.columns([1,3,1])
   with col2:
-      if st.button("무료로 이용하기"):
+      if st.button("구직 직업 상담"):
           switch_page("이력서를_통한_직업_추천")
 
   m = st.markdown("""
@@ -310,7 +310,7 @@ def main():
   </style>""", unsafe_allow_html=True)
   col4, col5, col6 = st.columns([1,3,1])
   with col5:
-      if st.button("직업 소개"):    
+      if st.button("AI 잡케어 이용하기"):    
         switch_page("JobsGPT_직업소개") 
 
   html3 = f"""
