@@ -57,7 +57,7 @@ htmlTitle = """
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
     
-    <div class="container header" style="font-weight:600;"><p class="h3">JobsGPT의 직업소개</p></div>
+    <div class="container header" style="font-weight:600; font-size: 20px; margin-top: 10%;"><p class="h3">JobsGPT를 통한 직업 상담</p></div>
 
     <style type="text/css">
         @font-face {
@@ -111,7 +111,7 @@ if 'past' not in st.session_state: # 초기화
     st.session_state['past'] = ["웹 개발자는 무슨 직업인지 설명해줘."]
 
 
-query = st.text_area('직업에 대하여 물어보세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자는 무슨 직업인지 설명해줘.")
+query = st.text_area('LLM기반 AI 챗봇 프로그램을 통해 구직 상담을 진행하세요.', value="", on_change=clear_submit, placeholder="백엔드 개발자는 무슨 직업인지 설명해줘.")
 button = st.button("submit")
 if button or st.session_state.get("submit"):
     st.session_state["submit"] = True
