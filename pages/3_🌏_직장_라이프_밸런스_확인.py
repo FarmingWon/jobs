@@ -440,6 +440,8 @@ if 'company' in st.session_state:
         """
        eval_list = st.session_state.eval_list
        col1Html = f"""
+       <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>라이프 밸런스 점수</span>는? </div>
+          <h2>라이프 밸런스 점수는 {st.session_state.score}/160점 이네요.</h2>
        <div>
           <span class="box">대중교통</span> 
           <span class="cololrBox" style="background-color: {color_list[0]};"></span>
@@ -466,8 +468,7 @@ if 'company' in st.session_state:
           <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[5]}({score_weight_list[5]}/24점)</span>
           <br><br>
       </div>
-      <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>라이프 밸런스 점수</span>는? </div>
-      <h2>라이프 밸런스 점수는 {st.session_state.score}/160점 이네요.</h2>
+      
     """
        st.markdown(htmlStyle, unsafe_allow_html=True)
        st.markdown(col1Html, unsafe_allow_html=True)
