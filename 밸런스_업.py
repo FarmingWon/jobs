@@ -298,7 +298,6 @@ def main():
 	
 	
     html3 = f"""
-    	 <hr>
             <div class="slide-bottom">
                 <div class="container" style="margin-top: 10%; height: auto;">
                     <div class="row">
