@@ -287,6 +287,7 @@ def main():
             height: 60px;
             margin-top: 0%;
 	    margin-left : 20%;
+     	    font-size : large;
         }
     </style>""", unsafe_allow_html=True)
 	
