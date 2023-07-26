@@ -473,9 +473,10 @@ if 'company' in st.session_state:
     """
        st.markdown(htmlStyle, unsafe_allow_html=True)
        st.markdown(col1Html, unsafe_allow_html=True)
-    st.markdown("<p>&nbsp;</p><p>&nbsp;</p>", unsafe_allow_html=True)
+    
     st.markdown("<div></div>", unsafe_allow_html=True)
     with con4:
+      st.markdown("<p>&nbsp;</p><p>&nbsp;</p>", unsafe_allow_html=True)
       st_folium(m, width=700, returned_objects=[])
       con4_html = """ 
         <h3 style="text-align:center">기업 주변 라이프 밸런스</h3>
