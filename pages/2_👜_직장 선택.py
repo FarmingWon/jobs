@@ -76,9 +76,9 @@ def calculate_distance(df, center_xy):
 def eval_infra(score_list):
     eval_list = list()
     for idx, score in enumerate(score_list):
-        if score >= 18:
+        if score >= 20:
             eval_list.append("여유")
-        elif score >= 7:
+        elif score >= 6:
             if idx == 0:
                 eval_list.append("혼잡")
             else:
@@ -203,11 +203,11 @@ def make_score(company_name,address,busisize,isShow=False): # 점수 계산
         st.session_state.score_weight_list = score_weight_list
         eval_list = eval_infra(score_weight_list)
         query = f"""
-        현재 회사 근처에 대중교통 {eval_list[0]}, 병원 {eval_list[1]}, 박물관 {eval_list[2]}, 커피숍 {eval_list[3]}, 운동시설 {eval_list[4]}, 화장품샵 {eval_list[5]} 인데 회사 주변의 라이프 밸런스를 평가해줘.
+        현재 회사 근처에 대중교통 {eval_list[0]}, 병원 {eval_list[1]}, 박물관 {eval_list[2]}, 커피숍 {eval_list[3]}, 운동시설 {eval_list[4]}, 올리브영 {eval_list[5]} 인데 회사 주변의 라이프 밸런스를 평가해줘.
         """
         st.session_state.query = query
         st.session_state.infra = jaccard.getInfra_to_GPT(st.session_state.query,st.secrets.KEY.INFRA_GPT_KEY)
-        st.df_graph = df_graph
+        st.session_state.df_graph = df_graph
         st.session_state.eval_list = eval_list
     return score
 
