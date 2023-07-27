@@ -1,16 +1,19 @@
 # -- import modules start --
-#streamlit
+
 import base64
 import math
 import sys
 from pathlib import Path
 
-import extra_streamlit_components as stx
 #openai
 import openai
-import pandas as pd
-import streamlit as st
 from openai.error import OpenAIError
+
+import pandas as pd
+
+#streamlit
+import streamlit as st
+import extra_streamlit_components as stx
 from st_pages import Page, add_page_title, show_pages
 from streamlit_chat import message
 from streamlit_extras.switch_page_button import switch_page
