@@ -397,7 +397,7 @@ def main():
 """
   st.markdown(html3, unsafe_allow_html=True)
   st_javascript("""$(document).ready(function() {
-    $(window).fadeThis();
+    $('.container.slide-bottom').fadeThis();
   });""")
 
 if __name__ == "__main__":
