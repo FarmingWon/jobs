@@ -398,9 +398,6 @@ def main():
     </div>
 """
   st.markdown(html3, unsafe_allow_html=True)
-  st_javascript("""$(document).ready(function() {
-    $('.contain').fadeThis();
-  });""")
 
 if __name__ == "__main__":
     set_variable()
