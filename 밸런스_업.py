@@ -198,8 +198,6 @@ def main():
       
           animation: wawes 6s infinite linear;
       }
-
-      
       .container.wrap::before,
       .container.wrap::after {
           content: '';
