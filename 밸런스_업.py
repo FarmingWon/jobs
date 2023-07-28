@@ -127,7 +127,7 @@ def main():
           <div class="row" style="margin-top: 0%;">
               <div class="col-md-4"></div>
               <div class="col-md-5 d-flex justify-content-center">
-                  <img src="data:image/png;base64,{img_to_bytes("./img/logo.png")}" style="width: 550px; height: 350px;">
+                  <img src="data:image/png;base64,{img_to_bytes("./img/logo.png")}" style="width: 700; height: 250px;">
               </div>
               <div class="col-md-4"></div>
           </div>
