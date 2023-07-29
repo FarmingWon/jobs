@@ -406,7 +406,7 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
         show_more = st.session_state.show_more
                 
         cols = st.columns(3)
-        rows = ['기업명', '더보기', '라이프 밸런스 점수']
+        rows = ['기업명', '상세정보', '라이프 밸런스 점수']
     
         # table header
         for col, field in zip(cols, rows):
