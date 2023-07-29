@@ -411,57 +411,59 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
         # table header
         for col, field in zip(cols, rows):
             col.write("**"+field+"**")
-        all_score()
-        # table rows
-        for idx, row in st.session_state.companys.iterrows():
-          col1, col2,col3 = st.columns(3)
-          col1.write(row['기업명'])
-          placeholder = col2.empty()
-          if show_more[int(idx)]:
-              placeholder.button(
-                  "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
-              )
-              make_score(row['기업명'], row['기업위치'], row['기업규모'], isShow= True)
-              subcol1, subcol2 = st.columns(2)
-              with subcol1:
-                    html = """
-                        <div style='height:50px'></div>
-                    """
-                    st.markdown(html,unsafe_allow_html=True)
-                    st.write('기업규모 : ' + row['기업규모'])
-                    st.write('근로계약 : ' + row['근로계약'])
-                    st.write('근무시간 : ' + row['근무시간'])
-                    url = row['URL']
-                    st.write("공고 URL : [%s](%s)" % (url, url))
-                    st.write("라이프 밸런스 점수 : " + str(st.session_state.score) + "/160점")
-              with subcol2:
-                    columns_name = ['대중교통','병원','문화시설','커피숍','운동시설','올리브영']
-                    score_weight_list = st.session_state.score_weight_list
-                    merge_data = list()
-                    for i in range(6):
-                        merge_data.append([columns_name[i],score_weight_list[i]])
-                    df = pd.DataFrame(merge_data, columns=['라이프 밸런스','점수'])
-                    fig1 = px.pie(df, values='점수' ,names='라이프 밸런스', title='라이프 밸런스 점수 비율 차트')
-                    fig1.update_traces(textposition='outside',textinfo='label+percent', textfont_size=20,textfont_color="black")
-                    st.plotly_chart(fig1)  
-                  
-              subcol3,subcol4 = st.columns(2)    
-              with subcol4:
-                  st.success('아래의 버튼을 눌러 라이프 밸런스를 확인하세요')         
-                  if st.button('라이프밸런스 상세보기'):
-                      st.session_state.selectCompany = True
-                      get_progress_score()
-                      bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-                      st.session_state.company = row
-                      switch_page("직장_라이프_밸런스_확인")
-                  
-              st.write("---")
-          else:
-                placeholder.button(
-                  "more",
-                  key=idx,
-                  on_click=on_more_click,
-                  args=[show_more, idx],
-                  type="primary",
-                )
-          col3.write(f"{row['score']}/160점")
+
+        with st.spinner("채용정보 불러오는 중..."):
+            all_score()
+            # table rows
+            for idx, row in st.session_state.companys.iterrows():
+              col1, col2,col3 = st.columns(3)
+              col1.write(row['기업명'])
+              placeholder = col2.empty()
+              if show_more[int(idx)]:
+                  placeholder.button(
+                      "less", key=str(idx) + "_", on_click=on_less_click, args=[show_more, idx]
+                  )
+                  make_score(row['기업명'], row['기업위치'], row['기업규모'], isShow= True)
+                  subcol1, subcol2 = st.columns(2)
+                  with subcol1:
+                        html = """
+                            <div style='height:50px'></div>
+                        """
+                        st.markdown(html,unsafe_allow_html=True)
+                        st.write('기업규모 : ' + row['기업규모'])
+                        st.write('근로계약 : ' + row['근로계약'])
+                        st.write('근무시간 : ' + row['근무시간'])
+                        url = row['URL']
+                        st.write("공고 URL : [%s](%s)" % (url, url))
+                        st.write("라이프 밸런스 점수 : " + str(st.session_state.score) + "/160점")
+                  with subcol2:
+                        columns_name = ['대중교통','병원','문화시설','커피숍','운동시설','올리브영']
+                        score_weight_list = st.session_state.score_weight_list
+                        merge_data = list()
+                        for i in range(6):
+                            merge_data.append([columns_name[i],score_weight_list[i]])
+                        df = pd.DataFrame(merge_data, columns=['라이프 밸런스','점수'])
+                        fig1 = px.pie(df, values='점수' ,names='라이프 밸런스', title='라이프 밸런스 점수 비율 차트')
+                        fig1.update_traces(textposition='outside',textinfo='label+percent', textfont_size=20,textfont_color="black")
+                        st.plotly_chart(fig1)  
+                      
+                  subcol3,subcol4 = st.columns(2)    
+                  with subcol4:
+                      st.success('아래의 버튼을 눌러 라이프 밸런스를 확인하세요')         
+                      if st.button('라이프밸런스 상세보기'):
+                          st.session_state.selectCompany = True
+                          get_progress_score()
+                          bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+                          st.session_state.company = row
+                          switch_page("직장_라이프_밸런스_확인")
+                      
+                  st.write("---")
+              else:
+                    placeholder.button(
+                      "more",
+                      key=idx,
+                      on_click=on_more_click,
+                      args=[show_more, idx],
+                      type="primary",
+                    )
+              col3.write(f"{row['score']}/160점")
