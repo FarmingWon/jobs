@@ -27,8 +27,25 @@
 
 
 ## 오류
-예상치 못한 오류가 발생 시 우측 상단의 버튼을 클릭 후 Rerun을 누른 뒤 다시 진행할 수 있습니다.
+예상치 못한 오류가 발생 시 우측 상단의 버튼을 클릭 후 Rerun을 누른 뒤 다시 진행할 수 있습니다.<p>
 ![rerun](https://github.com/FarmingWon/jobs/assets/98411696/c02c29c4-5fee-423e-afe3-3e6e8a4e5ee4)
 
 
 ## RoadMap
+<li>직무 관련 강의 추천받기
+  <ul>
+    <li>detrail</li>
+  </ul>
+</li>
+<br>
+<li>스트리밍중인 강의 참여
+  <ul>
+    <li>detrail</li>
+  </ul>
+</li>
+<br>
+<li>이직가능한 직무 확인
+  <ul>
+    <li>detrail</li>
+  </ul>
+</li>
