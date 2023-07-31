@@ -3,8 +3,9 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import openai
 from . import api
+from openai.error import OpenAIAPIError
 from PyPDF2 import PdfReader
-
+import time
 
 def get_job(): # csv파일에 있는 직업 skill을 list화
     path = './csv/skills.csv'
@@ -60,39 +61,53 @@ def getUserSkill_to_GPT_Chat(resume, API_KEY): # 이력서의 skill을 GPT를 �
     MODEL = "gpt-3.5-turbo"
 
     question = "\n Please extract skill, graduation department, and certificate from the corresponding sentence. I don't need another sentence, but please answer in Korean. For example, do it like 'java/C++/OOP'." #prompt
-    response = openai.ChatCompletion.create(
-        model = MODEL,
-        messages = [
-            {"role" : "user", "content" : resume+question}, #request
-            {"role" : "assistant", "content" : "Help me extract skill from my resume.The response format divides each skill into."}
-        ],
-        temperature=0
-    )
-    return response.choices[0].message.content
+    try:
+        response = openai.ChatCompletion.create(
+            model = MODEL,
+            messages = [
+                {"role" : "user", "content" : resume+question}, #request
+                {"role" : "assistant", "content" : "Help me extract skill from my resume.The response format divides each skill into."}
+            ],
+            temperature=0
+        )
+        return response.choices[0].message.content
+    except OpenAIAPIError as error:
+        if error.status_code == 502:
+            print(error)
+            return error
+        elif error.status_code == 429:
+            retry = int(error.headers.get("Retry-After", 60))
+            time.sleep(retry)
+        else:
+            print(error)
     
 def getInfra_to_GPT(query, API_KEY):
     openai.api_key= API_KEY
     MODEL = "gpt-3.5-turbo"
-    response = openai.ChatCompletion.create(
-        model = MODEL,
-        messages = [
-            {"role" : "user", "content" : query + """응답은 4개의 문장 이내로 줘. 최종 평가로는 없음이 3개이상이면 라이프밸런스 나쁨, 없음이 2개가 없으면 라이프밸런스 보통, 없음이 1개 이하면 라이프밸런스가 좋다고 최종평가해줘."""}, #request
-            {"role" : "assistant", "content" : """
-             대중교통이 혼잡할만한 개수가 있으면 교통이 혼잡할 수 있다고 해줘. 각각 근처에 인프라의 시설이 없는 경우 주변 인프라가 별로 안좋다고 평가해줘.
-             회사 주변 인프라에 대한 질문이라서, 좋고 나쁨을 평가해줘. 응답은 문장형식으로 해주고, 구체적인 인프라의 개수는 적지말고 좋고 나쁨만 평가해줘."""}
-        ],
-        temperature=0
-    )
-    return response.choices[0].message.content
+    try:
+        response = openai.ChatCompletion.create(
+            model = MODEL,
+            messages = [
+                {"role" : "user", "content" : query + """응답은 4개의 문장 이내로 줘. 최종 평가로는 없음이 3개이상이면 라이프밸런스 나쁨, 없음이 2개가 없으면 라이프밸런스 보통, 없음이 1개 이하면 라이프밸런스가 좋다고 최종평가해줘."""}, #request
+                {"role" : "assistant", "content" : """
+                대중교통이 혼잡할만한 개수가 있으면 교통이 혼잡할 수 있다고 해줘. 각각 근처에 인프라의 시설이 없는 경우 주변 인프라가 별로 안좋다고 평가해줘.
+                회사 주변 인프라에 대한 질문이라서, 좋고 나쁨을 평가해줘. 응답은 문장형식으로 해주고, 구체적인 인프라의 개수는 적지말고 좋고 나쁨만 평가해줘."""}
+            ],
+            temperature=0
+        )
+        return response.choices[0].message.content
+    except OpenAIAPIError as error:
+        if error.status_code == 502:
+            print(error)
+            return error
+        else:
+            print(error)
     
 def recommend_job(pdf,API_KEY): # 직업 추천
     try:
         resume = pdf_to_text(pdf) # 이력서 pdf -> text(string)
         jobs = get_job() # csv파일의 job list
         user_skill = getUserSkill_to_GPT_Chat(resume,API_KEY) 
-        # user_skill = getUserSkill_to_GPT_Text(resume) 
-        # print(user_skill)
-        # user_skill = "Python, C/C++, JAVA, Kotlin, React Native, SQL, NoSQL, Git" 
         user_skill = user_skill.replace('/', ',')
         user_skill = api.getToken(user_skill.lower(), ",")
         user_skill = [tok.strip() for tok in user_skill]
@@ -102,7 +117,6 @@ def recommend_job(pdf,API_KEY): # 직업 추천
             tmp = [job, distance]
             if distance > 0:
                 result.append(tmp)
-            # print(job['occupation3Nm'], job['occupation3'], distance)
         result.sort(key=lambda x:x[1], reverse=True) # 자카드 distance기준으로 내림차순 정렬
         return result[0]
     except Exception as e:
