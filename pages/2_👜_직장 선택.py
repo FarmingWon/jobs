@@ -231,7 +231,6 @@ def all_score():
     df = pd.DataFrame(li, columns=['score'])
     st.session_state.companys['score'] = li
     st.session_state.companys =st.session_state.companys.sort_values(by='score',ascending=False) # 내림차순
-    st.session_state.companys_fin = True
 
 
 
@@ -426,8 +425,7 @@ elif st.session_state.clicked_regionCd != None and st.session_state.clicked_regi
             col.write("**"+field+"**")
 
         with st.spinner("채용정보 불러오는 중..."):
-            if 'companys_fin' not in st.session_state:
-                all_score()
+            all_score()
             # table rows
             for idx, row in st.session_state.companys.iterrows():
               col1, col2,col3 = st.columns(3)
