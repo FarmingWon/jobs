@@ -3,7 +3,7 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import openai
 from . import api
-from openai.error import OpenAIAPIError
+from openai.api_resources.abstract.api_resource  import OpenAIError
 from PyPDF2 import PdfReader
 import time
 
@@ -71,7 +71,7 @@ def getUserSkill_to_GPT_Chat(resume, API_KEY): # 이력서의 skill을 GPT를 �
             temperature=0
         )
         return response.choices[0].message.content
-    except OpenAIAPIError as error:
+    except OpenAIError as error:
         if error.status_code == 502:
             print(error)
             return error
@@ -96,7 +96,7 @@ def getInfra_to_GPT(query, API_KEY):
             temperature=0
         )
         return response.choices[0].message.content
-    except OpenAIAPIError as error:
+    except OpenAIError as error:
         if error.status_code == 502:
             print(error)
             return error
