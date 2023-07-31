@@ -3,7 +3,7 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import openai
 from . import api
-from openai.api_resources.abstract.api_resource  import OpenAIError
+from openai.error import OpenAIError
 from PyPDF2 import PdfReader
 import time
 
