@@ -72,7 +72,7 @@ def getUserSkill_to_GPT_Chat(resume, API_KEY): # 이력서의 skill을 GPT를 �
     
 def getInfra_to_GPT(query, API_KEY):
     openai.api_key= API_KEY
-    MODEL = "gpt-3.5-turbo-16k"
+    MODEL = "gpt-3.5-turbo"
     response = openai.ChatCompletion.create(
         model = MODEL,
         messages = [
