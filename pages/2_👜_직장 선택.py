@@ -47,11 +47,21 @@ def set_csv():
 
 # func: address to lat, lon
 def addr_to_lat_lon(addr):
-  url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
-  headers = {"Authorization": "KakaoAK " + st.secrets.KEY.KAKAO_KEY}
-  result = json.loads(str(requests.get(url, headers=headers).text))
-  match_first = result['documents'][0]['address']
-  return float(match_first['y']), float(match_first['x'])
+    try:
+        addr = addr.replace(",", "")
+        addr = addr.split(" ")
+        addr_tmp = addr[1:6]
+        addr = ""
+        for ad in addr_tmp:
+            if ad != "":
+                addr = addr + " " + ad
+        url = f"https://dapi.kakao.com/v2/local/search/address.json?query={addr}"
+        headers = {"Authorization": "KakaoAK " + st.secrets.KEY.KAKAO_KEY}
+        result = json.loads(str(requests.get(url, headers=headers).text))
+        match_first = result['documents'][0]['address']
+        return float(match_first['y']), float(match_first['x'])
+    except Exception as e:
+      return 0
 
 # func: calculator distance
 def calculate_distance(df, center_xy):
@@ -100,7 +110,8 @@ def on_less_click(show_more, idx):
 def make_score(company_name,address,busisize,isShow=False): # 점수 계산
     set_csv()
     center_xy = list(addr_to_lat_lon(address))
-
+    if center_xy == 0:
+        return 0
     df_subway_distance = calculate_distance(st.session_state.df_subway, center_xy)
     df_bus_distance = calculate_distance(st.session_state.df_bus, center_xy)
     df_hospital_distance = calculate_distance(st.session_state.df_hospital, center_xy)
@@ -213,8 +224,9 @@ def make_score(company_name,address,busisize,isShow=False): # 점수 계산
 
 def all_score():
     li = list()
-    for idx,row in st.session_state.companys.iterrows():
-        score = make_score(row['기업명'], row['기업위치'], row['기업규모'])
+    idx = st.session_state.companys.shape[0]
+    for row in range(idx):
+        score = make_score(st.session_state.companys.loc[row]['기업명'], st.session_state.companys.loc[row]['기업위치'], st.session_state.companys.loc[row]['기업규모'])
         li.append(score)
     df = pd.DataFrame(li, columns=['score'])
     st.session_state.companys['score'] = li
