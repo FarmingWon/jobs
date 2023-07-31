@@ -280,10 +280,11 @@ if uploaded_file:
         </script>
         '''
     st.markdown(htmlcode, unsafe_allow_html=True)
-    if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
-        save_upload_file('_pdf', uploaded_file)
-        GPT_KEY = st.secrets.KEY.GPT_KEY
-        st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
+    with st.spinner():
+        if 'recommend_jobs' not in st.session_state or st.session_state.recommend_jobs is None:
+            save_upload_file('_pdf', uploaded_file)
+            GPT_KEY = st.secrets.KEY.GPT_KEY
+            st.session_state.recommend_jobs = jaccard.recommend_job(uploaded_file, GPT_KEY)
     if st.session_state.recommend_jobs :
         recommend_jobs = st.session_state.recommend_jobs
         if 'similarity_jobs' not in st.session_state or st.session_state.similarity_jobs is None:
@@ -300,19 +301,20 @@ if uploaded_file and  'selected_job' not in st.session_state or st.session_state
         if st.session_state.recommend_jobs is not None and st.session_state.similarity_jobs is not None:
             showJob(st.session_state.recommend_jobs, st.session_state.similarity_jobs)
             clickedJob = st.button("직업 선택")
-    if clickedJob:
-        st.session_state.selectJob = True
-        st.session_state.clicked_jobCd = None
-        st.session_state.clicked_jobNm = None
-        if st.session_state.jobs is not None:
-            for job in st.session_state.jobs:
-                if st.session_state.selected_job == job[1]:
-                    st.session_state.clicked_jobCd = job[0]
-                    st.session_state.clicked_jobNm = job[1]
-                    st.session_state.selectJob = True
-                    get_progress_score()
-                    bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
-                    break
+    with st.spinner():
+        if clickedJob:
+            st.session_state.selectJob = True
+            st.session_state.clicked_jobCd = None
+            st.session_state.clicked_jobNm = None
+            if st.session_state.jobs is not None:
+                for job in st.session_state.jobs:
+                    if st.session_state.selected_job == job[1]:
+                        st.session_state.clicked_jobCd = job[0]
+                        st.session_state.clicked_jobNm = job[1]
+                        st.session_state.selectJob = True
+                        get_progress_score()
+                        bar.progress(st.session_state.barScore, text= f"진행률 {st.session_state.barScore}%")
+                        break
 if 'clicked_jobNm' in st.session_state and st.session_state.clicked_jobNm != None:
     selectJobHtml = f"""
         <strong style='color:blue;'>{st.session_state.clicked_jobNm}</strong>직업을 선택하셨네요.<br>
