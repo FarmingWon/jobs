@@ -583,7 +583,7 @@ if 'company' in st.session_state:
           <span class="cololrBox" style="background-color :{color_list[5]};"></span>
           <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[5]}({score_weight_list[5]}/24점)</span>
           <br><br>
-          <div style='font-size:20px'>해당 회사는<span style='color : blue;'>{st.session_state.busiSize}</span>이므로 추가 라이프 밸런스 점수 <span style='color : red;'>{busiScore}점</span> 추가되었습니다!</div>
+          <div style='font-size:20px'>해당 회사는 <span style='color : blue;'>{st.session_state.busiSize}</span>이므로 추가 라이프 밸런스 점수 <span style='color : red;'>{busiScore}점</span> 추가되었습니다!</div>
       </div>
     """
        st.markdown(htmlStyle, unsafe_allow_html=True)
