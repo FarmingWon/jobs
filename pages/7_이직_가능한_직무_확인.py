@@ -8,7 +8,7 @@ def img_to_bytes(img_path):
     return encoded
 
 html = """
-<h1>준비 중 입니다.</h1>
+<h1>준비 중입니다.</h1>
 """
 
 st.markdown(html, unsafe_allow_html=True)
