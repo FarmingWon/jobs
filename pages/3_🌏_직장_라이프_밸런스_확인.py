@@ -558,6 +558,7 @@ if 'company' in st.session_state:
        col1Html = f"""
        <div>
           <div style='font-size:20px'>AI가 평가하는 <span style='color : blue;'>{company_name}</span>의 <span style='color : red;'>라이프 밸런스 점수</span>는? </div>
+          <div style='font-size:20px'>해당 회사는 <span style='color : blue;'>{st.session_state.busiSize}</span>이므로 라이프 밸런스 점수 <span style='color : red;'>{busiScore}점</span> 추가되었습니다!</div>
           <h2>라이프 밸런스 점수는 {st.session_state.score}/160점</h2>
           <span class="box">대중교통</span> 
           <span class="cololrBox" style="background-color: {color_list[0]};"></span>
@@ -583,7 +584,6 @@ if 'company' in st.session_state:
           <span class="cololrBox" style="background-color :{color_list[5]};"></span>
           <span style="align-items: center; justify-content: center;vertical-align: middle; margin-top :5px; margin-left: 20px; font-weight: bold; font-size: 25px;">{eval_list[5]}({score_weight_list[5]}/24점)</span>
           <br><br>
-          <div style='font-size:20px'>해당 회사는 <span style='color : blue;'>{st.session_state.busiSize}</span>이므로 라이프 밸런스 점수 <span style='color : red;'>{busiScore}점</span> 추가되었습니다!</div>
       </div>
     """
        st.markdown(htmlStyle, unsafe_allow_html=True)
