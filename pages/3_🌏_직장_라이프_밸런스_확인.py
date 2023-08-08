@@ -483,9 +483,9 @@ if 'company' in st.session_state:
                 icon=(folium.Icon(color='blue', icon='building', prefix='fa'))
                 ).add_to(m)
       
-        con3_html = """ 
+      con3_html = """ 
         <h3 style="text-align:center">생활 편의시설 통계</h3>
-        """
+      """
       st.markdown(con3_html, unsafe_allow_html=True)
 
     with con4:
