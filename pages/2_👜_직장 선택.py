@@ -61,7 +61,7 @@ def addr_to_lat_lon(addr):
         match_first = result['documents'][0]['address']
         return float(match_first['y']), float(match_first['x'])
     except Exception as e:
-      return 0
+      return None
 
 # func: calculator distance
 def calculate_distance(df, center_xy):
@@ -109,8 +109,10 @@ def on_less_click(show_more, idx):
 # func: calculate score of company
 def make_score(company_name,address,busisize,isShow=False): # 점수 계산
     set_csv()
-    center_xy = list(addr_to_lat_lon(address))
-    if center_xy == 0:
+    center_xy = addr_to_lat_lon(address)
+    if center_xy != None:
+        center_xy = list(center_xy)
+    else:
         return 0
     df_subway_distance = calculate_distance(st.session_state.df_subway, center_xy)
     df_bus_distance = calculate_distance(st.session_state.df_bus, center_xy)
