@@ -476,7 +476,14 @@ if 'company' in st.session_state:
 
     with con5:
       m = makeMap(address, company_name)
-      con3_html = """ 
+      center_xy = list(addr_to_lat_lon(address))
+      folium.Marker(center_xy, 
+                popup=company_name,
+                tooltip=company_name,
+                icon=(folium.Icon(color='blue', icon='building', prefix='fa'))
+                ).add_to(m)
+      
+        con3_html = """ 
         <h3 style="text-align:center">생활 편의시설 통계</h3>
         """
       st.markdown(con3_html, unsafe_allow_html=True)
