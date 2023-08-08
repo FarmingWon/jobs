@@ -326,7 +326,7 @@ def main():
                         <p style="align-items-bottom"><small>*ELEI(Enterprise Living Environment Index): 기업 생활 환경 지수로MZ 세대가 선호하는 인프라 환경을 기반으로 해당 기업에 대한 평가를 진행합니다.</small></p>
                     </div>
                     <div class="col">
-                        <img src="data:image/png;base64,{img_to_bytes("img/tmpImg.png")}"  style="height: 300px; width: 300px; margin-left: 10%;">
+                        <img src="data:image/png;base64,{img_to_bytes("img/elei2.PNG")}"  style="height: 300px; width: 300px; margin-left: 10%;">
                     </div>
                 </div>
             </div>
