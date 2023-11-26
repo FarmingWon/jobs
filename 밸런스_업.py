@@ -7,7 +7,6 @@ from pathlib import Path
 
 #openai
 import openai
-
 import pandas as pd
 
 #streamlit
