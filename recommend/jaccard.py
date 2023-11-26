@@ -3,7 +3,6 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import openai
 from . import api
-from openai.error import OpenAIError
 from PyPDF2 import PdfReader
 import time
 
@@ -71,15 +70,8 @@ def getUserSkill_to_GPT_Chat(resume, API_KEY): # 이력서의 skill을 GPT를 �
             temperature=0
         )
         return response.choices[0].message.content
-    except OpenAIError as error:
-        if error.status_code == 502:
-            print(error)
-            return error
-        elif error.status_code == 429:
-            retry = int(error.headers.get("Retry-After", 60))
-            time.sleep(retry)
-        else:
-            print(error)
+    except Exception as e:
+        print(e)
     
 def getInfra_to_GPT(query, API_KEY):
     openai.api_key= API_KEY
@@ -96,12 +88,8 @@ def getInfra_to_GPT(query, API_KEY):
             temperature=0
         )
         return response.choices[0].message.content
-    except OpenAIError as error:
-        if error.status_code == 502:
-            print(error)
-            return error
-        else:
-            print(error)
+    except Exception as e:
+        print(e)
     
 def recommend_job(pdf,API_KEY): # 직업 추천
     try:
